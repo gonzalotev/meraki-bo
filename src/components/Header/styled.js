@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
-export const Container = styled.nav`
+export const Container = styled.div`
   width: 100%;
   text-align: center;
   background: white;
@@ -48,4 +48,13 @@ export const NavLink = styled(Link)`
   margin-left: 1.5%;
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   text-align: ${({ align }) => align || 'center'};
+`;
+
+export const Logo = styled.img`
+    width: 10%;
+    height: 20%;
+    margin-left: 0.5%;
+    margin-top: 5%;
+    align-self: flex-end;
+    margin-top: 1.5%;
 `;

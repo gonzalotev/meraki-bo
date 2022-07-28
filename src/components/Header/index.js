@@ -1,9 +1,11 @@
 import React from 'react';
-import {Container, Wrapper, NavBar, NavLink, Title} from './styled';
+import {Container, Wrapper, NavBar, NavLink, Title, Logo} from './styled';
+import logomeraki from './merakilogo.jpeg';
 
 const Header = () => {
   return(
     <Container>
+      <Logo src={logomeraki} alt="logo"/>
       <Wrapper>
         <Title>Meraki Espacio Artistico</Title>
         <NavBar>
