@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   margin-left: 45%;
+  margin-top: 35%;
   font-size: 60px;
   color: #ee5487;
 `;
