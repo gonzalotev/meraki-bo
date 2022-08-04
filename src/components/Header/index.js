@@ -7,7 +7,7 @@ const Header = () => {
     <Container>
       <Logo src={logomeraki} alt="logo"/>
       <Wrapper>
-        <Title>Meraki Espacio Artistico</Title>
+        <Title to="/">Meraki Espacio Artistico</Title>
         <NavBar>
           <NavLink to="/">Inicio</NavLink>
           <NavLink to="/Horarios">Horarios</NavLink>

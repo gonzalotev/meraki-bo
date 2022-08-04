@@ -13,13 +13,14 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   margin-left: 45%;
-  margin-top: 35%;
-  font-size: 60px;
-  color: #ee5487;
+  margin-top: 20%;
+  font-size: 70px;
+  color: #FFB9D1;
 `;
 
 export const Text = styled.p`
-  margin-left: 25%;
+  margin-left: 40%;
+  width: 80%;
   font-size: 25px;
   color: black;
 `;
