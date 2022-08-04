@@ -19,10 +19,12 @@ export const Wrapper = styled.nav`
   height: 100%;
 `;
 
-export const Title = styled.h2`
+export const Title = styled(Link)`
     margin-left: 1%;
     margin-top: 1.5%;
-  font-size: 30px;
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
     width: 30%;
 `;
 
@@ -44,8 +46,8 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   font-size: 25px;
   margin-top: 2%;
-  margin-right: 1%;
-  margin-left: 1.5%;
+  margin-right: 0.5%;
+  margin-left: 1%;
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   text-align: ${({ align }) => align || 'center'};
 `;

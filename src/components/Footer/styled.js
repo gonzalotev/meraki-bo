@@ -6,7 +6,7 @@ export const Container = styled.footer`
   width: 99%;
     height: 10%;
   text-align: center;
-  background: #EC407A;
+  background: #FFB9D1;
 `;
 
 export const Wrapper = styled.div`
