@@ -20,11 +20,11 @@ export const Wrapper = styled.nav`
 `;
 
 export const Title = styled(Link)`
-    margin-left: 1%;
+    margin-left: -2%;
     margin-top: 1.5%;
     text-decoration: none;
     color: black;
-    font-size: 30px;
+    font-size: 25px;
     width: 30%;
 `;
 
@@ -46,9 +46,22 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   font-size: 25px;
   margin-top: 2%;
+  margin-left: 0.5%;
+  margin-right: 0.6%;
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+  text-align: ${({ align }) => align || 'center'};
+`;
+export const NavLogin = styled(Link)`
+    color: #FF8ADA;
+    background-color: #FFDEF5;
+    width: 11%;
+    height: 30px;
+    border-radius: 1rem;
+  text-decoration: none;
+  font-size: 25px;
+  margin-top: 2%;
   margin-right: 0.5%;
   margin-left: 1%;
-  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   text-align: ${({ align }) => align || 'center'};
 `;
 

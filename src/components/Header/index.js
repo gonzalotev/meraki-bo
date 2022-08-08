@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Wrapper, NavBar, NavLink, Title, Logo} from './styled';
+import {Container, Wrapper, NavBar, NavLink, Title, Logo, NavLogin} from './styled';
 import logomeraki from './merakilogo.jpeg';
 
 const Header = () => {
@@ -16,6 +16,7 @@ const Header = () => {
           <NavLink to="/Protocolo">Protocolo</NavLink>
           <NavLink to="/NuestroEspacio">Nuestro Espacio</NavLink>
           <NavLink to="/Contacto">Contacto</NavLink>
+          <NavLogin to="/Ingresar">Ingresar</NavLogin>
         </NavBar>
       </Wrapper>
     </Container>

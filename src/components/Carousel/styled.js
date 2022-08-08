@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin-top: 3%;
   margin-left: 5%;
   width: 50%;
-  height: 80%;
+  height: 40%;
   
 `;
 
