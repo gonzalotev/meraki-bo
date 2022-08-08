@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin-top: -45%;
   margin-right: 10%;
   width: 40%;
-  height: 80%;
+  height: 60%;
 `;
 
 export const Title = styled.h1`

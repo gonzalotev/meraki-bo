@@ -7,6 +7,8 @@ import Duty from "../pages/duty";
 import OurSpace from "../pages/our-space";
 import Protocol from "../pages/protocol";
 import TimeTable from "../pages/timetable";
+import Login from "../pages/login";
+import ResetPassword from "../pages/Reset-password";
 
 const Roots = () => {
   return(
@@ -18,6 +20,8 @@ const Roots = () => {
       <Route path="/NuestroEspacio" element={<OurSpace/>} />
       <Route path="/Protocolo" element={<Protocol/>} />
       <Route path="/Horarios" element={<TimeTable/>} />
+      <Route path="/Ingresar" element={<Login/>} />
+      <Route path="/Recuperar-Contraseña" element={<ResetPassword/>} />
     </Routes>
     )
 

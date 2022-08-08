@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: grid;
@@ -8,7 +9,7 @@ export const Container = styled.div`
   margin-top: 5%;
   padding-bottom: 15%;
   width: 30%;
-  height: 100%;
+  height: 60%;
   background-color: #FFEBF2;
 `;
 
@@ -37,5 +38,14 @@ export const Button = styled.button`
   margin-left: -15%;
   border-radius: 0.2rem;
   font-size: 20px;
-  
+`;
+
+export const Resetpass = styled(Link)`
+  color: #FF8ADA;
+  text-decoration: none;
+  font-size: 20px;
+  margin-top: 10%;
+  margin-left: 0.5%;
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+  text-align: ${({ align }) => align || 'center'};
 `;
