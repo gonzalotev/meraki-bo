@@ -5,8 +5,6 @@ import meraki0 from './assets/meraki0.jpg';
 import meraki1 from './assets/meraki1.jpg';
 import meraki2 from './assets/meraki2.png';
 import meraki3 from './assets/meraki3.jpg';
-import meraki4 from './assets/meraki4.jpg';
-console.log('.');
 
 const imagesMeraki = [
   {
@@ -24,10 +22,6 @@ const imagesMeraki = [
   {
     id: 3,
     src: meraki3,
-  },
-  {
-    id: 4,
-    src: meraki4,
   },
 ];
 
