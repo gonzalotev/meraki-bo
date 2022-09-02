@@ -10,7 +10,6 @@ const Protocol = () => {
   const protocols = useSelector(getProtocol);
   const status = useSelector(getStatusProtocol);
   const dispatch = useDispatch();
-  console.log('isFetching', status?.isFetching, protocols);
 
   useEffect(() => {
     dispatch(protocolFetchRequest());

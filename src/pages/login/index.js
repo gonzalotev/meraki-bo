@@ -8,7 +8,6 @@ import validationSchema from './validation-schema';
 const Login = () => {
   const initialValues = { email: '', password: '' };
   const handleSubmit = (values, actions) => {
-    console.log('submit', { values });
     actions.resetForm({ values });
   };
   return (
