@@ -1,9 +1,7 @@
-function Duty() {
-  return (
-    <div>
-      <h1>Aranceles</h1>
-    </div>
-  );
-}
+const Duty = () => (
+  <div>
+    <h1>Aranceles</h1>
+  </div>
+);
 
 export default Duty;

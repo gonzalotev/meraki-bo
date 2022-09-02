@@ -1,16 +1,16 @@
-import { BrowserRouter } from 'react-router-dom';
-import Roots from './routes';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom/client';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import Routes from './routes';
+import { history, store } from './store';
+import { GlobalStyle } from './styled';
 
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Header />
-    <Roots />
-    <Footer />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <GlobalStyle />
+    <Router history={history}>
+      <Routes />
+    </Router>
+  </Provider>,
 );

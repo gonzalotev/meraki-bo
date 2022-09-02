@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: grid;
-  margin-top: 3%;
-  margin-left: 5%;
-  width: 50%;
-  height: 40%;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-height: 650px;
+  max-width: 600px;
 `;
 
 export const ContainerImg = styled.img`
-  width: 20%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   border-radius: 6px;
 `;
