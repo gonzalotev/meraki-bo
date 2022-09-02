@@ -1,26 +1,18 @@
-import { call, put, throttle, takeLatest } from 'redux-saga/effects';
-import actionCreator, { protocolTypes } from './actions';
-import { toastNotify } from 'utils';
-import { fetchAll } from '../../services/protocol';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { protocolFetchSuccess, protocolFetchError, protocolFetchRequest } from './reducer';
+import { toastNotify } from '../../utils';
+import Service from '../../services';
 
 export function* fetch() {
   try {
-    const protocol = yield call(fetchAll);
-    if (protocol) {
-      console.log('if');
-      yield put(actionCreator.protocolFetchSuccess(protocol));
-    } else {
-      console.log('else');
-      toastNotify('Se produjo un error.');
-      yield put(actionCreator.protocolFetchError('error'));
-    }
+    const { data } = yield call(Service.fetchProtocol);
+    yield put(protocolFetchSuccess({ protocol: data }));
   } catch (error) {
-    console.log('catch');
     toastNotify('Error en cliente.');
-    yield put(actionCreator.protocolFetchError(error));
+    yield put(protocolFetchError({ error }));
   }
 }
 
-export function* protocolSaga() {
-  yield takeLatest(protocolTypes.PROTOCOL_FETCH_REQUEST, fetch);
+export default function* protocolSaga() {
+  yield takeLatest(protocolFetchRequest, fetch);
 }

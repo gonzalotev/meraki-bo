@@ -1,21 +1,24 @@
-import { createHashHistory } from 'history';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { routerMiddleware } from 'connected-react-router';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import createRootReducer from './reducers';
-import rootSaga from './sagas';
+import { createReduxHistoryContext } from 'redux-first-history';
+import { createBrowserHistory } from 'history';
 
-export const history = createHashHistory();
+import { reducers, rootSaga } from './state';
 
-const sagaMiddleware = createSagaMiddleware();
+const saga = createSagaMiddleware();
 
-const middleware = [routerMiddleware(history), sagaMiddleware];
+const {
+  routerReducer, createReduxHistory, routerMiddleware,
+} = createReduxHistoryContext({ history: createBrowserHistory() });
 
-const enhancer = composeWithDevTools(applyMiddleware(...middleware));
+export const store = configureStore({
+  reducer: {
+    router: routerReducer,
+    ...reducers,
+  },
+  middleware: [saga, routerMiddleware],
+});
 
-const store = createStore(createRootReducer(history), enhancer);
+export const history = createReduxHistory(store);
 
-sagaMiddleware.run(rootSaga);
-
-export default store;
+saga.run(rootSaga);

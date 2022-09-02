@@ -1,17 +1,30 @@
-import { Container, Title, Input, Button, Resetpass } from './styled';
+import { Formik } from 'formik';
+import {
+  Container, Title, Resetpass, Wrapper,
+} from './styled';
+import LoginForm from './login-form';
+import validationSchema from './validation-schema';
 
-function Login() {
+const Login = () => {
+  const initialValues = { email: '', password: '' };
+  const handleSubmit = (values, actions) => {
+    console.log('submit', { values });
+    actions.resetForm({ values });
+  };
   return (
-    <div>
-      <Container>
+    <Container>
+      <Wrapper>
         <Title>Bienvenido</Title>
-        <Input id='user' type='text' placeholder='Usuario' />
-        <Input id='password' type='password' placeholder='Contraseña' />
-        <Button type='submit'>Ingresar</Button>
-        <Resetpass to='/Recuperar-Contraseña'>¿Perdiste tu contraseña? </Resetpass>
-      </Container>
-    </div>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          component={LoginForm}
+          validationSchema={validationSchema}
+        />
+        <Resetpass to="/Recuperar-Contraseña">¿Perdiste tu contraseña? </Resetpass>
+      </Wrapper>
+    </Container>
   );
-}
+};
 
 export default Login;
