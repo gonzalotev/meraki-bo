@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { protocolFetchRequest } from '../../store/protocol/reducer';
-import { getProtocol, getStatusProtocol } from '../../store/protocol/selector';
+import { getProtocol } from '../../store/protocol/selector';
 import {
   Container, Title, Text, Content, TextForm, ContentForm,
 } from './styled';
 
 const Protocol = () => {
   const protocols = useSelector(getProtocol);
-  const status = useSelector(getStatusProtocol);
   const dispatch = useDispatch();
 
   useEffect(() => {
