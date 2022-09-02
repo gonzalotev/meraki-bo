@@ -1,16 +1,18 @@
+import { Carousel } from '../../components';
 import {
   Container, Title, Text, Content,
 } from './styled';
-import Carousel from '../../components/Carousel';
 
-import meraki1 from './assests/meraki1.jpg';
-import meraki2 from './assests/meraki2.jpg';
-import meraki3 from './assests/meraki3.jpg';
-import meraki4 from './assests/meraki4.jpg';
-import meraki5 from './assests/meraki5.jpg';
-import meraki6 from './assests/meraki6.jpg';
+import meraki0 from './assets/meraki0.jpg';
+import meraki1 from './assets/meraki1.jpg';
+import meraki2 from './assets/meraki2.png';
+import meraki3 from './assets/meraki3.jpg';
 
 const imagesMeraki = [
+  {
+    id: 0,
+    src: meraki0,
+  },
   {
     id: 1,
     src: meraki1,
@@ -23,25 +25,13 @@ const imagesMeraki = [
     id: 3,
     src: meraki3,
   },
-  {
-    id: 4,
-    src: meraki4,
-  },
-  {
-    id: 5,
-    src: meraki5,
-  },
-  {
-    id: 6,
-    src: meraki6,
-  },
 ];
 
-const Home = () => (
+const OurSpace = () => (
   <Container>
     <Carousel images={imagesMeraki} />
     <Content>
-      <Title>Bienvenidos</Title>
+      <Title>Nuestro Espacio</Title>
       <Text>Espacio Artístico de recreacion y enseñanza </Text>
       <br />
       <Text>
@@ -51,4 +41,4 @@ const Home = () => (
   </Container>
 );
 
-export default Home;
+export default OurSpace;
