@@ -10,7 +10,8 @@ export const parseErrorResponse = error => {
   if (typeof error.response === 'string') {
     return error.response;
   }
-  const err = error.response.errors;
+  const errorResponse = error.response.data;
+  const err = errorResponse.errors;
   if (err && typeof err === 'object') {
     // eslint-disable-next-line no-restricted-syntax
     for (const key in err) {
@@ -20,7 +21,9 @@ export const parseErrorResponse = error => {
       }
     }
   }
-
+  if (errorResponse.message) {
+    return errorResponse.message;
+  }
   return UNKNOWN_ERROR_MESSAGE;
 };
 
