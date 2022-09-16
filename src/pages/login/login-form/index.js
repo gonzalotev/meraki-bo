@@ -1,32 +1,48 @@
-/* eslint-disable react/prop-types */
-import { TextInput } from '../../../components';
-import { getFieldError } from '../../../utils';
-import { Button, Form } from './styled';
+import { TextField, PasswordField } from 'components';
+import { getFieldError } from 'utils';
+import { connect } from 'react-redux';
+import { Button } from '@chakra-ui/react';
+import { Field, Form } from 'formik';
+import { selectStatus } from 'store/session/selector';
+
+const style = {
+  display: 'flex',
+  alignItems: 'center',
+  width: '100%',
+  flexDirection: 'column',
+};
 
 const LoginForm = ({
-  isSubmitting, submitCount, touched, errors, handleChange, values,
+  status, isSubmitting, submitCount, touched, errors, handleChange, values,
 }) => (
-  <Form style={{
-    display: 'flex', alignItems: 'center', width: '100%', flexDirection: 'col',
-  }}
-  >
-    <TextInput
+  <Form style={style}>
+    <Field
+      component={TextField}
       name="email"
-      placeholder="nla"
+      label="Email"
       error={getFieldError(submitCount, touched, errors, 'email')}
       onChange={handleChange}
       value={values.email}
     />
-    <TextInput
+    <Field
+      component={PasswordField}
+      autoComplete="off"
       name="password"
-      placeholder="Contraseña"
-      type="password"
+      label="Contraseña"
       error={getFieldError(submitCount, touched, errors, 'password')}
       onChange={handleChange}
       value={values.password}
+      isDisabled={status.isFetching}
     />
-    <Button type="submit" disabled={!!isSubmitting}>Ingresar</Button>
+    <Button
+      type="submit"
+      disabled={!!isSubmitting}
+      isLoading={status.isFetching}
+      bg="pink.300"
+    >
+      Ingresar
+    </Button>
   </Form>
 );
 
-export default LoginForm;
+export default connect(state => ({ status: selectStatus(state) }))(LoginForm);

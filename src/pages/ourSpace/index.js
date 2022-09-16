@@ -28,7 +28,7 @@ const imagesMeraki = [
 ];
 
 const OurSpace = () => (
-  <Container>
+  <Container style={{ marginTop: '100px' }}>
     <Carousel images={imagesMeraki} />
     <Content>
       <Title>Nuestro Espacio</Title>

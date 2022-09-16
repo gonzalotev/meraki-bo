@@ -38,7 +38,7 @@ const imagesMeraki = [
 ];
 
 const Home = () => (
-  <Container>
+  <Container style={{ marginTop: '100px' }}>
     <Carousel images={imagesMeraki} />
     <Content>
       <Title>Bienvenidos</Title>
