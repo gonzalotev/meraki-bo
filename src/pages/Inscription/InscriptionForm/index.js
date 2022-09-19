@@ -56,44 +56,28 @@ const LoginForm = ({ status, isSubmitting }) => (
       <Text fontSize="2xl" mt={5}>Disciplina</Text>
       <Text fontSize="initial" mb={2}>(Marcar la/las actividades que realiza en nuestro espacio)</Text>
       <Field
-        name="bla"
-        component={RadioListField}
-        options={[
-          { value: '1', label: 'Acrobacia I' },
-          { value: '2', label: 'Acrobacia II' },
-          { value: '3', label: 'Arte I' },
-        ]}
-      />
-      <Field
-        name="bla2"
+        name="discipline"
         component={CheckboxListField}
         options={[
           { value: '1', label: 'Acrobacia I' },
           { value: '2', label: 'Acrobacia II' },
           { value: '3', label: 'Arte I' },
+          { value: '4', label: 'Arte II' },
+          { value: '5', label: 'Arte III' },
+          { value: '6', label: 'Canto' },
+          { value: '7', label: 'Comedia Musical' },
+          { value: '8', label: 'Danza Jazz' },
+          { value: '9', label: 'Entrenamiento Funcional' },
+          { value: '10', label: 'Iniciacion a la Danza' },
+          { value: '11', label: 'Juegos teatrales' },
+          { value: '12', label: 'Pastelería Creativa' },
+          { value: '13', label: 'Street Jazz' },
+          { value: '14', label: 'Taller de Musica' },
+          { value: '15', label: 'Teatro' },
+          { value: '16', label: 'Yoga para adultos' },
+          { value: '17', label: 'Yoga para chicos' },
         ]}
       />
-      <RadioGroup value={value} mb={3}>
-        <Stack direction="column">
-          <Radio value="1">Acrobacia I</Radio>
-          <Radio value="2">Acrobacia II</Radio>
-          <Radio value="Arte-I">Arte I</Radio>
-          <Radio value="Arte-II">Arte II</Radio>
-          <Radio value="Arte-III">Arte III</Radio>
-          <Radio value="Canto">Canto</Radio>
-          <Radio value="Comedia-Musical">Comedia Musical</Radio>
-          <Radio value="Danza-Jazz">Danza Jazz</Radio>
-          <Radio value="Entrenamiento-Funcional">Entrenamiento Funcional</Radio>
-          <Radio value="Iniciacion-a-la-Danza">Iniciacion a la Danza</Radio>
-          <Radio value="Juegos-teatrales">Juegos teatrales</Radio>
-          <Radio value="Pastelería-Creativa">Pastelería Creativa</Radio>
-          <Radio value="Street-Jazz">Street Jazz</Radio>
-          <Radio value="Taller-de-Musica">Taller de Musica</Radio>
-          <Radio value="Teatro">Teatro</Radio>
-          <Radio value="Yoga-para-adultos">Yoga para adultos</Radio>
-          <Radio value="Yoga-para-chicos">Yoga para chicos</Radio>
-        </Stack>
-      </RadioGroup>
     </Container>
     <Container style={styleContainer} shadow="base">
       <Field
