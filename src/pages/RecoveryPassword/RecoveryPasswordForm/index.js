@@ -1,43 +1,31 @@
 import { TextField } from 'components';
-import { Button, HStack, Text } from '@chakra-ui/react';
+import { Button, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
-import { answers } from 'constant';
+import { connect } from 'react-redux';
+import { push } from 'redux-first-history';
+import { selectRecoveryStatus } from 'store/session/selector';
+import { formStyles } from 'constant';
 
-const style = {
-  display: 'flex',
-  alignItems: 'center',
-  width: '100%',
-  flexDirection: 'column',
-  height: '100%',
-};
-
-const RecoveryPasswordForm = ({ isSubmitting, values }) => (
-  <Form style={style}>
+const RecoveryPasswordForm = ({ isSubmitting, goToLogin, status }) => (
+  <Form style={formStyles.recovery}>
     <Field
       component={TextField}
       name="email"
       label="Email"
     />
-    {values.answers.map((answer, index) => (
-      <>
-        <Text color="pink.300" align="left" px={6} w="100%">{answers[index]}</Text>
-        <Field
-          component={TextField}
-          name={`answers.${index}`}
-        />
-      </>
-    ))}
     <HStack pb={2}>
       <Button
-        disabled={!!isSubmitting}
+        disabled={isSubmitting || status.isFetching}
         bg="pink.600"
+        onClick={goToLogin}
       >
         Cancelar
       </Button>
       <Button
         type="submit"
-        disabled={!!isSubmitting}
+        disabled={isSubmitting || status.isFetching}
         bg="pink.300"
+        isLoading={status.isFetching}
       >
         Enviar
       </Button>
@@ -45,4 +33,7 @@ const RecoveryPasswordForm = ({ isSubmitting, values }) => (
   </Form>
 );
 
-export default RecoveryPasswordForm;
+export default connect(
+  state => ({ status: selectRecoveryStatus(state) }),
+  dispatch => ({ goToLogin: () => dispatch(push('/Ingresar')) }),
+)(RecoveryPasswordForm);

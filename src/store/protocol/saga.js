@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { toastNotify } from 'utils';
+import Service from 'services';
 import { protocolFetchSuccess, protocolFetchError, protocolFetchRequest } from './reducer';
-import { toastNotify } from '../../utils';
-import Service from '../../services';
 
 export function* fetch() {
   try {

@@ -1,83 +1,78 @@
-import { TextField, NumberField } from 'components';
-import { getFieldError } from 'utils';
+import { TextField, NumberField, CheckboxListField } from 'components';
 import { connect } from 'react-redux';
 import {
   Button, Container, RadioGroup, Radio, Stack, Text,
 } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { selectStatus } from 'store/session/selector';
+import RadioListField from 'components/Fields/RadioListField';
 
 const style = {
   display: 'flex',
   alignItems: 'center',
-  width: '1000px',
+  width: '100%',
   flexDirection: 'column',
+  paddingTop: '20px',
 };
 const styleContainer = {
   borderRadius: '5px',
   margin: '5px',
 };
 const value = '';
-const LoginForm = ({
-  status, isSubmitting, submitCount, touched, errors, handleChange, values,
-}) => (
+const LoginForm = ({ status, isSubmitting }) => (
   <Form style={style}>
     <Container style={styleContainer} shadow="base">
       <Field
-        component={TextField}
         name="name"
+        component={TextField}
         label="Nombre y Apellido"
-        error={getFieldError(submitCount, touched, errors, 'name')}
-        onChange={handleChange}
-        value={values.name}
         isDisabled={status.isFetching}
       />
     </Container>
     <Container style={styleContainer} shadow="base">
       <Field
-        component={TextField}
         type="date"
         name="yearDate"
+        component={TextField}
         label="Fecha de nacimiento"
-        error={getFieldError(submitCount, touched, errors, 'yearDate')}
-        onChange={handleChange}
-        value={values.yearDate}
         isDisabled={status.isFetching}
       />
     </Container>
     <Container style={styleContainer} shadow="base">
       <Field
         component={NumberField}
-        name="years"
-        type="number"
-        label="Edad"
-        error={getFieldError(submitCount, touched, errors, 'years')}
-        onChange={handleChange}
-        value={values.years}
-        isDisabled={status.isFetching}
-      />
-      <Field
-        component={NumberField}
-        name="dni"
+        name="documentId"
         label="DNI"
-        error={getFieldError(submitCount, touched, errors, 'dni')}
-        onChange={handleChange}
-        value={values.dni}
         isDisabled={status.isFetching}
       />
       <Field
         component={NumberField}
         name="address"
         label="Dirección"
-        error={getFieldError(submitCount, touched, errors, 'address')}
-        onChange={handleChange}
-        value={values.address}
         isDisabled={status.isFetching}
       />
     </Container>
     <Container style={styleContainer} shadow="base">
       <Text fontSize="2xl" mt={5}>Disciplina</Text>
       <Text fontSize="initial" mb={2}>(Marcar la/las actividades que realiza en nuestro espacio)</Text>
+      <Field
+        name="bla"
+        component={RadioListField}
+        options={[
+          { value: '1', label: 'Acrobacia I' },
+          { value: '2', label: 'Acrobacia II' },
+          { value: '3', label: 'Arte I' },
+        ]}
+      />
+      <Field
+        name="bla2"
+        component={CheckboxListField}
+        options={[
+          { value: '1', label: 'Acrobacia I' },
+          { value: '2', label: 'Acrobacia II' },
+          { value: '3', label: 'Arte I' },
+        ]}
+      />
       <RadioGroup value={value} mb={3}>
         <Stack direction="column">
           <Radio value="1">Acrobacia I</Radio>
@@ -105,9 +100,6 @@ const LoginForm = ({
         component={TextField}
         name="motherName"
         label="Nombre y Apellido (Madre)"
-        error={getFieldError(submitCount, touched, errors, 'motherName')}
-        onChange={handleChange}
-        value={values.motherName}
         isDisabled={status.isFetching}
       />
     </Container>
@@ -116,9 +108,6 @@ const LoginForm = ({
         component={NumberField}
         name="motherPhone"
         label="Teléfono de contacto (Madre)"
-        error={getFieldError(submitCount, touched, errors, 'motherPhone')}
-        onChange={handleChange}
-        value={values.motherPhone}
         isDisabled={status.isFetching}
       />
     </Container>
@@ -127,9 +116,6 @@ const LoginForm = ({
         component={TextField}
         name="fatherName"
         label="Nombre y Apellido (Padre)"
-        error={getFieldError(submitCount, touched, errors, 'fatherName')}
-        onChange={handleChange}
-        value={values.fatherName}
         isDisabled={status.isFetching}
       />
     </Container>
@@ -138,9 +124,6 @@ const LoginForm = ({
         component={NumberField}
         name="fatherPhone"
         label="Teléfono de contacto (Padre)"
-        error={getFieldError(submitCount, touched, errors, 'fatherPhone')}
-        onChange={handleChange}
-        value={values.fatherPhone}
         isDisabled={status.isFetching}
       />
     </Container>
@@ -149,9 +132,6 @@ const LoginForm = ({
         component={TextField}
         name="tutorQuestion"
         label="En caso de no retirarse solo especificar que adultos están autorizados para retirar al menor"
-        error={getFieldError(submitCount, touched, errors, 'tutorQuestion')}
-        onChange={handleChange}
-        value={values.tutorQuestion}
         isDisabled={status.isFetching}
       />
     </Container>
@@ -161,9 +141,6 @@ const LoginForm = ({
         name="medicalQuestion"
         label="Consideraciones médicas a tener en cuenta.
       Ej: alergias, tratamientos, operaciónes, enfermedad crónica, medicamentos."
-        error={getFieldError(submitCount, touched, errors, 'medicalQuestion')}
-        onChange={handleChange}
-        value={values.medicalQuestion}
         isDisabled={status.isFetching}
       />
     </Container>
@@ -172,9 +149,6 @@ const LoginForm = ({
         component={TextField}
         name="socialWork"
         label="Obra Social. (Completar con el número de afiliado y teléfono de emergencia)"
-        error={getFieldError(submitCount, touched, errors, 'socialWork')}
-        onChange={handleChange}
-        value={values.socialWork}
         isDisabled={status.isFetching}
       />
     </Container>

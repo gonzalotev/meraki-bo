@@ -8,9 +8,6 @@ import {
   InputLeftElement,
   InputRightElement,
   NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
 } from '@chakra-ui/react';
 
 const NumberInput = ({
@@ -43,12 +40,6 @@ const NumberInput = ({
           {...props}
         >
           <NumberInputField placeholder={placeholder} />
-          {/*
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-          */}
         </Input>
         {iconRight && (
           <InputRightElement h="100%">{iconRight}</InputRightElement>

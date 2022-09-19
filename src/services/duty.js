@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const DutyService = {
-  fetchDuty: () => axios.get('/api/duty'),
+  fetchDuties: () => axios.get('/public-api/duty'),
 };
 
 export default DutyService;

@@ -1,17 +1,19 @@
 import { Container, Stack } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
-import { recoveryPasswordRequest } from 'store/session/reducer';
-import { selectRecoveryStatus, selectRecoveryToken } from 'store/session/selector';
+import { resetPasswordRequest } from 'store/session/reducer';
+import { selectResetStatus, selectRecoveryToken } from 'store/session/selector';
 import { useEffect, useState } from 'react';
-import RecoveryPasswordForm from './RecoveryPasswordForm';
+import { useQuery } from 'hooks';
+import ResetPasswordForm from './ResetPasswordForm';
 import validationSchema from './validationSchema';
 import FeedbackMessage from './FeedbackMessage';
 
-const RecoveryPassword = ({ onSubmit, status }) => {
+const ResetPassword = ({ onSubmit, status }) => {
   const [step, setStep] = useState(0);
-  const initialValues = { email: '' };
-  const handleSubmit = (values) => onSubmit(values);
+  const initialValues = { password: '' };
+  const token = useQuery().get('token');
+  const handleSubmit = (values) => onSubmit({ ...values, token });
 
   useEffect(() => {
     if (status?.isFetched && status?.success) {
@@ -26,7 +28,7 @@ const RecoveryPassword = ({ onSubmit, status }) => {
           <Formik
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            component={RecoveryPasswordForm}
+            component={ResetPasswordForm}
             validationSchema={validationSchema}
           />
         )}
@@ -37,6 +39,6 @@ const RecoveryPassword = ({ onSubmit, status }) => {
 };
 
 export default connect(
-  state => ({ recoveryToken: selectRecoveryToken(state), status: selectRecoveryStatus(state) }),
-  { onSubmit: recoveryPasswordRequest },
-)(RecoveryPassword);
+  state => ({ recoveryToken: selectRecoveryToken(state), status: selectResetStatus(state) }),
+  { onSubmit: resetPasswordRequest },
+)(ResetPassword);

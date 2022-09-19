@@ -5,7 +5,7 @@ import {
   Container, Heading, Link, Stack,
 } from '@chakra-ui/react';
 import LoginForm from './login-form';
-import validationSchema from './validation-schema';
+import validationSchema from './validationSchema';
 
 const Login = ({ onSubmit }) => {
   const initialValues = { email: '', password: '' };

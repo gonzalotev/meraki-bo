@@ -13,6 +13,9 @@ import {
   resetPasswordRequest,
   resetPasswordSuccess,
   resetPasswordError,
+  getSessionRequest,
+  getSessionSuccess,
+  getSessionError,
 } from './reducer';
 import { parseErrorResponse } from '../helper/statusStateFactory';
 
@@ -30,8 +33,8 @@ export function* login({ payload }) {
 
 export function* recoveryPassword({ payload }) {
   try {
-    const { data } = yield call(Service.recoveryPassword, payload.email, payload.answers);
-    yield put(recoveryPasswordSuccess({ user: data.user, recoveryToken: data.recoveryToken }));
+    yield call(Service.recoveryPassword, payload.email, payload.answers);
+    yield put(recoveryPasswordSuccess());
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(recoveryPasswordError({ error }));
@@ -40,12 +43,21 @@ export function* recoveryPassword({ payload }) {
 
 export function* resetPassword({ payload }) {
   try {
-    yield call(Service.resetPassword, { password: payload.password, recoveryToken: payload.recoveryToken });
+    yield call(Service.resetPassword, { password: payload.password, token: payload.token });
     yield put(resetPasswordSuccess());
     yield put(push('/Ingresar'));
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(resetPasswordError({ error }));
+  }
+}
+
+export function* getSession() {
+  try {
+    const { data } = yield call(Service.getSessionUser);
+    yield put(getSessionSuccess({ user: data.user, token: data.token }));
+  } catch (error) {
+    yield put(getSessionError({ error }));
   }
 }
 
@@ -59,4 +71,5 @@ export default function* saga() {
   yield takeLatest(logoutRequest, logout);
   yield takeLatest(recoveryPasswordRequest, recoveryPassword);
   yield takeLatest(resetPasswordRequest, resetPassword);
+  yield takeLatest(getSessionRequest, getSession);
 }

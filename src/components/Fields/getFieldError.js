@@ -1,5 +1,5 @@
 /**
- * Returns the error to show on the HTML form
+ * Returns the error to show on the HTML Inscription
  */
 import { getIn } from 'formik';
 
