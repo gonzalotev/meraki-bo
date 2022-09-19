@@ -1,7 +1,7 @@
+import Carousel from 'components/Carousel';
 import {
   Container, Title, Text, Content,
 } from './styled';
-import Carousel from '../../components/Carousel';
 
 import meraki1 from './assests/meraki1.jpg';
 import meraki2 from './assests/meraki2.jpg';

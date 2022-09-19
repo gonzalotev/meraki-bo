@@ -1,3 +1,3 @@
-export const getDuty = (state) => state.duty.duty;
+export const selectDuties = (state) => state.duty.duties;
 
-export const getStatusDuty = (state) => state.duty.status;
+export const selectStatus = (state) => state.duty.status;

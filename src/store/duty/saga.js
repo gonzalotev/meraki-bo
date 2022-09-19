@@ -1,18 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { dutyFetchSuccess, dutyFetchError, dutyFetchRequest } from './reducer';
-import { toastNotify } from '../../utils';
-import Service from '../../services';
+import { toastNotify } from 'utils';
+import Service from 'services';
+import { fetchDutiesError, fetchDutiesSuccess, fetchDutiesRequest } from './reducer';
 
 export function* fetch() {
   try {
-    const { data } = yield call(Service.fetchDuty);
-    yield put(dutyFetchSuccess({ duty: data }));
+    const { data } = yield call(Service.fetchDuties);
+    yield put(fetchDutiesSuccess({ duties: data.duties }));
   } catch (error) {
     toastNotify('Error en cliente.');
-    yield put(dutyFetchError({ error }));
+    yield put(fetchDutiesError({ error }));
   }
 }
 
-export default function* dutySaga() {
-  yield takeLatest(dutyFetchRequest, fetch);
+export default function* saga() {
+  yield takeLatest(fetchDutiesRequest, fetch);
 }

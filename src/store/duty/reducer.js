@@ -1,32 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getStartStatus, getSuccessStatus, getErrorStatus } from '../helper/statusStateFactory';
+import {
+  getStartStatus, getSuccessStatus, getErrorStatus, getDefaultStatus,
+} from '../helper/statusStateFactory';
 
 const initialState = {
-  duty: [],
-  status: getStartStatus(),
+  duties: [],
+  status: getDefaultStatus(),
 };
 
 export const reducer = createSlice({
   name: 'duty',
   initialState,
   reducers: {
-    dutyFetchRequest: (state) => {
+    fetchDutiesRequest: (state) => {
       state.status = getStartStatus();
     },
-    dutyFetchSuccess: (state, { payload }) => {
+    fetchDutiesSuccess: (state, { payload }) => {
       state.status = getSuccessStatus();
-      state.duty = payload.duty;
+      state.duties = payload.duties;
     },
-    dutyFetchError: (state, { error }) => {
+    fetchDutiesError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
   },
 });
 
 export const {
-  dutyFetchRequest,
-  dutyFetchSuccess,
-  dutyFetchError,
+  fetchDutiesRequest,
+  fetchDutiesSuccess,
+  fetchDutiesError,
 } = reducer.actions;
 
 export default reducer.reducer;

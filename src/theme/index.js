@@ -1,5 +1,7 @@
-import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 import base from './base';
 import components from './components';
 
-export default extendTheme({ ...base, components }, withDefaultColorScheme({ colorScheme: 'pink' }));
+const theme = extendTheme({ ...base, components });
+
+export default theme;

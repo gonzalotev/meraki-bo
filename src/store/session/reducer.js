@@ -5,6 +5,8 @@ import {
 
 const initialState = {
   user: {},
+  recoveryStatus: getDefaultStatus(),
+  resetStatus: getDefaultStatus(),
   status: getDefaultStatus(),
 };
 
@@ -25,24 +27,32 @@ export const slice = createSlice({
     },
     logoutRequest: () => {},
     recoveryPasswordRequest: (state) => {
-      state.status = getStartStatus();
+      state.recoveryStatus = getStartStatus();
     },
-    recoveryPasswordSuccess: (state, { payload }) => {
-      state.status = getSuccessStatus();
-      state.user = payload.user;
-      state.recoveryToken = payload.recoveryToken;
+    recoveryPasswordSuccess: (state) => {
+      state.recoveryStatus = getSuccessStatus();
     },
     recoveryPasswordError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+      state.recoveryStatus = getErrorStatus(error);
     },
     resetPasswordRequest: (state) => {
-      state.status = getStartStatus();
+      state.resetStatus = getStartStatus();
     },
     resetPasswordSuccess: (state) => {
-      state.status = getSuccessStatus();
-      state.recoveryToken = undefined;
+      state.resetStatus = getSuccessStatus();
     },
     resetPasswordError: (state, { error }) => {
+      state.resetStatus = getErrorStatus(error);
+    },
+    getSessionRequest: (state) => {
+      state.status = getStartStatus();
+    },
+    getSessionSuccess: (state, { payload }) => {
+      state.status = getSuccessStatus();
+      state.user = payload.user;
+      state.token = payload.token;
+    },
+    getSessionError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
   },
@@ -52,6 +62,9 @@ export const {
   loginRequest,
   loginSuccess,
   loginError,
+  getSessionRequest,
+  getSessionSuccess,
+  getSessionError,
   logoutRequest,
   recoveryPasswordRequest,
   recoveryPasswordSuccess,
