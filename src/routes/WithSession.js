@@ -6,16 +6,17 @@ import OurSpace from 'pages/OurSpace';
 import Protocol from 'pages/Protocol';
 import TimeTable from 'pages/Timetable';
 import Login from 'pages/Login';
+import React from 'react';
 
 const WithSession = () => (
   <Routes>
-    <Route path="/FormularioDeInscripcion" element={<Form />} />
-    <Route path="/Aranceles" element={<Duty />} />
-    <Route path="/NuestroEspacio" element={<OurSpace />} />
-    <Route path="/Protocolo" element={<Protocol />} />
-    <Route path="/Horarios" element={<TimeTable />} />
-    <Route path="/Ingresar" element={<Login />} />
-    <Route path="/CambiarPassword" element={<Login />} />
+    <Route path="/InscriptionForm" element={<Form />} />
+    <Route path="/Duty" element={<Duty />} />
+    <Route path="/OurSpace" element={<OurSpace />} />
+    <Route path="/Protocol" element={<Protocol />} />
+    <Route path="/TimeTable" element={<TimeTable />} />
+    <Route path="/Login" element={<Login />} />
+    <Route path="/ChangePassword" element={<Login />} />
     <Route path="/" element={<Home />} />
   </Routes>
 );

@@ -1,11 +1,10 @@
-import { TextField, NumberField, CheckboxListField } from 'components';
-import { connect } from 'react-redux';
 import {
-  Button, Container, RadioGroup, Radio, Stack, Text,
-} from '@chakra-ui/react';
+  TextField, NumberField, CheckboxListField, RadioListField,
+} from 'components';
+import { connect } from 'react-redux';
+import { Button, Container, Text } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { selectStatus } from 'store/session/selector';
-import RadioListField from 'components/Fields/RadioListField';
 
 const style = {
   display: 'flex',
@@ -15,17 +14,23 @@ const style = {
   paddingTop: '20px',
 };
 const styleContainer = {
+  width: '100%',
   borderRadius: '5px',
   margin: '5px',
 };
-const value = '';
-const LoginForm = ({ status, isSubmitting }) => (
+const styleField = {
+  borderRadius: '5px',
+  width: '100%',
+};
+
+const RegisterForm = ({ status, isSubmitting }) => (
   <Form style={style}>
     <Container style={styleContainer} shadow="base">
       <Field
+        style={styleField}
         name="name"
         component={TextField}
-        label="Nombre y Apellido"
+        label="Nombre y Apellido *"
         isDisabled={status.isFetching}
       />
     </Container>
@@ -34,7 +39,7 @@ const LoginForm = ({ status, isSubmitting }) => (
         type="date"
         name="yearDate"
         component={TextField}
-        label="Fecha de nacimiento"
+        label="Fecha de nacimiento *"
         isDisabled={status.isFetching}
       />
     </Container>
@@ -42,18 +47,18 @@ const LoginForm = ({ status, isSubmitting }) => (
       <Field
         component={NumberField}
         name="documentId"
-        label="DNI"
+        label="DNI *"
         isDisabled={status.isFetching}
       />
       <Field
-        component={NumberField}
+        component={TextField}
         name="address"
-        label="Dirección"
+        label="Dirección *"
         isDisabled={status.isFetching}
       />
     </Container>
     <Container style={styleContainer} shadow="base">
-      <Text fontSize="2xl" mt={5}>Disciplina</Text>
+      <Text fontSize="2xl" mt={5}>Disciplina *</Text>
       <Text fontSize="initial" mb={2}>(Marcar la/las actividades que realiza en nuestro espacio)</Text>
       <Field
         name="discipline"
@@ -112,6 +117,18 @@ const LoginForm = ({ status, isSubmitting }) => (
       />
     </Container>
     <Container style={styleContainer} shadow="base">
+      <Text fontSize="initial" mt={5}>¿Se retira solo? *</Text>
+      <Field
+        component={RadioListField}
+        name="retired"
+        options={[
+          { value: 'yes', label: 'No' },
+          { value: 'no', label: 'Si' },
+        ]}
+        isDisabled={status.isFetching}
+      />
+    </Container>
+    <Container style={styleContainer} shadow="base">
       <Field
         component={TextField}
         name="tutorQuestion"
@@ -148,4 +165,4 @@ const LoginForm = ({ status, isSubmitting }) => (
   </Form>
 );
 
-export default connect(state => ({ status: selectStatus(state) }))(LoginForm);
+export default connect(state => ({ status: selectStatus(state) }))(RegisterForm);
