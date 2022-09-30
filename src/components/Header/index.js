@@ -13,11 +13,11 @@ const Header = ({ logout, goToLogin, withSession }) => (
     <Logo src={logomeraki} alt="logo" />
     <NavBar>
       <NavLink to="/">Inicio</NavLink>
-      <NavLink to="/Horarios">Horarios</NavLink>
-      <NavLink to="/Aranceles">Aranceles</NavLink>
-      <NavLink to="/FormularioDeInscripcion">Formulario de Inscripcion</NavLink>
-      <NavLink to="/Protocolo">Protocolo</NavLink>
-      <NavLink to="/NuestroEspacio">Nuestro Espacio</NavLink>
+      <NavLink to="/TimeTable">Horarios</NavLink>
+      <NavLink to="/Duty">Aranceles</NavLink>
+      <NavLink to="/InscriptionForm">Formulario de Inscripcion</NavLink>
+      <NavLink to="/Protocol">Protocolo</NavLink>
+      <NavLink to="/OurSpace">Nuestro Espacio</NavLink>
     </NavBar>
     <HStack pr={5}>
       {withSession
@@ -29,5 +29,5 @@ const Header = ({ logout, goToLogin, withSession }) => (
 
 export default connect(
   state => ({ status: selectToken(state) }),
-  dispatch => ({ logout: () => dispatch(logoutRequest()), goToLogin: () => dispatch(push('/Ingresar')) }),
+  dispatch => ({ logout: () => dispatch(logoutRequest()), goToLogin: () => dispatch(push('/Login')) }),
 )(Header);
