@@ -13,15 +13,15 @@ const Header = ({ logout, goToLogin, withSession }) => (
     <Logo src={logomeraki} alt="logo" />
     <NavBar>
       <NavLink to="/">Inicio</NavLink>
-      <NavLink to="/TimeTable">Horarios</NavLink>
-      <NavLink to="/Duty">Aranceles</NavLink>
-      <NavLink to="/InscriptionForm">Formulario de Inscripcion</NavLink>
-      <NavLink to="/Protocol">Protocolo</NavLink>
-      <NavLink to="/OurSpace">Nuestro Espacio</NavLink>
+      <NavLink to="/timetable">Horarios</NavLink>
+      <NavLink to="/duty">Aranceles</NavLink>
+      <NavLink to="/inscription">Formulario de Inscripción</NavLink>
+      <NavLink to="/protocol">Protocolo</NavLink>
+      <NavLink to="/spaces">Nuestro Espacio</NavLink>
     </NavBar>
     <HStack pr={5}>
       {withSession
-        ? <Button variant="rounded" onClick={logout}>Log out</Button>
+        ? <Button variant="rounded" onClick={logout}>Salir</Button>
         : <Button variant="rounded" onClick={goToLogin}>Ingresar</Button>}
     </HStack>
   </Container>

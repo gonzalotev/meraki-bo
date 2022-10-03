@@ -1,7 +1,7 @@
 import answers from './answers';
 import defaultValues from './defaultValues';
-import formStyles from './formStyles';
+import styles from './styles';
 
 export { answers };
 export { defaultValues };
-export { formStyles };
+export { styles };

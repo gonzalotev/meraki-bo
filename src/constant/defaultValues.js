@@ -15,6 +15,13 @@ const registerInitialValues = {
   bla2: [],
 };
 
+const duty = {
+  price: '',
+  subtitle: '',
+  title: '',
+};
+
 export default {
+  duty,
   registerInitialValues,
 };

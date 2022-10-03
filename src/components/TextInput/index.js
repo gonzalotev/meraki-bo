@@ -24,6 +24,7 @@ const TextInput = ({
       maxWidth={breakpoints.md}
       width={breakpoints.md}
       isInvalid={!!errorMessage}
+      autoComplete="off"
     >
       <FormLabel m={0}>{label}</FormLabel>
       <InputGroup>

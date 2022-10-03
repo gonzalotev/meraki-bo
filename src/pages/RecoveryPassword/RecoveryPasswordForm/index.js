@@ -4,10 +4,10 @@ import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { push } from 'redux-first-history';
 import { selectRecoveryStatus } from 'store/session/selector';
-import { formStyles } from 'constant';
+import { styles } from 'constant';
 
 const RecoveryPasswordForm = ({ isSubmitting, goToLogin, status }) => (
-  <Form style={formStyles.recovery}>
+  <Form style={styles.form}>
     <Field
       component={TextField}
       name="email"

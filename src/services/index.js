@@ -3,6 +3,7 @@ import sessionService from './session';
 import storageService from './storage';
 import TimetableService from './timetable';
 import DutyService from './duty';
+import StaticDataService from './staticData';
 
 import { setupApi } from './http';
 
@@ -13,6 +14,7 @@ const api = {
   ...sessionService,
   ...TimetableService,
   ...DutyService,
+  ...StaticDataService,
 };
 
 export {

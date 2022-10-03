@@ -16,6 +16,7 @@ import {
   getSessionRequest,
   getSessionSuccess,
   getSessionError,
+  registerRequest, registerSuccess, registerError,
 } from './reducer';
 import { parseErrorResponse } from '../helper/statusStateFactory';
 
@@ -28,6 +29,18 @@ export function* login({ payload }) {
   } catch (error) {
     toastNotify(parseErrorResponse(error));
     yield put(loginError({ error }));
+  }
+}
+
+export function* register({ payload }) {
+  try {
+    const { data } = yield call(Service.register, payload);
+    yield call(storageService.setToken, data.token);
+    yield put(registerSuccess());
+    yield put(push('/'));
+  } catch (error) {
+    toastNotify(parseErrorResponse(error));
+    yield put(registerError({ error }));
   }
 }
 
@@ -68,6 +81,7 @@ export function* logout() {
 
 export default function* saga() {
   yield takeLatest(loginRequest, login);
+  yield takeLatest(registerRequest, register);
   yield takeLatest(logoutRequest, logout);
   yield takeLatest(recoveryPasswordRequest, recoveryPassword);
   yield takeLatest(resetPasswordRequest, resetPassword);

@@ -1,7 +1,8 @@
 import { object, string } from 'yup';
 
 const validationSchema = object().shape({
-  name: string().required('required'),
+  title: string().required('required'),
+  price: string().required('required'),
 });
 
 export default validationSchema;
