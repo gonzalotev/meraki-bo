@@ -3,17 +3,17 @@ import {
 } from 'redux-saga/effects';
 import { toastNotify } from 'utils';
 import Service from 'services';
+import { push } from 'redux-first-history';
 import {
   fetchDutiesError,
   fetchDutiesSuccess,
   fetchDutiesRequest,
-  findDutyRequest,
-  findDutySuccess,
-  findDutyError,
-  cleanValues,
+  fetchDutyRequest,
+  fetchDutySuccess,
+  fetchDutyError,
   saveDutyRequest,
   saveDutySuccess,
-  saveDutyError,
+  saveDutyError, removeDutyRequest, removeDutySuccess, removeDutyError,
 } from './reducer';
 
 export function* fetch() {
@@ -26,32 +26,43 @@ export function* fetch() {
   }
 }
 
-export function* find({ values }) {
+export function* find({ payload }) {
   try {
-    const { data } = yield call(Service.findDuty, values);
-    yield put(findDutySuccess({ duty: data.duty }));
+    const { data } = yield call(Service.findDuty, payload.id);
+    console.log({ data });
+    yield put(fetchDutySuccess({ duty: data.duty }));
   } catch (error) {
     toastNotify('Error en cliente.');
-    yield put(findDutyError({ error }));
+    yield put(fetchDutyError({ error }));
   }
 }
 
-export function* save({ values }) {
+export function* save({ payload }) {
   try {
-    const { duty } = yield call(Service.saveDuty, values);
-    if (duty) {
-      yield put(saveDutySuccess(duty));
-      toastNotify(`Se guardo el Arancel: ${duty.name}`);
-    }
-    yield put(cleanValues());
+    yield call(Service.saveDuty, payload);
+    yield put(saveDutySuccess());
+    yield put(push('/duty'));
+    toastNotify(`Se guardo el Arancel: ${payload.title}`, 'success');
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(saveDutyError({ error }));
   }
 }
 
+export function* remove({ payload }) {
+  try {
+    yield call(Service.remove, payload);
+    yield put(removeDutySuccess(payload));
+    toastNotify('Se borro el arancel', 'success');
+  } catch (error) {
+    toastNotify('Error en cliente.');
+    yield put(removeDutyError({ error }));
+  }
+}
+
 export default function* saga() {
   yield takeLatest(fetchDutiesRequest, fetch);
-  yield takeLatest(findDutyRequest, find);
+  yield takeLatest(fetchDutyRequest, find);
   yield takeLatest(saveDutyRequest, save);
+  yield takeLatest(removeDutyRequest, remove);
 }

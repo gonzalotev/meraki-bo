@@ -25,6 +25,15 @@ export const slice = createSlice({
     loginError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
+    registerRequest: (state) => {
+      state.status = getStartStatus();
+    },
+    registerSuccess: (state) => {
+      state.status = getSuccessStatus();
+    },
+    registerError: (state, { error }) => {
+      state.status = getErrorStatus(error);
+    },
     logoutRequest: () => {},
     recoveryPasswordRequest: (state) => {
       state.recoveryStatus = getStartStatus();
@@ -62,6 +71,9 @@ export const {
   loginRequest,
   loginSuccess,
   loginError,
+  registerRequest,
+  registerSuccess,
+  registerError,
   getSessionRequest,
   getSessionSuccess,
   getSessionError,

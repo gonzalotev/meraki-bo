@@ -2,24 +2,23 @@ import { TextField, NumberField } from 'components';
 import { Button, Container } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
-import { selectStatus } from '../../../../store/session/selector';
+import { selectStatus } from 'store/duty/selector';
 
-const DutyForm = ({ status, isSubmitting, handleChange }) => (
+const DutyForm = ({ status, isSubmitting }) => (
   <Form>
     <Container shadow="base">
       <Field
         name="title"
         component={TextField}
-        label="Titulo"
+        label="Título"
         isDisabled={status.isFetching}
       />
     </Container>
     <Container shadow="base">
       <Field
-        name="Subtitle"
+        name="subtitle"
         component={TextField}
-        label="subtitulo"
-        onChange={handleChange}
+        label="subtítulo"
         isDisabled={status.isFetching}
       />
     </Container>
@@ -28,15 +27,13 @@ const DutyForm = ({ status, isSubmitting, handleChange }) => (
         name="price"
         component={NumberField}
         label="Arancel"
-        onChange={handleChange}
         isDisabled={status.isFetching}
       />
     </Container>
     <Button
       type="submit"
-      disabled={!!isSubmitting}
+      isDisabled={!!isSubmitting}
       isLoading={status.isFetching}
-      onChange={handleChange}
       bg="pink.300"
       my={5}
     >

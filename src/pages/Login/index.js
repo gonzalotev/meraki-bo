@@ -4,7 +4,7 @@ import { loginRequest } from 'store/session/reducer';
 import {
   Container, Heading, Link, Stack,
 } from '@chakra-ui/react';
-import LoginForm from './login-form';
+import LoginForm from './LoginForm';
 import validationSchema from './validationSchema';
 
 const Login = ({ onSubmit }) => {

@@ -13,10 +13,11 @@ const SelectInput = ({
   label = '',
   errorMessage,
   options = [],
+  getOptionValue = option => option.value,
   ...props
 }) => {
   const { breakpoints } = useTheme();
-  const selectedValue = options.find(option => option.value === value);
+  const selectedValue = options.find(option => getOptionValue(option) === value);
   return (
     <FormControl
       p={4}
@@ -29,7 +30,7 @@ const SelectInput = ({
         id={name}
         instanceId={name}
         value={selectedValue}
-        onChange={option => onChange(option?.value)}
+        onChange={option => onChange(getOptionValue(option))}
         options={options}
         isClearable
         chakraStyles={{

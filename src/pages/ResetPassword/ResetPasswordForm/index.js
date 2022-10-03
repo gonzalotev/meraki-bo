@@ -1,10 +1,10 @@
 import { TextField } from 'components';
 import { Button, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
-import { formStyles } from 'constant';
+import { styles } from 'constant';
 
 const ResetPasswordForm = ({ isSubmitting }) => (
-  <Form style={formStyles.recovery}>
+  <Form style={styles.form}>
     <Field
       component={TextField}
       name="password"

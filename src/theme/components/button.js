@@ -3,9 +3,12 @@ export default {
     boxShadow: '2px 3px 4px rgba(0, 0, 0, 0.3)',
     fontWeight: 400,
     margin: '0 5px',
-    backgroundColor: 'brand.neutral100',
+    background: 'pink.300',
+    _focus: {
+      shadow: '2px 3px 4px rgba(0, 0, 0, 0.3)',
+    },
     _hover: {
-      filter: 'brightness(110%)',
+      filter: 'brightness(105%)',
     },
     _active: {
       opacity: 0.8,

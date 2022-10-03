@@ -29,31 +29,44 @@ export const reducer = createSlice({
     fetchDutiesError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
-    findDutyRequest: (state) => {
+    fetchDutyRequest: (state) => {
       state.status = getStartStatus();
     },
-    findDutySuccess: (state, { payload }) => {
+    fetchDutySuccess: (state, { payload }) => {
       state.status = getSuccessStatus();
       state.duty = payload.duty;
     },
-    findDutyError: (state, { error }) => {
+    fetchDutyError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
-    cleanValues: (state) => {
+    cleanValues: (state) => ({
+      ...initialState,
+      duties: state.duties,
+    }),
+    cleanDuty: (state) => {
       state.duty = initialState.duty;
     },
     saveDutyRequest: (state) => {
       state.status = getStartStatus();
       state.isSaving = true;
     },
-    saveDutySuccess: (state, { payload }) => {
+    saveDutySuccess: (state) => {
       state.status = getSuccessStatus();
-      state.duty = payload.duty;
-      state.isSaving = true;
+      state.isSaving = false;
     },
     saveDutyError: (state, { error }) => {
       state.status = getErrorStatus(error);
       state.isSaving = initialState.isSaving;
+    },
+    removeDutyRequest: (state) => {
+      state.status = getStartStatus();
+    },
+    removeDutySuccess: (state, { payload }) => {
+      state.status = getSuccessStatus();
+      state.duties = state.duties.filter(duty => duty.idDuty !== payload);
+    },
+    removeDutyError: (state, { error }) => {
+      state.status = getErrorStatus(error);
     },
   },
 });
@@ -62,13 +75,17 @@ export const {
   fetchDutiesRequest,
   fetchDutiesSuccess,
   fetchDutiesError,
-  findDutyRequest,
-  findDutySuccess,
-  findDutyError,
-  cleanValues,
+  fetchDutyRequest,
+  fetchDutySuccess,
+  fetchDutyError,
   saveDutyRequest,
   saveDutySuccess,
   saveDutyError,
+  removeDutyRequest,
+  removeDutySuccess,
+  removeDutyError,
+  cleanValues,
+  cleanDuty,
 } = reducer.actions;
 
 export default reducer.reducer;
