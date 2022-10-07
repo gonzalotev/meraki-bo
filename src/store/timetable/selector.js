@@ -1,3 +1,5 @@
-export const getTimetable = (state) => state.timetable.timetable;
+export const selectTimetables = (state) => state.timetable.timetables;
 
-export const getStatusTimetable = (state) => state.timetable.status;
+export const selectTimetable = (state) => state.timetable.timetable;
+
+export const selectStatus = (state) => state.timetable.status;

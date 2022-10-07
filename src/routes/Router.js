@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from 'pages/Home';
-import Inscription from 'pages/Inscription';
+import Inscription from 'pages/Inscription/User';
 import Duty from 'pages/Duty';
 import DutyEditor from 'pages/Duty/Admin/DutyEditor';
 import OurSpace from 'pages/OurSpace';
@@ -10,14 +10,17 @@ import Login from 'pages/Login';
 import RecoveryPassword from 'pages/RecoveryPassword';
 import ResetPassword from 'pages/ResetPassword';
 import Register from 'pages/Register';
+import TimetableEditor from 'pages/Timetable/Admin/TimetableEditor';
 
 const Router = ({ withSession }) => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/duty/:id" element={<DutyEditor />} />
+    <Route path="/timetable/:id" element={<TimetableEditor />} />
     <Route path="/inscription" element={<Inscription />} />
     <Route path="/duty" element={<Duty />} />
     <Route path="/duty/create" element={<DutyEditor />} />
+    <Route path="/timetable/create" element={<TimetableEditor />} />
     <Route path="/spaces" element={<OurSpace />} />
     <Route path="/protocol" element={<Protocol />} />
     <Route path="/timetable" element={<TimeTable />} />

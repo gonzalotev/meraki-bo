@@ -1,11 +1,11 @@
-import { TextField, NumberField, SelectField } from 'components';
+import { TextField, SelectField } from 'components';
 import { Button, Container } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
-import { selectStatus } from 'store/duty/selector';
+import { selectStatus } from 'store/timetable/selector';
 import { selectTopics } from 'store/staticData/selector';
 
-const DutyForm = ({ status, isSubmitting, topics }) => (
+const TimetableForm = ({ status, isSubmitting, topics }) => (
   <Form>
     <Container shadow="base">
       <Field
@@ -13,23 +13,24 @@ const DutyForm = ({ status, isSubmitting, topics }) => (
         getOptionLabel={option => option.name}
         getOptionValue={option => option?.id}
         options={topics}
-        name="title"
+        name="discipline"
         label="disciplina"
       />
     </Container>
     <Container shadow="base">
       <Field
-        name="subtitle"
+        type="time"
+        name="schedule"
         component={TextField}
-        label="subtítulo"
+        label="Horario"
         isDisabled={status.isFetching}
       />
     </Container>
     <Container shadow="base">
       <Field
-        name="price"
-        component={NumberField}
-        label="Arancel"
+        name="day"
+        component={TextField}
+        label="Dia"
         isDisabled={status.isFetching}
       />
     </Container>
@@ -45,4 +46,4 @@ const DutyForm = ({ status, isSubmitting, topics }) => (
   </Form>
 );
 
-export default connect(state => ({ status: selectStatus(state), topics: selectTopics(state) }))(DutyForm);
+export default connect(state => ({ status: selectStatus(state), topics: selectTopics(state) }))(TimetableForm);

@@ -1,8 +1,13 @@
-const registerInitialValues = {
+const inscription = {
+  idInsciption: 0,
+  documentId: '',
   name: '',
+  surname: '',
+  discipline: '',
+  phone: '',
+  email: '',
   yearDate: '',
   years: '',
-  documentId: '',
   address: '',
   motherName: '',
   motherPhone: '',
@@ -20,8 +25,14 @@ const duty = {
   subtitle: '',
   title: '',
 };
+const timetable = {
+  day: '',
+  schedule: '',
+  discipline: '',
+};
 
 export default {
   duty,
-  registerInitialValues,
+  timetable,
+  inscription,
 };

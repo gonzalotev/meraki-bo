@@ -7,7 +7,7 @@ const _Carousel = ({ images }) => (
   <Container>
     <Carousel autoPlay infiniteLoop interval={4000}>
       {images ? images.map((image) => (
-        <ContainerImg key={image.id} src={image.src} alt="meraki" />
+        <ContainerImg key={image.idHome} src={image.image} alt={image.name} />
       )) : <p>no hay imagenes</p>}
     </Carousel>
   </Container>
