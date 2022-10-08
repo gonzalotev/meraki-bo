@@ -4,6 +4,8 @@ import storageService from './storage';
 import TimetableService from './timetable';
 import DutyService from './duty';
 import StaticDataService from './staticData';
+import InscriptionService from './inscription';
+import HomeService from './home';
 
 import { setupApi } from './http';
 
@@ -15,6 +17,8 @@ const api = {
   ...TimetableService,
   ...DutyService,
   ...StaticDataService,
+  ...InscriptionService,
+  ...HomeService,
 };
 
 export {

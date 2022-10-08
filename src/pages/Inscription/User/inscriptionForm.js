@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Button, Container, Text } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { selectStatus } from 'store/session/selector';
+import { selectTopics } from 'store/staticData/selector';
 
 const style = {
   display: 'flex',
@@ -23,7 +24,7 @@ const styleField = {
   width: '100%',
 };
 
-const RegisterForm = ({ status, isSubmitting }) => (
+const RegisterForm = ({ status, isSubmitting, topics }) => (
   <Form style={style}>
     <Container style={styleContainer} shadow="base">
       <Field
@@ -31,6 +32,15 @@ const RegisterForm = ({ status, isSubmitting }) => (
         name="name"
         component={TextField}
         label="Nombre y Apellido *"
+        isDisabled={status.isFetching}
+      />
+    </Container>
+    <Container style={styleContainer} shadow="base">
+      <Field
+        style={styleField}
+        name="email"
+        component={TextField}
+        label="Email *"
         isDisabled={status.isFetching}
       />
     </Container>
@@ -63,25 +73,8 @@ const RegisterForm = ({ status, isSubmitting }) => (
       <Field
         name="discipline"
         component={CheckboxListField}
-        options={[
-          { value: '1', label: 'Acrobacia I' },
-          { value: '2', label: 'Acrobacia II' },
-          { value: '3', label: 'Arte I' },
-          { value: '4', label: 'Arte II' },
-          { value: '5', label: 'Arte III' },
-          { value: '6', label: 'Canto' },
-          { value: '7', label: 'Comedia Musical' },
-          { value: '8', label: 'Danza Jazz' },
-          { value: '9', label: 'Entrenamiento Funcional' },
-          { value: '10', label: 'Iniciacion a la Danza' },
-          { value: '11', label: 'Juegos teatrales' },
-          { value: '12', label: 'Pastelería Creativa' },
-          { value: '13', label: 'Street Jazz' },
-          { value: '14', label: 'Taller de Musica' },
-          { value: '15', label: 'Teatro' },
-          { value: '16', label: 'Yoga para adultos' },
-          { value: '17', label: 'Yoga para chicos' },
-        ]}
+        getOptionValue={option => option?.id}
+        options={topics}
       />
     </Container>
     <Container style={styleContainer} shadow="base">
@@ -95,7 +88,7 @@ const RegisterForm = ({ status, isSubmitting }) => (
     <Container style={styleContainer} shadow="base">
       <Field
         component={NumberField}
-        name="motherPhone"
+        name="phone"
         label="Teléfono de contacto (Madre)"
         isDisabled={status.isFetching}
       />
@@ -165,4 +158,4 @@ const RegisterForm = ({ status, isSubmitting }) => (
   </Form>
 );
 
-export default connect(state => ({ status: selectStatus(state) }))(RegisterForm);
+export default connect(state => ({ status: selectStatus(state), topics: selectTopics(state) }))(RegisterForm);

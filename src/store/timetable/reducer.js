@@ -1,32 +1,90 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getStartStatus, getSuccessStatus, getErrorStatus } from '../helper/statusStateFactory';
+import {
+  getStartStatus, getSuccessStatus, getErrorStatus,
+} from '../helper/statusStateFactory';
 
 const initialState = {
-  timetable: [],
+  timetables: [],
   status: getStartStatus(),
+  timetable: {
+    idTimetable: 0,
+    day: '',
+    schedule: '',
+    discipline: '',
+  },
 };
 
 export const reducer = createSlice({
   name: 'timetable',
   initialState,
   reducers: {
-    timetableFetchRequest: (state) => {
+    fetchTimetablesRequest: (state) => {
       state.status = getStartStatus();
     },
-    timetableFetchSuccess: (state, { payload }) => {
+    fetchTimetablesSuccess: (state, { payload }) => {
+      state.status = getSuccessStatus();
+      state.timetables = payload.timetables;
+    },
+    fetchTimetablesError: (state, { error }) => {
+      state.status = getErrorStatus(error);
+    },
+    fetchTimetableRequest: (state) => {
+      state.status = getStartStatus();
+    },
+    fetchTimetableSuccess: (state, { payload }) => {
       state.status = getSuccessStatus();
       state.timetable = payload.timetable;
     },
-    timetableFetchError: (state, { error }) => {
+    fetchTimetableError: (state, { error }) => {
+      state.status = getErrorStatus(error);
+    },
+    cleanValues: (state) => ({
+      ...initialState,
+      timetables: state.timetables,
+    }),
+    cleanTimetable: (state) => {
+      state.timetable = initialState.timetable;
+    },
+    saveTimetableRequest: (state) => {
+      state.status = getStartStatus();
+      state.isSaving = true;
+    },
+    saveTimetableSuccess: (state) => {
+      state.status = getSuccessStatus();
+      state.isSaving = false;
+    },
+    saveTimetableError: (state, { error }) => {
+      state.status = getErrorStatus(error);
+      state.isSaving = initialState.isSaving;
+    },
+    removeTimetableRequest: (state) => {
+      state.status = getStartStatus();
+    },
+    removeTimetableSuccess: (state, { payload }) => {
+      state.status = getSuccessStatus();
+      state.timetables = state.timetables.filter(timetable => timetable.idTimetable !== payload);
+    },
+    removeTimetableError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
   },
 });
 
 export const {
-  timetableFetchRequest,
-  timetableFetchSuccess,
-  timetableFetchError,
+  fetchTimetablesRequest,
+  fetchTimetablesSuccess,
+  fetchTimetablesError,
+  fetchTimetableRequest,
+  fetchTimetableSuccess,
+  fetchTimetableError,
+  saveTimetableRequest,
+  saveTimetableSuccess,
+  saveTimetableError,
+  removeTimetableRequest,
+  removeTimetableSuccess,
+  removeTimetableError,
+  cleanValues,
+  cleanTimetable,
 } = reducer.actions;
 
 export default reducer.reducer;

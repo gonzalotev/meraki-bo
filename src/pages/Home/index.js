@@ -1,54 +1,28 @@
-import Carousel from 'components/Carousel';
-import {
-  Container, Title, Text, Content,
-} from './styled';
+import { Container } from '@chakra-ui/react';
+import { connect } from 'react-redux';
+import { fetchHomesRequest } from 'store/home/reducer';
+import { selectHomes, selectStatus } from 'store/home/selector';
+import { useEffect } from 'react';
+import { selectUser } from 'store/session/selector';
+import LoadingPage from 'components/LoadingPage';
+import UserHome from './User';
 
-import meraki1 from './assests/meraki1.jpg';
-import meraki2 from './assests/meraki2.jpg';
-import meraki3 from './assests/meraki3.jpg';
-import meraki4 from './assests/meraki4.jpg';
-import meraki5 from './assests/meraki5.jpg';
-import meraki6 from './assests/meraki6.jpg';
+const Home = ({
+  homes, onMount, sessionUser, status,
+}) => {
+  console.log('index', homes);
+  useEffect(() => {
+    onMount();
+  }, []);
+  return (
+    <Container minW="100%" alignItems="center" display="flex" h="100%" p={5} flexDirection="column">
+      {status.isFetched && !sessionUser.role && <UserHome homes={homes} />}
+      {status.isFetching && <LoadingPage />}
+    </Container>
+  );
+};
 
-const imagesMeraki = [
-  {
-    id: 1,
-    src: meraki1,
-  },
-  {
-    id: 2,
-    src: meraki2,
-  },
-  {
-    id: 3,
-    src: meraki3,
-  },
-  {
-    id: 4,
-    src: meraki4,
-  },
-  {
-    id: 5,
-    src: meraki5,
-  },
-  {
-    id: 6,
-    src: meraki6,
-  },
-];
-
-const Home = () => (
-  <Container style={{ marginTop: '100px' }}>
-    <Carousel images={imagesMeraki} />
-    <Content>
-      <Title>Bienvenidos</Title>
-      <Text>Espacio Artístico de recreacion y enseñanza </Text>
-      <br />
-      <Text>
-        Te esperamos para ponernos en movimiento, dar lugar a la creación y vuelo a la imaginación
-      </Text>
-    </Content>
-  </Container>
-);
-
-export default Home;
+export default connect(
+  state => ({ homes: selectHomes(state), sessionUser: selectUser(state), status: selectStatus(state) }),
+  { onMount: fetchHomesRequest },
+)(Home);
