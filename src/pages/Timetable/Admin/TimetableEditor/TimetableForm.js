@@ -1,39 +1,44 @@
 import { TextField, SelectField } from 'components';
-import { Button, Container } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/timetable/selector';
 import { selectTopics } from 'store/staticData/selector';
+import { daysOptions } from 'constant';
 
 const TimetableForm = ({ status, isSubmitting, topics }) => (
-  <Form>
-    <Container shadow="base">
+  <Form style={{ height: '100%' }}>
+    <Box shadow="base">
       <Field
         component={SelectField}
         getOptionLabel={option => option.name}
         getOptionValue={option => option?.id}
         options={topics}
+        isRequired
         name="discipline"
-        label="disciplina"
+        label="Disciplina"
       />
-    </Container>
-    <Container shadow="base">
+    </Box>
+    <Box shadow="base">
       <Field
         type="time"
         name="schedule"
         component={TextField}
         label="Horario"
+        isRequired
         isDisabled={status.isFetching}
       />
-    </Container>
-    <Container shadow="base">
+    </Box>
+    <Box shadow="base">
       <Field
         name="day"
-        component={TextField}
-        label="Dia"
+        component={SelectField}
+        options={daysOptions}
+        label="Día"
+        isRequired
         isDisabled={status.isFetching}
       />
-    </Container>
+    </Box>
     <Button
       type="submit"
       isDisabled={!!isSubmitting}

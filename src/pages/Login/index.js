@@ -23,7 +23,7 @@ const Login = ({ onSubmit }) => {
           component={LoginForm}
           validationSchema={validationSchema}
         />
-        <Link href="/Recuperar" color="pink.300" textAlign="center" p={2}>
+        <Link href="/recovery" color="pink.300" textAlign="center" p={2}>
           ¿Perdiste tu contraseña?
         </Link>
       </Stack>

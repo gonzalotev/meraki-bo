@@ -1,9 +1,10 @@
 import { Table } from 'components';
-import { HStack, IconButton, Container } from '@chakra-ui/react';
+import {
+  HStack, IconButton, Container, Button,
+} from '@chakra-ui/react';
 import { EditIcon, DeleteIcon, AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectStatus } from 'store/timetable/selector';
 import { removeTimetableRequest } from 'store/timetable/reducer';
 
 const AdminTimetableTable = ({ timetables, onRemove }) => {
@@ -12,32 +13,52 @@ const AdminTimetableTable = ({ timetables, onRemove }) => {
     { key: 'schedule', label: 'Horario' },
     { key: 'day', label: 'Dia' },
     { key: 'discipline', label: 'Disciplina' },
-    { key: 'actions', style: { width: 150 } },
+    { key: 'actions', style: { width: 130 } },
   ];
 
-  const rows = timetables.map(timetable => ({
+  const rows = timetables.map((timetable) => ({
     key: timetable.idTimetable,
     values: [
       timetable.schedule,
       timetable.day,
       timetable.discipline,
-      // eslint-disable-next-line react/jsx-key
-      <HStack>
-        <IconButton aria-label="bla" icon={<EditIcon />} onClick={() => navigate(`/timetable/${timetable.idTimetable}`)} />
-        <IconButton aria-label="bla" icon={<DeleteIcon />} onClick={() => onRemove(timetable.idTimetable)} />
+      <HStack key={timetable.idTimetable} justifyContent="flex-end">
+        <IconButton
+          aria-label="edit"
+          icon={<EditIcon />}
+          onClick={() => navigate(`/timetable/${timetable.idTimetable}`)}
+        />
+        <IconButton
+          aria-label="remove"
+          icon={<DeleteIcon />}
+          onClick={() => onRemove(timetable.idTimetable)}
+        />
       </HStack>,
     ],
   }));
 
   return (
     <Container>
-      <IconButton aria-label="bla" onClick={() => navigate('/timetable/create')} icon={<AddIcon />} />
-      <Table data={rows} name="timetables" columns={columns} size="sm" />
+      <Button
+        aria-label="add"
+        onClick={() => navigate('/timetable/create')}
+        leftIcon={<AddIcon />}
+        float="right"
+      >
+        Agregar
+      </Button>
+      <Table
+        data={rows}
+        name="timetables"
+        columns={columns}
+        size="sm"
+        mt={2}
+      />
     </Container>
   );
 };
 
 export default connect(
-  state => ({ status: selectStatus(state) }),
+  null,
   { onRemove: removeTimetableRequest },
 )(AdminTimetableTable);

@@ -9,7 +9,6 @@ import {
   Tr,
   VStack,
   Table as ChakraTable,
-  HStack,
   Text,
 } from '@chakra-ui/react';
 
@@ -41,11 +40,9 @@ const Table = ({
             <Tr>
               {columnsData.map(column => (
                 <Th key={column.key} {...column.style}>
-                  <HStack>
-                    <Text ml="0 !important" id={column.key}>
-                      {column.label || ''}
-                    </Text>
-                  </HStack>
+                  <Text ml="0 !important" id={column.key}>
+                    {column.label || ''}
+                  </Text>
                 </Th>
               ))}
             </Tr>

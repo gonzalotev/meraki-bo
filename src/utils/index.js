@@ -3,6 +3,7 @@ import toastNotify from './toast-notify';
 import getFieldError from './getFieldError';
 import { unique, uniqueProperty } from './yupMethods';
 import buildRows from './buildRows';
+import buildQueryString from './buildQueryString';
 
 export {
   createQuery,
@@ -11,4 +12,5 @@ export {
   unique,
   uniqueProperty,
   buildRows,
+  buildQueryString,
 };

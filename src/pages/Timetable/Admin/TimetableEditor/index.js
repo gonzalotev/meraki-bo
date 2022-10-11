@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { selectTimetable } from 'store/timetable/selector';
-import {
-  Container, Wrap, Text,
-} from '@chakra-ui/react';
+import { Container, Text, VStack } from '@chakra-ui/react';
 import { cleanTimetable, fetchTimetableRequest, saveTimetableRequest } from 'store/timetable/reducer';
 import { useParams } from 'react-router';
 import { defaultValues } from 'constant';
@@ -25,17 +23,17 @@ const TimetableEditor = ({
 
   return (
     <Container>
-      <Text>Horarios</Text>
-      <Wrap>
+      <VStack mt={5}>
+        <Text fontWeight="bold">Horarios</Text>
         <Text>Campos Obligatorios (*)</Text>
-        <Formik
-          component={TimetableForm}
-          validationSchema={validetionSchema}
-          initialValues={{ ...defaultValues.timetable, ...timetable }}
-          onSubmit={onSubmit}
-          enableReinitialize
-        />
-      </Wrap>
+      </VStack>
+      <Formik
+        component={TimetableForm}
+        validationSchema={validetionSchema}
+        initialValues={{ ...defaultValues.timetable, ...timetable }}
+        onSubmit={onSubmit}
+        enableReinitialize
+      />
     </Container>
   );
 };

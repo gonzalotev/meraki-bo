@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from 'pages/Home';
-import Inscription from 'pages/Inscription/User';
+import Inscription from 'pages/Inscription';
 import Duty from 'pages/Duty';
 import DutyEditor from 'pages/Duty/Admin/DutyEditor';
 import OurSpace from 'pages/OurSpace';
@@ -10,9 +10,10 @@ import Login from 'pages/Login';
 import RecoveryPassword from 'pages/RecoveryPassword';
 import ResetPassword from 'pages/ResetPassword';
 import Register from 'pages/Register';
+import ImageResourceEditor from 'components/Resource/ImageResourceEditor';
 import TimetableEditor from 'pages/Timetable/Admin/TimetableEditor';
 
-const Router = ({ withSession }) => (
+const Router = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/duty/:id" element={<DutyEditor />} />
@@ -28,7 +29,9 @@ const Router = ({ withSession }) => (
     <Route path="/password" element={<Login />} />
     <Route path="/recovery" element={<RecoveryPassword />} />
     <Route path="/reset" element={<ResetPassword />} />
-    {!withSession && <Route path="/register" element={<Register />} />}
+    <Route path="/register" element={<Register />} />
+    <Route path="/resource" element={<ImageResourceEditor />} />
+    <Route path="/resource/:id" element={<ImageResourceEditor />} />
   </Routes>
 );
 

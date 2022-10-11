@@ -24,6 +24,7 @@ const SelectInput = ({
       minWidth={breakpoints.sm}
       maxWidth={breakpoints.md}
       isInvalid={!!errorMessage}
+      isRequired={props.isRequired}
     >
       <FormLabel>{label}</FormLabel>
       <Select
