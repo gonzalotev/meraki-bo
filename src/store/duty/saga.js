@@ -29,7 +29,6 @@ export function* fetch() {
 export function* find({ payload }) {
   try {
     const { data } = yield call(Service.findDuty, payload.id);
-    console.log({ data });
     yield put(fetchDutySuccess({ duty: data.duty }));
   } catch (error) {
     toastNotify('Error en cliente.');

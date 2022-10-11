@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const TimetableService = {
-  fetchTimetable: () => axios.get('/api/timetable'),
+  fetchTimetable: () => axios.get('/public-api/timetable'),
   findTimetable: (id) => axios.get(`/api/timetable/${id}`),
   saveTimetable: ({ idTimetable, ...values }) => {
     if (idTimetable) {

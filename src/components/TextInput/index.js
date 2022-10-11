@@ -25,6 +25,7 @@ const TextInput = ({
       width={breakpoints.md}
       isInvalid={!!errorMessage}
       autoComplete="off"
+      isRequired={props.isRequired}
     >
       <FormLabel m={0}>{label}</FormLabel>
       <InputGroup>

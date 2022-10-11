@@ -9,7 +9,7 @@ import { cleanDuty, fetchDutyRequest, saveDutyRequest } from 'store/duty/reducer
 import { useParams } from 'react-router';
 import { defaultValues } from 'constant';
 import DutyForm from './DutyForm';
-import validetionSchema from './validationSchema';
+import validationSchema from './validationSchema';
 
 const DutyEditor = ({
   onSubmit, duty, fetchDuty, onRemove,
@@ -30,7 +30,7 @@ const DutyEditor = ({
         <Text>Campos Obligatorios (*)</Text>
         <Formik
           component={DutyForm}
-          validationSchema={validetionSchema}
+          validationSchema={validationSchema}
           initialValues={{ ...defaultValues.duty, ...duty }}
           onSubmit={onSubmit}
           enableReinitialize

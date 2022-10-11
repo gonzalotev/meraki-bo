@@ -1,5 +1,5 @@
 import { TextField, NumberField, SelectField } from 'components';
-import { Button, Container } from '@chakra-ui/react';
+import { Button, Box } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/duty/selector';
@@ -7,7 +7,7 @@ import { selectTopics } from 'store/staticData/selector';
 
 const DutyForm = ({ status, isSubmitting, topics }) => (
   <Form>
-    <Container shadow="base">
+    <Box shadow="base">
       <Field
         component={SelectField}
         getOptionLabel={option => option.name}
@@ -16,23 +16,23 @@ const DutyForm = ({ status, isSubmitting, topics }) => (
         name="title"
         label="disciplina"
       />
-    </Container>
-    <Container shadow="base">
+    </Box>
+    <Box shadow="base">
       <Field
         name="subtitle"
         component={TextField}
         label="subtítulo"
         isDisabled={status.isFetching}
       />
-    </Container>
-    <Container shadow="base">
+    </Box>
+    <Box shadow="base">
       <Field
         name="price"
         component={NumberField}
         label="Arancel"
         isDisabled={status.isFetching}
       />
-    </Container>
+    </Box>
     <Button
       type="submit"
       isDisabled={!!isSubmitting}

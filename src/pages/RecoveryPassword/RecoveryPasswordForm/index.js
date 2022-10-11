@@ -35,5 +35,5 @@ const RecoveryPasswordForm = ({ isSubmitting, goToLogin, status }) => (
 
 export default connect(
   state => ({ status: selectRecoveryStatus(state) }),
-  dispatch => ({ goToLogin: () => dispatch(push('/Ingresar')) }),
+  dispatch => ({ goToLogin: () => dispatch(push('/login')) }),
 )(RecoveryPasswordForm);

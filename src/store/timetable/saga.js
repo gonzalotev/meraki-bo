@@ -29,7 +29,6 @@ export function* fetch() {
 export function* find({ payload }) {
   try {
     const { data } = yield call(Service.findTimetable, payload.id);
-    console.log(data.timetable);
     yield put(fetchTimetableSuccess({ timetable: data.timetable }));
   } catch (error) {
     toastNotify('Error en cliente.');
@@ -42,7 +41,7 @@ export function* save({ payload }) {
     yield call(Service.saveTimetable, payload);
     yield put(saveTimetableSuccess());
     yield put(push('/timetable'));
-    toastNotify(`Se guardo el Horario: ${payload.title}`, 'success');
+    toastNotify(`Se guardo el Horario: ${payload.day} a ${payload.schedule}`, 'success');
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(saveTimetableError({ error }));

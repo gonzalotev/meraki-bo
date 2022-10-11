@@ -1,44 +1,36 @@
-import { Carousel } from '../../components';
-import {
-  Container, Title, Text, Content,
-} from './styled';
+import { Container, Heading } from '@chakra-ui/react';
+import { connect } from 'react-redux';
+import { selectResource } from 'store/resource/selector';
+import { selectStatus, selectUser } from 'store/session/selector';
+import { useEffect } from 'react';
+import LoadingPage from 'components/LoadingPage';
+import { fetchResourceRequest } from 'store/resource/reducer';
+import { resourceTypes } from 'constant';
+import { ResourceList, ResourcePage } from 'components';
 
-import meraki0 from './assets/meraki0.jpg';
-import meraki1 from './assets/meraki1.jpg';
-import meraki2 from './assets/meraki2.png';
-import meraki3 from './assets/meraki3.jpg';
+const OurSpace = ({
+  resource, onMount, sessionUser, status,
+}) => {
+  useEffect(() => {
+    onMount(resourceTypes.OUR_SPACES);
+  }, []);
+  return (
+    <Container minW="100%" alignItems="center" display="flex" h="100%" p={5} flexDirection="column">
+      <Heading fontSize={50} color="pink.300" mb={5}>Espacios</Heading>
+      {sessionUser.role === 'admin' && (
+        <ResourceList
+          resource={resource}
+          type={resourceTypes.OUR_SPACES}
+          origin="/spaces"
+        />
+      ) }
+      {!sessionUser.role && <ResourcePage resource={resource} />}
+      {status.isFetching && <LoadingPage />}
+    </Container>
+  );
+};
 
-const imagesMeraki = [
-  {
-    id: 0,
-    src: meraki0,
-  },
-  {
-    id: 1,
-    src: meraki1,
-  },
-  {
-    id: 2,
-    src: meraki2,
-  },
-  {
-    id: 3,
-    src: meraki3,
-  },
-];
-
-const OurSpace = () => (
-  <Container style={{ marginTop: '100px' }}>
-    <Carousel images={imagesMeraki} />
-    <Content>
-      <Title>Nuestro Espacio</Title>
-      <Text>Espacio Artístico de recreacion y enseñanza </Text>
-      <br />
-      <Text>
-        Te esperamos para ponernos en movimiento, dar lugar a la creación y vuelo a la imaginación
-      </Text>
-    </Content>
-  </Container>
-);
-
-export default OurSpace;
+export default connect(
+  state => ({ resource: selectResource(state, 'ourSpaces'), sessionUser: selectUser(state), status: selectStatus(state) }),
+  { onMount: fetchResourceRequest },
+)(OurSpace);

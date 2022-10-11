@@ -1,20 +1,33 @@
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 import PropTypes from 'prop-types';
 import { Container, ContainerImg } from './styled';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const _Carousel = ({ images }) => (
+const getImages = (images) => (images ? images.map((image) => (
+  <ContainerImg
+    key={image.id}
+    src={image.url}
+    alt={image.name}
+  />
+)) : <p>no hay imágenes</p>);
+
+const Carousel = ({ images }) => (
   <Container>
-    <Carousel autoPlay infiniteLoop interval={4000}>
-      {images ? images.map((image) => (
-        <ContainerImg key={image.idHome} src={image.image} alt={image.name} />
-      )) : <p>no hay imagenes</p>}
-    </Carousel>
+    <ResponsiveCarousel autoPlay infiniteLoop interval={4000}>
+      {getImages(images)}
+    </ResponsiveCarousel>
   </Container>
 );
 
-_Carousel.propTypes = {
-  images: PropTypes.func.isRequired,
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    url: PropTypes.string,
+    name: PropTypes.string,
+  })),
 };
 
-export default _Carousel;
+Carousel.defaultProps = {
+  images: [],
+};
+
+export default Carousel;

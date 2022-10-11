@@ -1,23 +1,20 @@
 const inscription = {
-  idInsciption: 0,
-  documentId: '',
   name: '',
   surname: '',
-  discipline: '',
+  documentId: '',
   phone: '',
   email: '',
-  yearDate: '',
-  years: '',
+  birthdate: '',
   address: '',
   motherName: '',
   motherPhone: '',
   fatherName: '',
   fatherPhone: '',
-  tutorQuestion: '',
-  medicalQuestion: '',
+  allowGoAlone: '',
+  medicalConsiderations: '',
   socialWork: '',
-  bla: '',
-  bla2: [],
+  personsAuthorized: '',
+  disciplines: [],
 };
 
 const duty = {
@@ -25,14 +22,20 @@ const duty = {
   subtitle: '',
   title: '',
 };
+
 const timetable = {
   day: '',
   schedule: '',
   discipline: '',
+};
+const resourceImage = {
+  name: '',
+  url: '',
 };
 
 export default {
   duty,
   timetable,
   inscription,
+  resourceImage,
 };

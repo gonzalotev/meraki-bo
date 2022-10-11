@@ -1,9 +1,10 @@
 import { Table } from 'components';
-import { HStack, IconButton, Container } from '@chakra-ui/react';
+import {
+  HStack, IconButton, Container, Button,
+} from '@chakra-ui/react';
 import { EditIcon, DeleteIcon, AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { selectStatus } from 'store/duty/selector';
 import { removeDutyRequest } from 'store/duty/reducer';
 
 const AdminDutyTable = ({ duties, onRemove }) => {
@@ -11,7 +12,7 @@ const AdminDutyTable = ({ duties, onRemove }) => {
   const columns = [
     { key: 'title', label: 'Nombre' },
     { key: 'price', label: 'Precio' },
-    { key: 'actions', style: { width: 150 } },
+    { key: 'actions', style: { width: 130 } },
   ];
 
   const rows = duties.map(duty => ({
@@ -19,23 +20,43 @@ const AdminDutyTable = ({ duties, onRemove }) => {
     values: [
       duty.title,
       duty.price,
-      // eslint-disable-next-line react/jsx-key
-      <HStack>
-        <IconButton aria-label="bla" icon={<EditIcon />} onClick={() => navigate(`/duty/${duty.idDuty}`)} />
-        <IconButton aria-label="bla" icon={<DeleteIcon />} onClick={() => onRemove(duty.idDuty)} />
+      <HStack key={duty.idDuty} justifyContent="flex-end">
+        <IconButton
+          aria-label="edit"
+          icon={<EditIcon />}
+          onClick={() => navigate(`/duty/${duty.idDuty}`)}
+        />
+        <IconButton
+          aria-label="remove"
+          icon={<DeleteIcon />}
+          onClick={() => onRemove(duty.idDuty)}
+        />
       </HStack>,
     ],
   }));
 
   return (
     <Container>
-      <IconButton aria-label="bla" onClick={() => navigate('/duty/create')} icon={<AddIcon />} />
-      <Table data={rows} name="duties" columns={columns} size="sm" />
+      <Button
+        aria-label="add"
+        onClick={() => navigate('/duty/create')}
+        leftIcon={<AddIcon />}
+        float="right"
+      >
+        Agregar
+      </Button>
+      <Table
+        data={rows}
+        name="duties"
+        columns={columns}
+        size="sm"
+        mt={2}
+      />
     </Container>
   );
 };
 
 export default connect(
-  state => ({ status: selectStatus(state) }),
+  null,
   { onRemove: removeDutyRequest },
 )(AdminDutyTable);

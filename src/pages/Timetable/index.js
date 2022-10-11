@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { selectUser } from 'store/session/selector';
 import LoadingPage from 'components/LoadingPage';
 import AdminTimetable from './Admin/TimetableList';
+import UserTimetable from './User/TimetableList';
 
 const Timetable = ({
   timetables, onMount, sessionUser, status,
@@ -17,6 +18,7 @@ const Timetable = ({
     <Container minW="100%" alignItems="center" display="flex" h="100%" p={5} flexDirection="column">
       <Heading fontSize={50} color="pink.300" mb={5}>Horarios</Heading>
       {sessionUser.role === 'admin' && <AdminTimetable timetables={timetables} /> }
+      {!sessionUser.role && <UserTimetable timetables={timetables} /> }
       {status.isFetching && <LoadingPage />}
     </Container>
   );
