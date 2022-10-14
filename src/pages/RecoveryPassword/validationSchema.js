@@ -1,9 +1,9 @@
 import { object, string, array } from 'yup';
 
 const validationSchema = object().shape({
-  email: string().email().required('required'),
+  email: string().email().required('Requerido'),
   answers: array().of(
-    string().nullable().required('required'),
+    string().nullable().required('Requerido'),
   ),
 });
 

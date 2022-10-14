@@ -76,7 +76,7 @@ const Admin = ({ onMount, inscriptions, onRemove }) => {
         name="inscriptions"
         columns={columns}
         size="sm"
-        mt={2}
+        mt={5}
       />
     </>
   );

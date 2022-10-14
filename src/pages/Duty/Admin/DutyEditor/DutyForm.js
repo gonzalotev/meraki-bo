@@ -1,11 +1,14 @@
 import { TextField, NumberField, SelectField } from 'components';
-import { Button, Box } from '@chakra-ui/react';
+import { Button, Box, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/duty/selector';
 import { selectTopics } from 'store/staticData/selector';
+import { push } from 'redux-first-history';
 
-const DutyForm = ({ status, isSubmitting, topics }) => (
+const DutyForm = ({
+  status, isSubmitting, topics, goTo,
+}) => (
   <Form>
     <Box shadow="base">
       <Field
@@ -33,16 +36,24 @@ const DutyForm = ({ status, isSubmitting, topics }) => (
         isDisabled={status.isFetching}
       />
     </Box>
-    <Button
-      type="submit"
-      isDisabled={!!isSubmitting}
-      isLoading={status.isFetching}
-      bg="pink.300"
-      my={5}
-    >
-      Guardar
-    </Button>
+    <HStack pb={2} justifyContent="center" my={5}>
+      <Button onClick={goTo}>
+        Cancelar
+      </Button>
+      <Button
+        type="submit"
+        isDisabled={!!isSubmitting}
+        isLoading={status.isFetching}
+        bg="pink.300"
+        my={5}
+      >
+        Guardar
+      </Button>
+    </HStack>
   </Form>
 );
 
-export default connect(state => ({ status: selectStatus(state), topics: selectTopics(state) }))(DutyForm);
+export default connect(
+  state => ({ status: selectStatus(state), topics: selectTopics(state) }),
+  dispatch => ({ goTo: () => dispatch(push('/duty')) }),
+)(DutyForm);
