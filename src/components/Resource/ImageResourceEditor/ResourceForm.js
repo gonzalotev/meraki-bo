@@ -34,4 +34,6 @@ const ResourceForm = ({ status, isSubmitting }) => (
   </Form>
 );
 
-export default connect(state => ({ status: selectStatus(state) }))(ResourceForm);
+export default connect(
+  state => ({ status: selectStatus(state) }),
+)(ResourceForm);

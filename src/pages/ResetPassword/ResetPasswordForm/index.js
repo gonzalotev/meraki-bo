@@ -1,4 +1,4 @@
-import { TextField } from 'components';
+import { PasswordField } from 'components';
 import { Button, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { styles } from 'constant';
@@ -6,17 +6,22 @@ import { styles } from 'constant';
 const ResetPasswordForm = ({ isSubmitting }) => (
   <Form style={styles.form}>
     <Field
-      component={TextField}
+      component={PasswordField}
       name="password"
       label="Nueva Contraseña"
     />
-    <HStack pb={2}>
+    <Field
+      component={PasswordField}
+      name="confirmPassword"
+      label="Confirmar Contraseña"
+    />
+    <HStack pb={2} justifyContent="center">
       <Button
         type="submit"
         disabled={!!isSubmitting}
         bg="pink.300"
       >
-        Enviar
+        Guardar
       </Button>
     </HStack>
   </Form>

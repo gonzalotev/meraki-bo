@@ -1,6 +1,6 @@
 import { TextField, PasswordField } from 'components';
 import { connect } from 'react-redux';
-import { Button } from '@chakra-ui/react';
+import { Button, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { selectStatus } from 'store/session/selector';
 import { styles } from 'constant';
@@ -18,15 +18,17 @@ const LoginForm = ({ status, isSubmitting }) => (
       name="password"
       label="Contraseña"
     />
-    <Button
-      type="submit"
-      disabled={!!isSubmitting}
-      isLoading={status.isFetching}
-      bg="pink.300"
-      color="white"
-    >
-      Ingresar
-    </Button>
+    <HStack pb={2} justifyContent="center">
+      <Button
+        type="submit"
+        disabled={!!isSubmitting}
+        isLoading={status.isFetching}
+        bg="pink.300"
+        color="white"
+      >
+        Ingresar
+      </Button>
+    </HStack>
   </Form>
 );
 

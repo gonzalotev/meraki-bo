@@ -58,7 +58,6 @@ export function* resetPassword({ payload }) {
   try {
     yield call(Service.resetPassword, { password: payload.password, token: payload.token });
     yield put(resetPasswordSuccess());
-    yield put(push('/Ingresar'));
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(resetPasswordError({ error }));
