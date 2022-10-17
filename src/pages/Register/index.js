@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { registerRequest } from 'store/session/reducer';
 import { Container, Heading, Stack } from '@chakra-ui/react';
 import RegisterForm from './RegisterForm';
-import validationSchema from './validationSchema';
+import registerSchema from '../../schemas/registerSchema';
 
 const Register = ({ onSubmit }) => {
   const initialValues = { email: '', password: '', role: '' };
@@ -15,7 +15,7 @@ const Register = ({ onSubmit }) => {
           initialValues={initialValues}
           onSubmit={onSubmit}
           component={RegisterForm}
-          validationSchema={validationSchema}
+          validationSchema={registerSchema}
         />
       </Stack>
     </Container>

@@ -1,28 +1,35 @@
-import {
-  Container, Wrapper, Items, Item,
-} from './styled';
+import { Wrap, Box, Text } from '@chakra-ui/react';
 
 const Footer = () => (
-  <Container>
-    <Wrapper>
-      <Items>
-        <Item>DOMICILIO</Item>
-        <Item>Coronel Dominguez 725 - Villa Madero</Item>
-      </Items>
-      <Items>
-        <Item>TELÉFONO</Item>
-        <Item>1123949573</Item>
-      </Items>
-      <Items>
-        <Item>INSTAGRAM</Item>
-        <Item>@meraki.espacioartistico</Item>
-      </Items>
-      <Items>
-        <Item>FACEBOOK</Item>
-        <Item>meraki espacio artistico</Item>
-      </Items>
-    </Wrapper>
-  </Container>
+  <Wrap
+    id="footer"
+    justify="space-between"
+    w="100%"
+    h="70px"
+    bg="pink.300"
+    px={5}
+    textAlign="center"
+    color="white"
+    mt="0 !important"
+    pt={2}
+  >
+    <Box>
+      <Text>DOMICILIO</Text>
+      <Text>Coronel Dominguez 725 - Villa Madero</Text>
+    </Box>
+    <Box>
+      <Text>TELÉFONO</Text>
+      <Text>1123949573</Text>
+    </Box>
+    <Box>
+      <Text>INSTAGRAM</Text>
+      <Text>@meraki.espacioartistico</Text>
+    </Box>
+    <Box>
+      <Text>FACEBOOK</Text>
+      <Text>meraki espacio artistico</Text>
+    </Box>
+  </Wrap>
 );
 
 export default Footer;

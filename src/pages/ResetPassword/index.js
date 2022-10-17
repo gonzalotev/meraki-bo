@@ -5,8 +5,8 @@ import { resetPasswordRequest } from 'store/session/reducer';
 import { selectResetStatus, selectRecoveryToken } from 'store/session/selector';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'hooks';
+import resetPasswordSchema from 'schemas/resetPasswordSchema';
 import ResetPasswordForm from './ResetPasswordForm';
-import validationSchema from './validationSchema';
 import FeedbackMessage from './FeedbackMessage';
 
 const ResetPassword = ({ onSubmit, status }) => {
@@ -29,7 +29,7 @@ const ResetPassword = ({ onSubmit, status }) => {
             initialValues={initialValues}
             onSubmit={handleSubmit}
             component={ResetPasswordForm}
-            validationSchema={validationSchema}
+            validationSchema={resetPasswordSchema}
           />
         )}
         {step === 1 && <FeedbackMessage />}

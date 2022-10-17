@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { saveInscriptionRequest } from 'store/inscription/reducer';
 import { defaultValues } from 'constant';
+import inscriptionSchema from 'schemas/inscriptionSchema';
 import inscriptionForm from './inscriptionForm';
-import validationSchema from './validationSchema';
 
 const InscriptionUser = ({ onSubmit }) => (
   <Formik
     initialValues={defaultValues.inscription}
     component={inscriptionForm}
-    validationSchema={validationSchema}
+    validationSchema={inscriptionSchema}
     onSubmit={onSubmit}
   />
 );

@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeDutyRequest } from 'store/duty/reducer';
 
+const columns = Object.freeze([
+  { key: 'title', label: 'Nombre' },
+  { key: 'price', label: 'Precio' },
+  { key: 'actions', style: { width: 130 } },
+]);
+
 const AdminDutyTable = ({ duties, onRemove }) => {
   const navigate = useNavigate();
-  const columns = [
-    { key: 'title', label: 'Nombre' },
-    { key: 'price', label: 'Precio' },
-    { key: 'actions', style: { width: 130 } },
-  ];
-
   const rows = duties.map(duty => ({
     key: duty.idDuty,
     values: [
@@ -56,7 +56,4 @@ const AdminDutyTable = ({ duties, onRemove }) => {
   );
 };
 
-export default connect(
-  null,
-  { onRemove: removeDutyRequest },
-)(AdminDutyTable);
+export default connect(null, { onRemove: removeDutyRequest })(AdminDutyTable);

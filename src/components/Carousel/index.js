@@ -1,21 +1,21 @@
 import { Carousel as ResponsiveCarousel } from 'react-responsive-carousel';
 import PropTypes from 'prop-types';
-import { Container, ContainerImg } from './styled';
+import { Image, Stack } from '@chakra-ui/react';
 
 const getImages = (images) => (images ? images.map((image) => (
-  <ContainerImg
+  <Image
     key={image.id}
     src={image.url}
     alt={image.name}
   />
 )) : <p>no hay imágenes</p>);
 
-const Carousel = ({ images }) => (
-  <Container>
+const Carousel = ({ images, ...props }) => (
+  <Stack maxW={600} minW={{ base: '100%', lg: 600 }} {...props}>
     <ResponsiveCarousel autoPlay infiniteLoop interval={4000}>
       {getImages(images)}
     </ResponsiveCarousel>
-  </Container>
+  </Stack>
 );
 
 Carousel.propTypes = {

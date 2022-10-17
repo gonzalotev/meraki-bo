@@ -8,22 +8,24 @@ import { selectStatus } from 'store/session/selector';
 import { useEffect } from 'react';
 import { selectTimetables } from 'store/timetable/selector';
 
-const style = {
+const style = Object.freeze({
   display: 'flex',
   alignItems: 'center',
   width: '100%',
   flexDirection: 'column',
   paddingTop: '20px',
-};
-const styleContainer = {
+});
+
+const styleContainer = Object.freeze({
   width: '100%',
   borderRadius: '5px',
   margin: '5px',
-};
-const styleField = {
+});
+
+const styleField = Object.freeze({
   borderRadius: '5px',
   width: '100%',
-};
+});
 
 const RegisterForm = ({
   status, isSubmitting, timetables, values, setFieldValue,

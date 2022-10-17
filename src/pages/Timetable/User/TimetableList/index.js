@@ -3,7 +3,7 @@ import { Container } from '@chakra-ui/react';
 import { connect } from 'react-redux';
 import { removeTimetableRequest } from 'store/timetable/reducer';
 import { daysOptions } from 'constant';
-import { groupBy } from 'lodash';
+import { groupBy } from 'utils';
 
 const TimetableTable = ({ timetables }) => {
   const days = daysOptions.map(day => ({ key: day.value, label: day.label }));
@@ -26,7 +26,4 @@ const TimetableTable = ({ timetables }) => {
   );
 };
 
-export default connect(
-  null,
-  { onRemove: removeTimetableRequest },
-)(TimetableTable);
+export default connect(null, { onRemove: removeTimetableRequest })(TimetableTable);

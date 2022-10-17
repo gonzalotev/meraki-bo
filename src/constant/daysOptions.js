@@ -1,4 +1,4 @@
-export default [
+export default Object.freeze([
   { value: 'Lunes', label: 'Lunes' },
   { value: 'Martes', label: 'Martes' },
   { value: 'Miércoles', label: 'Miércoles' },
@@ -6,4 +6,4 @@ export default [
   { value: 'Viernes', label: 'Viernes' },
   { value: 'Sábado', label: 'Sábado' },
   { value: 'Domingo', label: 'Domingo' },
-];
+]);

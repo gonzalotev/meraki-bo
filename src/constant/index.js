@@ -3,9 +3,11 @@ import defaultValues from './defaultValues';
 import styles from './styles';
 import resourceTypes from './resourceTypes';
 import daysOptions from './daysOptions';
+import messages from './messages';
 
 export { answers };
 export { defaultValues };
 export { styles };
 export { resourceTypes };
 export { daysOptions };
+export { messages };

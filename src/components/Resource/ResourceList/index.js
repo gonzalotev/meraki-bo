@@ -3,19 +3,18 @@ import {
   HStack, IconButton, Container, Button,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon, AddIcon } from '@chakra-ui/icons';
-import { useNavigate, createSearchParams } from 'react-router-dom';
+import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeImageResourceRequest } from 'store/resource/reducer';
 
-const ResourceList = ({
-  resource, onRemove, type, origin,
-}) => {
+const ResourceList = ({ resource, onRemove, type }) => {
   const navigate = useNavigate();
   const columns = [
     { key: 'name', label: 'Nombre' },
     { key: 'url', label: 'Url' },
     { key: 'actions', style: { width: 130 } },
   ];
+  const location = useLocation();
 
   const rows = resource.images?.map(image => ({
     key: image.id,
@@ -29,14 +28,14 @@ const ResourceList = ({
           onClick={() => navigate(
             {
               pathname: `/resource/${image.id}`,
-              search: `?${createSearchParams({ type, origin })}`,
+              search: `?${createSearchParams({ type, origin: location.pathname, ...image })}`,
             },
           )}
         />
         <IconButton
           aria-label="remove"
           icon={<DeleteIcon />}
-          onClick={() => onRemove(image.id)}
+          onClick={() => onRemove({ imageId: image.id, type: resource.name })}
         />
       </HStack>,
     ],
@@ -48,10 +47,11 @@ const ResourceList = ({
         aria-label="add"
         onClick={() => navigate({
           pathname: '/resource/create',
-          search: `?${createSearchParams({ type, origin })}`,
+          search: `?${createSearchParams({ type })}`,
         })}
         leftIcon={<AddIcon />}
         float="right"
+        alignSelf="flex-end"
       >
         Agregar
       </Button>

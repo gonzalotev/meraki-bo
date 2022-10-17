@@ -14,6 +14,7 @@ const TextInput = ({
   errorMessage,
   iconLeft,
   iconRight,
+  containerStyle,
   ...props
 }) => {
   const { breakpoints } = useTheme();
@@ -26,6 +27,7 @@ const TextInput = ({
       isInvalid={!!errorMessage}
       autoComplete="off"
       isRequired={props.isRequired}
+      {...containerStyle}
     >
       <FormLabel m={0}>{label}</FormLabel>
       <InputGroup>

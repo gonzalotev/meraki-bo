@@ -7,15 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeTimetableRequest } from 'store/timetable/reducer';
 
+const columns = Object.freeze([
+  { key: 'schedule', label: 'Horario' },
+  { key: 'day', label: 'Dia' },
+  { key: 'discipline', label: 'Disciplina' },
+  { key: 'actions', style: { width: 130 } },
+]);
+
 const AdminTimetableTable = ({ timetables, onRemove }) => {
   const navigate = useNavigate();
-  const columns = [
-    { key: 'schedule', label: 'Horario' },
-    { key: 'day', label: 'Dia' },
-    { key: 'discipline', label: 'Disciplina' },
-    { key: 'actions', style: { width: 130 } },
-  ];
-
   const rows = timetables.map((timetable) => ({
     key: timetable.idTimetable,
     values: [
@@ -36,9 +36,8 @@ const AdminTimetableTable = ({ timetables, onRemove }) => {
       </HStack>,
     ],
   }));
-
   return (
-    <Container>
+    <Container pb={5}>
       <Button
         aria-label="add"
         onClick={() => navigate('/timetable/create')}
@@ -58,7 +57,4 @@ const AdminTimetableTable = ({ timetables, onRemove }) => {
   );
 };
 
-export default connect(
-  null,
-  { onRemove: removeTimetableRequest },
-)(AdminTimetableTable);
+export default connect(null, { onRemove: removeTimetableRequest })(AdminTimetableTable);

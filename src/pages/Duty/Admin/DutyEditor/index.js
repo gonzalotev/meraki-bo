@@ -2,27 +2,23 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { selectDuty } from 'store/duty/selector';
-import {
-  Container, Wrap, Text,
-} from '@chakra-ui/react';
+import { Container, Wrap, Text } from '@chakra-ui/react';
 import { cleanDuty, fetchDutyRequest, saveDutyRequest } from 'store/duty/reducer';
 import { useParams } from 'react-router';
 import { defaultValues } from 'constant';
+import dutySchema from 'schemas/dutySchema';
 import DutyForm from './DutyForm';
-import validationSchema from './validationSchema';
 
 const DutyEditor = ({
   onSubmit, duty, fetchDuty, onRemove,
 }) => {
   const { id } = useParams();
-
   useEffect(() => {
     if (id) {
       fetchDuty({ id });
     }
     return onRemove;
   }, [id]);
-
   return (
     <Container>
       <Text>Aranceles</Text>
@@ -30,7 +26,7 @@ const DutyEditor = ({
         <Text>Campos Obligatorios (*)</Text>
         <Formik
           component={DutyForm}
-          validationSchema={validationSchema}
+          validationSchema={dutySchema}
           initialValues={{ ...defaultValues.duty, ...duty }}
           onSubmit={onSubmit}
           enableReinitialize

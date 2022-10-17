@@ -6,8 +6,8 @@ import { Container, Text, VStack } from '@chakra-ui/react';
 import { cleanTimetable, fetchTimetableRequest, saveTimetableRequest } from 'store/timetable/reducer';
 import { useParams } from 'react-router';
 import { defaultValues } from 'constant';
+import validationSchema from 'schemas/timetableSchema';
 import TimetableForm from './TimetableForm';
-import validetionSchema from './validationSchema';
 
 const TimetableEditor = ({
   onSubmit, timetable, fetchTimetable, onRemove,
@@ -29,7 +29,7 @@ const TimetableEditor = ({
       </VStack>
       <Formik
         component={TimetableForm}
-        validationSchema={validetionSchema}
+        validationSchema={validationSchema}
         initialValues={{ ...defaultValues.timetable, ...timetable }}
         onSubmit={onSubmit}
         enableReinitialize

@@ -1,30 +1,30 @@
-import logomeraki from 'assets/merakilogo.png';
+import logo from 'assets/logo.png';
 import { connect } from 'react-redux';
 import { selectToken } from 'store/session/selector';
-import { Button, HStack } from '@chakra-ui/react';
+import {
+  Button, HStack, Image, Stack, Wrap,
+} from '@chakra-ui/react';
 import { push } from 'redux-first-history';
 import { logoutRequest } from 'store/session/reducer';
-import {
-  Container, NavBar, NavLink, Logo,
-} from './styled';
+import { NavLink } from 'components';
 
 const Header = ({ logout, goToLogin, withSession }) => (
-  <Container>
-    <Logo src={logomeraki} alt="logo" />
-    <NavBar>
-      <NavLink to="/">Inicio</NavLink>
-      <NavLink to="/timetable">Horarios</NavLink>
-      <NavLink to="/duty">Aranceles</NavLink>
-      <NavLink to="/inscription">Formulario de Inscripción</NavLink>
-      <NavLink to="/protocol">Protocolo</NavLink>
-      <NavLink to="/spaces">Nuestro Espacio</NavLink>
-    </NavBar>
-    <HStack pr={5}>
+  <HStack id="header" w="100%">
+    <Image src={logo} alt="logo" width={150} height={100} />
+    <Wrap flex={1}>
+      <NavLink to="/" label="Inicio" />
+      <NavLink to="/timetable" label="Horarios" />
+      <NavLink to="/duty" label="Aranceles" />
+      <NavLink to="/inscription" label="Formulario de Inscripción" />
+      <NavLink to="/protocol" label="Protocolo" />
+      <NavLink to="/spaces" label="Nuestro Espacio" />
+    </Wrap>
+    <Stack pr={5}>
       {withSession
         ? <Button variant="rounded" onClick={logout}>Salir</Button>
         : <Button variant="rounded" onClick={goToLogin}>Ingresar</Button>}
-    </HStack>
-  </Container>
+    </Stack>
+  </HStack>
 );
 
 export default connect(

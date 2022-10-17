@@ -1,3 +1,3 @@
-export const getProtocol = (state) => state.protocol.protocol;
+export const selectProtocol = (state) => state.protocol.protocol;
 
-export const getStatusProtocol = (state) => state.protocol.status;
+export const selectStatus = (state) => state.protocol.status;
