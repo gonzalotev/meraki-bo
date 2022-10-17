@@ -7,7 +7,7 @@ import { Table, Modal } from 'components';
 import { HStack, IconButton, Text } from '@chakra-ui/react';
 import { DeleteIcon, HamburgerIcon } from '@chakra-ui/icons';
 
-const modalKeys = [
+const modalKeys = Object.freeze([
   { key: 'birthdate', label: 'Fecha de nacimiento' },
   { key: 'documentId', label: 'Documento' },
   { key: 'phone', label: 'Teléfono' },
@@ -19,20 +19,20 @@ const modalKeys = [
   { key: 'motherPhone', label: 'Teléfono (Madre)' },
   { key: 'fatherName', label: 'Nombre (Padre)' },
   { key: 'fatherPhone', label: 'Teléfono (Padre)' },
-];
+]);
+
+const columns = Object.freeze([
+  { key: 'name', label: 'Nombre' },
+  { key: 'surname', label: 'Apellido' },
+  { key: 'documentId', label: 'Documento' },
+  { key: 'phone', label: 'Teléfono' },
+  { key: 'address', label: 'Dirección' },
+  { key: 'discipline', label: 'Disciplina' },
+  { key: 'actions', style: { width: 130 } },
+]);
 
 const Admin = ({ onMount, inscriptions, onRemove }) => {
   const [details, setDetails] = useState();
-  const columns = [
-    { key: 'name', label: 'Nombre' },
-    { key: 'surname', label: 'Apellido' },
-    { key: 'documentId', label: 'Documento' },
-    { key: 'phone', label: 'Teléfono' },
-    { key: 'address', label: 'Dirección' },
-    { key: 'discipline', label: 'Disciplina' },
-    { key: 'actions', style: { width: 130 } },
-  ];
-
   const rows = inscriptions.map(inscription => ({
     key: inscription.id,
     values: [

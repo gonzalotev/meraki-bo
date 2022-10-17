@@ -1,38 +1,43 @@
+import { Suspense, lazy } from 'react';
+
 import { Route, Routes } from 'react-router-dom';
-import Home from 'pages/Home';
-import Inscription from 'pages/Inscription';
-import Duty from 'pages/Duty';
-import DutyEditor from 'pages/Duty/Admin/DutyEditor';
-import OurSpace from 'pages/OurSpace';
-import Protocol from 'pages/Protocol';
-import TimeTable from 'pages/Timetable';
-import Login from 'pages/Login';
-import RecoveryPassword from 'pages/RecoveryPassword';
-import ResetPassword from 'pages/ResetPassword';
-import Register from 'pages/Register';
-import ImageResourceEditor from 'components/Resource/ImageResourceEditor';
-import TimetableEditor from 'pages/Timetable/Admin/TimetableEditor';
+
+const Home = lazy(() => import('pages/Home'));
+const Inscription = lazy(() => import('pages/Inscription'));
+const Duty = lazy(() => import('pages/Duty'));
+const DutyEditor = lazy(() => import('pages/Duty/Admin/DutyEditor'));
+const OurSpace = lazy(() => import('pages/OurSpace'));
+const Protocol = lazy(() => import('pages/Protocol'));
+const TimeTable = lazy(() => import('pages/Timetable'));
+const Login = lazy(() => import('pages/Login'));
+const RecoveryPassword = lazy(() => import('pages/RecoveryPassword'));
+const ResetPassword = lazy(() => import('pages/ResetPassword'));
+const Register = lazy(() => import('pages/Register'));
+const ImageResourceEditor = lazy(() => import('components/Resource/ImageResourceEditor'));
+const TimetableEditor = lazy(() => import('pages/Timetable/Admin/TimetableEditor'));
 
 const Router = () => (
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/duty/:id" element={<DutyEditor />} />
-    <Route path="/timetable/:id" element={<TimetableEditor />} />
-    <Route path="/inscription" element={<Inscription />} />
-    <Route path="/duty" element={<Duty />} />
-    <Route path="/duty/create" element={<DutyEditor />} />
-    <Route path="/timetable/create" element={<TimetableEditor />} />
-    <Route path="/spaces" element={<OurSpace />} />
-    <Route path="/protocol" element={<Protocol />} />
-    <Route path="/timetable" element={<TimeTable />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/password" element={<Login />} />
-    <Route path="/recovery" element={<RecoveryPassword />} />
-    <Route path="/reset" element={<ResetPassword />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/resource" element={<ImageResourceEditor />} />
-    <Route path="/resource/:id" element={<ImageResourceEditor />} />
-  </Routes>
+  <Suspense fallback={<div>Loading...</div>}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/duty/:id" element={<DutyEditor />} />
+      <Route path="/timetable/:id" element={<TimetableEditor />} />
+      <Route path="/inscription" element={<Inscription />} />
+      <Route path="/duty" element={<Duty />} />
+      <Route path="/duty/create" element={<DutyEditor />} />
+      <Route path="/timetable/create" element={<TimetableEditor />} />
+      <Route path="/spaces" element={<OurSpace />} />
+      <Route path="/protocol" element={<Protocol />} />
+      <Route path="/timetable" element={<TimeTable />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/password" element={<Login />} />
+      <Route path="/recovery" element={<RecoveryPassword />} />
+      <Route path="/reset" element={<ResetPassword />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/resource" element={<ImageResourceEditor />} />
+      <Route path="/resource/:id" element={<ImageResourceEditor />} />
+    </Routes>
+  </Suspense>
 );
 
 export default Router;

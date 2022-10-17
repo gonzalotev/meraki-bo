@@ -37,7 +37,10 @@ export const reducer = createSlice({
     },
     removeImageResourceSuccess: (state, { payload }) => {
       state.status = getSuccessStatus();
-      state.resource[payload.type].images = state.resource[payload.type].images.filter(image => image.id !== payload.imageId);
+      state[payload.type] = {
+        ...state[payload.type],
+        images: state[payload.type].images.filter(image => image.id !== payload.imageId),
+      };
     },
     removeImageResourceError: (state, { error }) => {
       state.status = getErrorStatus(error);

@@ -4,8 +4,8 @@ import { loginRequest } from 'store/session/reducer';
 import {
   Container, Heading, Link, Stack,
 } from '@chakra-ui/react';
+import loginSchema from 'schemas/loginSchema';
 import LoginForm from './LoginForm';
-import validationSchema from './validationSchema';
 
 const Login = ({ onSubmit }) => {
   const initialValues = { email: '', password: '' };
@@ -21,7 +21,7 @@ const Login = ({ onSubmit }) => {
           initialValues={initialValues}
           onSubmit={handleSubmit}
           component={LoginForm}
-          validationSchema={validationSchema}
+          validationSchema={loginSchema}
         />
         <Link href="/recovery" color="pink.300" textAlign="center" p={2}>
           ¿Perdiste tu contraseña?

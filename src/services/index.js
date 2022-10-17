@@ -6,7 +6,6 @@ import DutyService from './duty';
 import StaticDataService from './staticData';
 import InscriptionService from './inscription';
 import ResourceService from './resource';
-
 import { setupApi } from './http';
 
 setupApi();
@@ -21,8 +20,6 @@ const api = {
   ...ResourceService,
 };
 
-export {
-  storageService,
-};
+export { storageService };
 
 export default api;

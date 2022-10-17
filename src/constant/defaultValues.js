@@ -33,9 +33,16 @@ const resourceImage = {
   url: '',
 };
 
+const protocol = {
+  content: '',
+  title: '',
+  signature: '',
+};
+
 export default {
   duty,
   timetable,
   inscription,
   resourceImage,
+  protocol,
 };

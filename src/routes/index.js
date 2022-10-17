@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { getSessionRequest } from 'store/session/reducer';
 import { selectToken } from 'store/session/selector';
 import { useEffect } from 'react';
+import { Stack } from '@chakra-ui/react';
 import { fetchStaticDataRequest } from 'store/staticData/reducer';
-import { Container, Content } from './styled';
 import { Header, Footer } from '../components';
 import Router from './Router';
 
@@ -14,13 +14,13 @@ const Roots = ({ token, getSession, getStaticData }) => {
     getSession();
   }, []);
   return (
-    <Container id="body">
+    <Stack id="main" h="100%">
       <Header withSession={hasToken} />
-      <Content id="content">
+      <Stack id="content" flex={1}>
         <Router withSession={hasToken} />
-      </Content>
+      </Stack>
       <Footer />
-    </Container>
+    </Stack>
   );
 };
 

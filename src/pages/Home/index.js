@@ -15,13 +15,12 @@ const Home = ({
     onMount(resourceTypes.HOME);
   }, []);
   return (
-    <Container minW="100%" alignItems="center" display="flex" h="100%" p={5} flexDirection="column">
-      <Heading fontSize={50} color="pink.300" mb={5}>{sessionUser.role === 'admin' ? 'Inicio' : 'Bienvenidos'}</Heading>
+    <Container minW="100%" alignItems="center" display="flex" h="100%" px={5} flexDirection="column">
+      <Heading fontSize={50} color="pink.300" mb={2}>{sessionUser.role === 'admin' ? 'Inicio' : 'Bienvenidos'}</Heading>
       {sessionUser.role === 'admin' && (
         <ResourceList
           resource={resource}
           type={resourceTypes.HOME}
-          origin="/"
         />
       ) }
       {!sessionUser.role && <ResourcePage resource={resource} />}

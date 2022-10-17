@@ -1,5 +1,6 @@
 export default {
   baseStyle: {
+    minHeight: '40px',
     boxShadow: '2px 3px 4px rgba(0, 0, 0, 0.3)',
     fontWeight: 400,
     margin: '0 5px',
