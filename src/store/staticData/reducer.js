@@ -24,6 +24,18 @@ export const reducer = createSlice({
     fetchStaticDataError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
+    saveStaticDataRequest: (state) => {
+      state.status = getStartStatus();
+      state.isSaving = true;
+    },
+    saveStaticDataSuccess: (state) => {
+      state.status = getSuccessStatus();
+      state.isSaving = false;
+    },
+    saveStaticDataError: (state, { error }) => {
+      state.status = getErrorStatus(error);
+      state.isSaving = initialState.isSaving;
+    },
   },
 });
 
@@ -31,6 +43,9 @@ export const {
   fetchStaticDataRequest,
   fetchStaticDataSuccess,
   fetchStaticDataError,
+  saveStaticDataRequest,
+  saveStaticDataSuccess,
+  saveStaticDataError,
 } = reducer.actions;
 
 export default reducer.reducer;

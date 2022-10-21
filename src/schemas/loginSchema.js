@@ -6,9 +6,7 @@ const loginSchema = object().shape({
     .email(messages.INVALID_EMAIL)
     .required(messages.FIELD_REQUIRED),
   password: string()
-    .required(messages.FIELD_REQUIRED)
-    .min(4, messages.SHORT_PASSWORD)
-    .max(16, messages.LONG_PASSWORD),
+    .required(messages.FIELD_REQUIRED),
 });
 
 export default loginSchema;

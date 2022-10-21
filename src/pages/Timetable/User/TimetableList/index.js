@@ -13,6 +13,7 @@ const TimetableTable = ({ timetables }) => {
     key: timetable[0],
     values: [timetable[0], ...daysOptions.map(day => timetable[1].find(t => t.day === day.value)?.discipline)],
   }));
+
   return (
     <Container minW="full">
       <Table

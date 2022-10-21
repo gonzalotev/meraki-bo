@@ -20,3 +20,4 @@ export { default as ResourceList } from './Resource/ResourceList';
 export { default as GradiantTitle } from './GradiantTitle';
 export { default as Modal } from './Modal';
 export { default as NavLink } from './NavLink';
+export { default as ExportExcel } from './ExportExcel';

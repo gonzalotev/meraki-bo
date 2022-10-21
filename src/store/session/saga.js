@@ -27,7 +27,7 @@ export function* login({ payload }) {
     yield put(loginSuccess({ user: data.user, token: data.token }));
     yield put(push('/'));
   } catch (error) {
-    toastNotify(parseErrorResponse(error));
+    toastNotify('Email o Contraseña incorecta');
     yield put(loginError({ error }));
   }
 }
@@ -49,7 +49,7 @@ export function* recoveryPassword({ payload }) {
     yield call(Service.recoveryPassword, payload.email, payload.answers);
     yield put(recoveryPasswordSuccess());
   } catch (error) {
-    toastNotify('Error en cliente.');
+    toastNotify('Usuario inexistente.');
     yield put(recoveryPasswordError({ error }));
   }
 }

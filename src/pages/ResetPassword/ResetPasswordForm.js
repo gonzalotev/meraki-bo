@@ -1,10 +1,12 @@
 import { PasswordField } from 'components';
-import { Button, HStack } from '@chakra-ui/react';
+import { Button, HStack, Text } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { styles } from 'constant';
 
 const ResetPasswordForm = ({ isSubmitting }) => (
   <Form style={styles.form}>
+    <Text color="pink.300" mx="auto">Por favor, a continuación ingresa una nueva clave.</Text>
+    <Text color="pink.300" mx="auto">La misma debe contener entre 8 y 10 caracteres.</Text>
     <Field
       component={PasswordField}
       name="password"

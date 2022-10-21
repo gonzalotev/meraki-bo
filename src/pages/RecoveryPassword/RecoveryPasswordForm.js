@@ -13,7 +13,7 @@ const RecoveryPasswordForm = ({ isSubmitting, goToLogin, status }) => (
       name="email"
       label="Email"
     />
-    <HStack pb={2}>
+    <HStack pb={2} justifyContent="center">
       <Button
         disabled={isSubmitting || status.isFetching}
         bg="pink.600"

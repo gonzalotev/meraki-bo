@@ -1,4 +1,4 @@
-import { TextField, NumberField, SelectField } from 'components';
+import { NumberField, SelectField } from 'components';
 import { Button, Box, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
@@ -18,14 +18,6 @@ const DutyForm = ({
         options={topics}
         name="title"
         label="disciplina"
-      />
-    </Box>
-    <Box shadow="base">
-      <Field
-        name="subtitle"
-        component={TextField}
-        label="subtítulo"
-        isDisabled={status.isFetching}
       />
     </Box>
     <Box shadow="base">
