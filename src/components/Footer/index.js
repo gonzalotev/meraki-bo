@@ -6,7 +6,7 @@ const Footer = () => (
     justify="space-between"
     w="100%"
     h="70px"
-    bg="pink.300"
+    bg="#3ecbb0"
     px={5}
     textAlign="center"
     color="white"

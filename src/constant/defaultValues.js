@@ -38,6 +38,9 @@ const protocol = {
   title: '',
   signature: '',
 };
+const discipline = {
+  name: '',
+};
 
 export default {
   duty,
@@ -45,4 +48,5 @@ export default {
   inscription,
   resourceImage,
   protocol,
+  discipline,
 };

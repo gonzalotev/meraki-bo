@@ -15,6 +15,7 @@ const ResetPassword = lazy(() => import('pages/ResetPassword'));
 const Register = lazy(() => import('pages/Register'));
 const ImageResourceEditor = lazy(() => import('components/Resource/ImageResourceEditor'));
 const TimetableEditor = lazy(() => import('pages/Timetable/Admin/TimetableEditor'));
+const DisciplineEditor = lazy(() => import('pages/Timetable/Admin/DisciplineEditor'));
 
 const Router = () => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -29,6 +30,7 @@ const Router = () => (
       <Route path="/spaces" element={<OurSpace />} />
       <Route path="/protocol" element={<Protocol />} />
       <Route path="/timetable" element={<TimeTable />} />
+      <Route path="/discipline" element={<DisciplineEditor />} />
       <Route path="/login" element={<Login />} />
       <Route path="/password" element={<Login />} />
       <Route path="/recovery" element={<RecoveryPassword />} />

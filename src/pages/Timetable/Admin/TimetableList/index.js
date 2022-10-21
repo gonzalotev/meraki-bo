@@ -44,7 +44,15 @@ const AdminTimetableTable = ({ timetables, onRemove }) => {
         leftIcon={<AddIcon />}
         float="right"
       >
-        Agregar
+        Agregar Horario
+      </Button>
+      <Button
+        aria-label="add"
+        onClick={() => navigate('/discipline')}
+        leftIcon={<AddIcon />}
+        float="right"
+      >
+        Agregar Disciplina
       </Button>
       <Table
         data={rows}

@@ -3,7 +3,7 @@ import { selectUser } from 'store/session/selector';
 import { fetchInscriptionsRequest, removeInscriptionRequest } from 'store/inscription/reducer';
 import { useEffect, useState } from 'react';
 import { selectInscriptions } from 'store/inscription/selector';
-import { Table, Modal } from 'components';
+import { Table, Modal, ExportExcel } from 'components';
 import { HStack, IconButton, Text } from '@chakra-ui/react';
 import { DeleteIcon, HamburgerIcon } from '@chakra-ui/icons';
 
@@ -30,6 +30,10 @@ const columns = Object.freeze([
   { key: 'discipline', label: 'Disciplina' },
   { key: 'actions', style: { width: 130 } },
 ]);
+
+const headers = Object.freeze(['Solicitud', 'DNi', 'Nombre y Apellido', 'a definir', 'Telefono madre', 'email',
+  'fecha de nacimiento', 'direccion', 'Nombre de la Madre', 'a definir', 'Nombre del Padre', 'Telefono del Padre',
+  'a definir', 'Consideracion Medica', 'quien lo retira', 'Obra social']);
 
 const Admin = ({ onMount, inscriptions, onRemove }) => {
   const [details, setDetails] = useState();
@@ -61,6 +65,7 @@ const Admin = ({ onMount, inscriptions, onRemove }) => {
   }, []);
   return (
     <>
+      <ExportExcel header={headers} body={inscriptions} filename="Solicitudes de Inscripcion" pageName="Solicitudes" />
       {!!details && (
         <Modal title="Detalles" visible onClose={() => setDetails(undefined)}>
           {modalKeys.map(({ key, label }, index) => details[key] && (

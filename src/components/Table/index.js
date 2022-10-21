@@ -22,6 +22,7 @@ const Table = ({
   emptyMessage,
   isLoading,
   name,
+  styles,
   ...props
 }) => {
   const columnsData = Array.isArray(columns) ? columns : [];
@@ -30,7 +31,7 @@ const Table = ({
   return (
     <VStack w="100%">
       <Flex w="100%" overflowX="auto" overflowY="hidden">
-        <ChakraTable border="1px" borderColor="brand.neutral100" {...props}>
+        <ChakraTable border="1px" borderColor="brand.neutral100" styles={styles} {...props}>
           {caption && (
             <TableCaption data-testid="caption" placement="top">
               {caption}
