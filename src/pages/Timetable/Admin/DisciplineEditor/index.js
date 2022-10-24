@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { Container, Text, VStack } from '@chakra-ui/react';
-import { saveStaticDataRequest } from 'store/staticData/reducer';
+import { saveDisciplineRequest } from 'store/discipline/reducer';
 import { defaultValues } from 'constant';
 import DisciplineForm from './DisciplineForm';
 
@@ -22,5 +22,5 @@ const TimetableEditor = ({ onSubmit }) => (
 
 export default connect(
   null,
-  { onSubmit: saveStaticDataRequest },
+  { onSubmit: saveDisciplineRequest },
 )(TimetableEditor);

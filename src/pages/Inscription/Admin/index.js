@@ -1,13 +1,17 @@
 import { connect } from 'react-redux';
 import { selectUser } from 'store/session/selector';
 import { fetchInscriptionsRequest, removeInscriptionRequest } from 'store/inscription/reducer';
+import { downloadExcelRequest } from 'store/app/reducer';
 import { useEffect, useState } from 'react';
 import { selectInscriptions } from 'store/inscription/selector';
-import { Table, Modal, ExportExcel } from 'components';
-import { HStack, IconButton, Text } from '@chakra-ui/react';
+import { Table, Modal, DownloadButton } from 'components';
+import {
+  HStack, IconButton, Text, useBreakpointValue,
+} from '@chakra-ui/react';
 import { DeleteIcon, HamburgerIcon } from '@chakra-ui/icons';
 
-const modalKeys = Object.freeze([
+const getModalKeys = (isMobile) => [
+  isMobile ? { key: 'address', label: 'Dirección' } : undefined,
   { key: 'birthdate', label: 'Fecha de nacimiento' },
   { key: 'documentId', label: 'Documento' },
   { key: 'phone', label: 'Teléfono' },
@@ -19,7 +23,7 @@ const modalKeys = Object.freeze([
   { key: 'motherPhone', label: 'Teléfono (Madre)' },
   { key: 'fatherName', label: 'Nombre (Padre)' },
   { key: 'fatherPhone', label: 'Teléfono (Padre)' },
-]);
+].filter(Boolean);
 
 const columns = Object.freeze([
   { key: 'name', label: 'Nombre' },
@@ -31,12 +35,12 @@ const columns = Object.freeze([
   { key: 'actions', style: { width: 130 } },
 ]);
 
-const headers = Object.freeze(['Solicitud', 'DNi', 'Nombre y Apellido', 'a definir', 'Telefono madre', 'email',
-  'fecha de nacimiento', 'direccion', 'Nombre de la Madre', 'a definir', 'Nombre del Padre', 'Telefono del Padre',
-  'a definir', 'Consideracion Medica', 'quien lo retira', 'Obra social']);
-
-const Admin = ({ onMount, inscriptions, onRemove }) => {
+const Admin = ({
+  onMount, inscriptions, onRemove, download,
+}) => {
   const [details, setDetails] = useState();
+  const isMobile = useBreakpointValue({ base: true, lg: false });
+
   const rows = inscriptions.map(inscription => ({
     key: inscription.id,
     values: [
@@ -65,10 +69,10 @@ const Admin = ({ onMount, inscriptions, onRemove }) => {
   }, []);
   return (
     <>
-      <ExportExcel header={headers} body={inscriptions} filename="Solicitudes de Inscripcion" pageName="Solicitudes" />
+      <DownloadButton onClick={() => download({ endpoint: '/api/inscription', fileName: 'Inscripciones' })} />
       {!!details && (
         <Modal title="Detalles" visible onClose={() => setDetails(undefined)}>
-          {modalKeys.map(({ key, label }, index) => details[key] && (
+          {getModalKeys(isMobile).map(({ key, label }, index) => details[key] && (
             <HStack key={index}>
               <Text fontWeight="bold">{`${label}: `}</Text>
               <Text>{typeof details[key] === 'boolean' ? 'Si' : details[key]}</Text>
@@ -89,5 +93,5 @@ const Admin = ({ onMount, inscriptions, onRemove }) => {
 
 export default connect(
   (state) => ({ sessionUser: selectUser(state), inscriptions: selectInscriptions(state) }),
-  { onMount: fetchInscriptionsRequest, onRemove: removeInscriptionRequest },
+  { onMount: fetchInscriptionsRequest, onRemove: removeInscriptionRequest, download: downloadExcelRequest },
 )(Admin);

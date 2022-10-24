@@ -16,6 +16,7 @@ import {
   removeTimetableSuccess,
   removeTimetableError,
 } from './reducer';
+import { handlerError } from '../app/saga';
 
 export function* fetch() {
   try {
@@ -54,8 +55,7 @@ export function* remove({ payload }) {
     yield put(removeTimetableSuccess(payload));
     toastNotify('Se borro el horario', 'success');
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(removeTimetableError({ error }));
+    yield call(handlerError, error, removeTimetableError);
   }
 }
 

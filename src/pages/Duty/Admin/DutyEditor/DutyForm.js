@@ -16,7 +16,7 @@ const DutyForm = ({
         getOptionLabel={option => option.name}
         getOptionValue={option => option?.id}
         options={topics}
-        name="title"
+        name="idDiscipline"
         label="disciplina"
       />
     </Box>

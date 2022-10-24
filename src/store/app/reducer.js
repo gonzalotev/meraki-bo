@@ -4,33 +4,29 @@ import {
 } from '../helper/statusStateFactory';
 
 const initialState = {
-  topics: [],
-  roles: [],
   status: getDefaultStatus(),
 };
 
 export const reducer = createSlice({
-  name: 'staticData',
+  name: 'app',
   initialState,
   reducers: {
-    fetchStaticDataRequest: (state) => {
+    downloadExcelRequest: (state) => {
       state.status = getStartStatus();
     },
-    fetchStaticDataSuccess: (state, { payload }) => {
+    downloadExcelSuccess: (state) => {
       state.status = getSuccessStatus();
-      state.topics = payload.topics;
-      state.roles = payload.roles;
     },
-    fetchStaticDataError: (state, { error }) => {
+    downloadExcelError: (state, { error }) => {
       state.status = getErrorStatus(error);
     },
   },
 });
 
 export const {
-  fetchStaticDataRequest,
-  fetchStaticDataSuccess,
-  fetchStaticDataError,
+  downloadExcelRequest,
+  downloadExcelSuccess,
+  downloadExcelError,
 } = reducer.actions;
 
 export default reducer.reducer;
