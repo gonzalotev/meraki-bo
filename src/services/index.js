@@ -1,23 +1,27 @@
+import AppService from './app';
+import DisciplineService from './discipline';
+import DutyService from './duty';
+import InscriptionService from './inscription';
 import protocolService from './protocol';
+import ResourceService from './resource';
 import sessionService from './session';
+import StaticDataService from './staticData';
 import storageService from './storage';
 import TimetableService from './timetable';
-import DutyService from './duty';
-import StaticDataService from './staticData';
-import InscriptionService from './inscription';
-import ResourceService from './resource';
 import { setupApi } from './http';
 
 setupApi();
 
 const api = {
-  ...protocolService,
-  ...sessionService,
-  ...TimetableService,
+  ...AppService,
+  ...DisciplineService,
   ...DutyService,
-  ...StaticDataService,
   ...InscriptionService,
+  ...protocolService,
   ...ResourceService,
+  ...sessionService,
+  ...StaticDataService,
+  ...TimetableService,
 };
 
 export { storageService };

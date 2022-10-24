@@ -64,8 +64,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.timetables = state.timetables.filter(timetable => timetable.idTimetable !== payload);
     },
-    removeTimetableError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    removeTimetableError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });

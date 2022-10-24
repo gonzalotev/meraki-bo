@@ -2,12 +2,10 @@ import { TextField } from 'components';
 import { Box, Button, HStack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
-import { selectStatus } from 'store/timetable/selector';
+import { selectStatus } from 'store/discipline/selector';
 import { push } from 'redux-first-history';
 
-const DisciplineForm = ({
-  status, isSubmitting, goTo,
-}) => (
+const DisciplineForm = ({ status, isSubmitting, goTo }) => (
   <Form style={{ height: '100%' }}>
     <Box shadow="base">
       <Field

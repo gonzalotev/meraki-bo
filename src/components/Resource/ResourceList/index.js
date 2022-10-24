@@ -7,13 +7,14 @@ import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeImageResourceRequest } from 'store/resource/reducer';
 
+const columns = Object.freeze([
+  { key: 'name', label: 'Nombre' },
+  { key: 'url', label: 'Url' },
+  { key: 'actions', style: { width: 130 } },
+]);
+
 const ResourceList = ({ resource, onRemove, type }) => {
   const navigate = useNavigate();
-  const columns = [
-    { key: 'name', label: 'Nombre' },
-    { key: 'url', label: 'Url' },
-    { key: 'actions', style: { width: 130 } },
-  ];
   const location = useLocation();
 
   const rows = resource.images?.map(image => ({
@@ -47,7 +48,7 @@ const ResourceList = ({ resource, onRemove, type }) => {
         aria-label="add"
         onClick={() => navigate({
           pathname: '/resource/create',
-          search: `?${createSearchParams({ type })}`,
+          search: `?${createSearchParams({ type, origin: location.pathname })}`,
         })}
         leftIcon={<AddIcon />}
         float="right"

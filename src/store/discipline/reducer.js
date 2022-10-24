@@ -4,33 +4,32 @@ import {
 } from '../helper/statusStateFactory';
 
 const initialState = {
-  topics: [],
-  roles: [],
   status: getDefaultStatus(),
 };
 
 export const reducer = createSlice({
-  name: 'staticData',
+  name: 'discipline',
   initialState,
   reducers: {
-    fetchStaticDataRequest: (state) => {
+    saveDisciplineRequest: (state) => {
       state.status = getStartStatus();
+      state.isSaving = true;
     },
-    fetchStaticDataSuccess: (state, { payload }) => {
+    saveDisciplineSuccess: (state) => {
       state.status = getSuccessStatus();
-      state.topics = payload.topics;
-      state.roles = payload.roles;
+      state.isSaving = false;
     },
-    fetchStaticDataError: (state, { error }) => {
+    saveDisciplineError: (state, { error }) => {
       state.status = getErrorStatus(error);
+      state.isSaving = initialState.isSaving;
     },
   },
 });
 
 export const {
-  fetchStaticDataRequest,
-  fetchStaticDataSuccess,
-  fetchStaticDataError,
+  saveDisciplineRequest,
+  saveDisciplineSuccess,
+  saveDisciplineError,
 } = reducer.actions;
 
 export default reducer.reducer;

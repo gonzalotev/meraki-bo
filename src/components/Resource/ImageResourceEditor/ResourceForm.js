@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 const isValidUrl = (url) => /https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp)/g.test(url);
 
 const ResourceForm = ({
-  status, isSubmitting, values, setImage,
+  status, isSubmitting, values, setImage, onCancel,
 }) => {
   useEffect(() => {
     if (isValidUrl(values?.url)) {
@@ -35,6 +35,9 @@ const ResourceForm = ({
           isRequired
         />
       </Box>
+      <Button my={5} onClick={onCancel}>
+        Cancelar
+      </Button>
       <Button
         type="submit"
         isDisabled={!!isSubmitting}
@@ -48,6 +51,4 @@ const ResourceForm = ({
   );
 };
 
-export default connect(
-  state => ({ status: selectStatus(state) }),
-)(ResourceForm);
+export default connect(state => ({ status: selectStatus(state) }))(ResourceForm);

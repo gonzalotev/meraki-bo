@@ -41,7 +41,7 @@ export function* save({ payload }) {
     yield call(Service.saveDuty, payload);
     yield put(saveDutySuccess());
     yield put(push('/duty'));
-    toastNotify(`Se guardo el Arancel: ${payload.title}`, 'success');
+    toastNotify('Se guardó el Arancel.', 'success');
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(saveDutyError({ error }));
@@ -52,7 +52,7 @@ export function* remove({ payload }) {
   try {
     yield call(Service.remove, payload);
     yield put(removeDutySuccess(payload));
-    toastNotify('Se borro el arancel', 'success');
+    toastNotify('Se borro el arancel.', 'success');
   } catch (error) {
     toastNotify('Error en cliente.');
     yield put(removeDutyError({ error }));

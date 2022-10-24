@@ -8,11 +8,13 @@ import { saveImageResourceRequest } from 'store/resource/reducer';
 import { useQuery } from 'hooks';
 import { selectResources } from 'store/resource/selector';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ResourceForm from './ResourceForm';
 import validationSchema from './validationSchema';
 
 const ResourceEditor = ({ onSubmit }) => {
   const url = useQuery().get('url');
+  const navigate = useNavigate();
   const [image, setImage] = useState(url);
   const type = useQuery().get('type');
   const origin = useQuery().get('origin');
@@ -45,7 +47,7 @@ const ResourceEditor = ({ onSubmit }) => {
             ...defaultValues.resourceImage, url, name, id,
           }}
         >
-          {(props) => <ResourceForm {...props} setImage={setImage} />}
+          {(props) => <ResourceForm {...props} setImage={setImage} onCancel={() => navigate(origin)} />}
         </Formik>
       </HStack>
     </Container>
