@@ -4,7 +4,7 @@ import {
 import { connect } from 'react-redux';
 import { Box, Button, Stack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
-import { selectStatus } from 'store/session/selector';
+import { selectStatus } from 'store/inscription/selector';
 import { useEffect } from 'react';
 import { selectTimetables } from 'store/timetable/selector';
 
@@ -45,7 +45,17 @@ const RegisterForm = ({
             style={styleField}
             name="name"
             component={TextField}
-            label="Nombre y Apellido"
+            label="Nombre"
+            isDisabled={status.isFetching}
+            isRequired
+          />
+        </Box>
+        <Box style={styleContainer} shadow="base">
+          <Field
+            style={styleField}
+            name="surname"
+            component={TextField}
+            label="Apellido"
             isDisabled={status.isFetching}
             isRequired
           />
@@ -107,7 +117,7 @@ const RegisterForm = ({
         <Box style={styleContainer} shadow="base">
           <Field
             component={NumberField}
-            name="phone"
+            name="motherPhone"
             label="Teléfono de contacto (Madre)"
             isDisabled={status.isFetching}
           />
