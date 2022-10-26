@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { toastNotify } from 'utils';
 import Service from 'services';
 import { push } from 'redux-first-history';
+import { messages } from 'constant';
 import {
   fetchTimetablesRequest,
   fetchTimetablesSuccess,
@@ -23,8 +24,7 @@ export function* fetch() {
     const { data } = yield call(Service.fetchTimetable);
     yield put(fetchTimetablesSuccess({ timetables: data.timetables }));
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(fetchTimetablesError({ error }));
+    yield call(handlerError, error, fetchTimetablesError);
   }
 }
 export function* find({ payload }) {
@@ -32,8 +32,7 @@ export function* find({ payload }) {
     const { data } = yield call(Service.findTimetable, payload.id);
     yield put(fetchTimetableSuccess({ timetable: data.timetable }));
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(fetchTimetableError({ error }));
+    yield call(handlerError, error, fetchTimetableError);
   }
 }
 
@@ -42,10 +41,9 @@ export function* save({ payload }) {
     yield call(Service.saveTimetable, payload);
     yield put(saveTimetableSuccess());
     yield put(push('/timetable'));
-    toastNotify(`Se guardo el Horario: ${payload.day} a ${payload.schedule}`, 'success');
+    toastNotify(messages.REGISTER_SUCCESS, 'success');
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(saveTimetableError({ error }));
+    yield call(handlerError, error, saveTimetableError);
   }
 }
 
@@ -53,7 +51,7 @@ export function* remove({ payload }) {
   try {
     yield call(Service.removeTimetable, payload);
     yield put(removeTimetableSuccess(payload));
-    toastNotify('Se borro el horario', 'success');
+    toastNotify(messages.REMOVE_SUCCESS, 'success');
   } catch (error) {
     yield call(handlerError, error, removeTimetableError);
   }

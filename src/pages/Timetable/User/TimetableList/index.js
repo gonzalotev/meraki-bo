@@ -20,7 +20,8 @@ const TimetableTable = ({ timetables }) => {
         data={rows}
         name="timetables"
         columns={columns}
-        size="sm"
+        size="md"
+        fontSize={20}
         mt={2}
       />
     </Container>

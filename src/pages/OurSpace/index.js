@@ -16,7 +16,7 @@ const OurSpace = ({
   }, []);
   return (
     <Container minW="100%" alignItems="center" display="flex" h="100%" px={5} flexDirection="column">
-      <Heading fontSize={50} color="pink.300" mb={2}>Espacios</Heading>
+      <Heading fontSize={50} color="pink.300" mb={2}>Nuestro Espacio</Heading>
       {sessionUser.role === 'admin' && (
         <ResourceList
           resource={resource}

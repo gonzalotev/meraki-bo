@@ -1,19 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { toastNotify } from 'utils';
 import Service from 'services';
 import {
   fetchStaticDataRequest,
   fetchStaticDataSuccess,
   fetchStaticDataError,
 } from './reducer';
+import { handlerError } from '../app/saga';
 
 export function* fetch() {
   try {
     const { data } = yield call(Service.fetchStaticData);
     yield put(fetchStaticDataSuccess({ topics: data.topics, roles: data.roles }));
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(fetchStaticDataError({ error }));
+    yield call(handlerError, error, fetchStaticDataError);
   }
 }
 

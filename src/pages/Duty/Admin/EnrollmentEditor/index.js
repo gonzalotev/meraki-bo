@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
-import { selectDuty } from 'store/duty/selector';
+import { selectEnrollment } from 'store/duty/selector';
 import {
   Container, Text, VStack,
 } from '@chakra-ui/react';
-import { cleanDuty, fetchDutyRequest, saveDutyRequest } from 'store/duty/reducer';
+import { cleanDuty, fetchDutyRequest, saveEnrollmentRequest } from 'store/duty/reducer';
 import { useParams } from 'react-router';
 import { defaultValues } from 'constant';
-import dutySchema from 'schemas/dutySchema';
-import DutyForm from './DutyForm';
+import enrollmentSchema from 'schemas/enrollmentSchema';
+import EnrollmentForm from './EnrollmentForm';
 
-const DutyEditor = ({
-  onSubmit, duty, fetchDuty, onRemove,
+const EnrollmentEditor = ({
+  onSubmit, enrollment, fetchDuty, onRemove,
 }) => {
   const { id } = useParams();
   useEffect(() => {
@@ -28,9 +28,9 @@ const DutyEditor = ({
         <Text>Campos Obligatorios (*)</Text>
       </VStack>
       <Formik
-        component={DutyForm}
-        validationSchema={dutySchema}
-        initialValues={{ ...defaultValues.duty, ...duty }}
+        component={EnrollmentForm}
+        validationSchema={enrollmentSchema}
+        initialValues={{ ...defaultValues.enrollment, ...enrollment }}
         onSubmit={onSubmit}
         enableReinitialize
       />
@@ -39,6 +39,6 @@ const DutyEditor = ({
 };
 
 export default connect(
-  (state) => ({ duty: selectDuty(state) }),
-  { onSubmit: saveDutyRequest, fetchDuty: fetchDutyRequest, onRemove: cleanDuty },
-)(DutyEditor);
+  (state) => ({ enrollment: selectEnrollment(state) }),
+  { onSubmit: saveEnrollmentRequest, fetchDuty: fetchDutyRequest, onRemove: cleanDuty },
+)(EnrollmentEditor);

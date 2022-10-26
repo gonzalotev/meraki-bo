@@ -43,7 +43,15 @@ const AdminDutyTable = ({ duties, onRemove }) => {
         leftIcon={<AddIcon />}
         float="right"
       >
-        Agregar
+        Agregar Arancel
+      </Button>
+      <Button
+        aria-label="add"
+        onClick={() => navigate('/enrollment')}
+        leftIcon={<AddIcon />}
+        float="right"
+      >
+        Modificar Matricula
       </Button>
       <Table
         data={rows}

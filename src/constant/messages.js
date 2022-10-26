@@ -10,4 +10,6 @@ export default Object.freeze({
   MAX_FIVE_HUNDRED_CHARACTERS: 'El máximo es de 500 caracteres.',
   PASSWORD_NOT_MATCH: 'Las contraseñas deben coincidir.',
   EMPTY_DUTIES: 'No hay aranceles disponibles.',
+  REGISTER_SUCCESS: 'Se guardó el registro correctamente.',
+  REMOVE_SUCCESS: 'Se eliminó el registro correctamente.',
 });
