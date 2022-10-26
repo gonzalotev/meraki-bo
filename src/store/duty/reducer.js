@@ -4,6 +4,7 @@ import {
 } from '../helper/statusStateFactory';
 
 const initialState = {
+  enrollment: {},
   duties: [],
   duty: {
     idDuty: 0,
@@ -25,6 +26,7 @@ export const reducer = createSlice({
     fetchDutiesSuccess: (state, { payload }) => {
       state.status = getSuccessStatus();
       state.duties = payload.duties;
+      state.enrollment = payload.enrollment;
     },
     fetchDutiesError: (state, { error }) => {
       state.status = getErrorStatus(error);
@@ -58,6 +60,18 @@ export const reducer = createSlice({
       state.status = getErrorStatus(error);
       state.isSaving = initialState.isSaving;
     },
+    saveEnrollmentRequest: (state) => {
+      state.status = getStartStatus();
+      state.isSaving = true;
+    },
+    saveEnrollmentSuccess: (state) => {
+      state.status = getSuccessStatus();
+      state.isSaving = false;
+    },
+    saveEnrollmentError: (state, { error }) => {
+      state.status = getErrorStatus(error);
+      state.isSaving = initialState.isSaving;
+    },
     removeDutyRequest: (state) => {
       state.status = getStartStatus();
     },
@@ -81,6 +95,9 @@ export const {
   saveDutyRequest,
   saveDutySuccess,
   saveDutyError,
+  saveEnrollmentRequest,
+  saveEnrollmentSuccess,
+  saveEnrollmentError,
   removeDutyRequest,
   removeDutySuccess,
   removeDutyError,

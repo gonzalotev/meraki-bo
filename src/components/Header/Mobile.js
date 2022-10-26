@@ -16,7 +16,7 @@ const Mobile = ({ logout, withSession, goToLogin }) => {
           mr={4}
           onClick={show ? setShow.off : setShow.on}
         />
-        <MenuList right={0} bottom={0}>
+        <MenuList right={0} bottom={0} color="#3ecbb0">
           {menuItems.map(item => (
             <MenuItem key={item.path}>
               <NavLink to={item.path} label={item.label} />

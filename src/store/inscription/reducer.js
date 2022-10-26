@@ -40,8 +40,8 @@ export const reducer = createSlice({
     saveInscriptionSuccess: (state) => {
       state.status = getSuccessStatus();
     },
-    saveInscriptionError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    saveInscriptionError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     removeInscriptionRequest: (state) => {
       state.status = getStartStatus();

@@ -7,6 +7,7 @@ const getImages = (images) => (images ? images.map((image) => (
     key={image.id}
     src={image.url}
     alt={image.name}
+    objectFit="contain"
   />
 )) : <p>no hay imágenes</p>);
 

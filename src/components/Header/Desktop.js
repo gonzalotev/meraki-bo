@@ -4,7 +4,7 @@ import { menuItems } from 'constant';
 
 const Desktop = ({ withSession, logout, goToLogin }) => (
   <>
-    <Wrap flex={1}>
+    <Wrap flex={1} color="#3ecbb0">
       {menuItems.map(item => <NavLink key={item.path} to={item.path} label={item.label} />)}
     </Wrap>
     <Stack pr={5}>

@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { toastNotify } from 'utils';
 import Service from 'services';
+import { messages } from 'constant';
 import {
   fetchInscriptionsRequest,
   fetchInscriptionsSuccess,
@@ -12,14 +13,14 @@ import {
   removeInscriptionSuccess,
   removeInscriptionError,
 } from './reducer';
+import { handlerError } from '../app/saga';
 
 export function* fetch() {
   try {
     const { data } = yield call(Service.fetchInscription);
     yield put(fetchInscriptionsSuccess({ inscriptions: data.inscriptions }));
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(fetchInscriptionsError({ error }));
+    yield call(handlerError, error, fetchInscriptionsError);
   }
 }
 
@@ -29,8 +30,7 @@ export function* save({ payload }) {
     yield put(saveInscriptionSuccess());
     toastNotify(`Se guardo la solicitud de: ${payload.name}`, 'success');
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(saveInscriptionError({ error }));
+    yield call(handlerError, error, saveInscriptionError);
   }
 }
 
@@ -38,10 +38,9 @@ export function* remove({ payload }) {
   try {
     yield call(Service.removeInscription, payload);
     yield put(removeInscriptionSuccess(payload));
-    toastNotify('Se borro la solicitud', 'success');
+    toastNotify(messages.REMOVE_SUCCESS, 'success');
   } catch (error) {
-    toastNotify('Error en cliente.');
-    yield put(removeInscriptionError({ error }));
+    yield call(handlerError, error, removeInscriptionError);
   }
 }
 

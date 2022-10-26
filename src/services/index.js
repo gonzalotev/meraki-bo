@@ -1,6 +1,7 @@
 import AppService from './app';
 import DisciplineService from './discipline';
 import DutyService from './duty';
+import EnrollmentService from './enrollment';
 import InscriptionService from './inscription';
 import protocolService from './protocol';
 import ResourceService from './resource';
@@ -16,6 +17,7 @@ const api = {
   ...AppService,
   ...DisciplineService,
   ...DutyService,
+  ...EnrollmentService,
   ...InscriptionService,
   ...protocolService,
   ...ResourceService,

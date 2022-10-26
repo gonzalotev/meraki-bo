@@ -41,6 +41,10 @@ const protocol = {
 const discipline = {
   name: '',
 };
+const enrollment = {
+  name: '',
+  price: 0,
+};
 
 export default {
   duty,
@@ -49,4 +53,5 @@ export default {
   resourceImage,
   protocol,
   discipline,
+  enrollment,
 };

@@ -22,8 +22,8 @@ export const slice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
     },
-    loginError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    loginError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     registerRequest: (state) => {
       state.status = getStartStatus();

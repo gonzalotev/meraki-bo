@@ -19,6 +19,7 @@ import {
   registerRequest, registerSuccess, registerError,
 } from './reducer';
 import { parseErrorResponse } from '../helper/statusStateFactory';
+import { handlerError } from '../app/saga';
 
 export function* login({ payload }) {
   try {
@@ -27,8 +28,7 @@ export function* login({ payload }) {
     yield put(loginSuccess({ user: data.user, token: data.token }));
     yield put(push('/'));
   } catch (error) {
-    toastNotify('Email o Contraseña incorecta');
-    yield put(loginError({ error }));
+    yield call(handlerError, error, loginError);
   }
 }
 

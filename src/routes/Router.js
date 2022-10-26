@@ -6,6 +6,7 @@ const Home = lazy(() => import('pages/Home'));
 const Inscription = lazy(() => import('pages/Inscription'));
 const Duty = lazy(() => import('pages/Duty'));
 const DutyEditor = lazy(() => import('pages/Duty/Admin/DutyEditor'));
+const EnrollmentEditor = lazy(() => import('pages/Duty/Admin/EnrollmentEditor'));
 const OurSpace = lazy(() => import('pages/OurSpace'));
 const Protocol = lazy(() => import('pages/Protocol'));
 const TimeTable = lazy(() => import('pages/Timetable'));
@@ -26,6 +27,7 @@ const Router = () => (
       <Route path="/inscription" element={<Inscription />} />
       <Route path="/duty" element={<Duty />} />
       <Route path="/duty/create" element={<DutyEditor />} />
+      <Route path="/enrollment" element={<EnrollmentEditor />} />
       <Route path="/timetable/create" element={<TimetableEditor />} />
       <Route path="/spaces" element={<OurSpace />} />
       <Route path="/protocol" element={<Protocol />} />
