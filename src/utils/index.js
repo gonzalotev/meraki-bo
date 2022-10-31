@@ -3,6 +3,7 @@ import getFieldError from './getFieldError';
 import buildRows from './buildRows';
 import groupBy from './groupBy';
 import errorsMyqsl from './errosMysql';
+import orderBy from './orderBy';
 
 export {
   toastNotify,
@@ -10,4 +11,5 @@ export {
   buildRows,
   groupBy,
   errorsMyqsl,
+  orderBy,
 };
