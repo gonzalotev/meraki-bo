@@ -31,7 +31,7 @@ const Table = ({
   return (
     <VStack w="100%">
       <Flex w="100%" overflowX="auto" overflowY="hidden">
-        <ChakraTable border="1px" borderColor="brand.neutral100" styles={styles} {...props}>
+        <ChakraTable border="1px" borderColor="brand.neutral100" name={name} styles={styles} {...props}>
           {caption && (
             <TableCaption data-testid="caption" placement="top">
               {caption}
