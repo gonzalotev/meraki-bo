@@ -19,8 +19,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.isSaving = false;
     },
-    saveDisciplineError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    saveDisciplineError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
       state.isSaving = initialState.isSaving;
     },
   },

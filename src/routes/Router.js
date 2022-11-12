@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
-
 import { Route, Routes } from 'react-router-dom';
+import { LoadingPage } from 'components';
 
 const Home = lazy(() => import('pages/Home'));
 const Inscription = lazy(() => import('pages/Inscription'));
@@ -19,7 +19,7 @@ const TimetableEditor = lazy(() => import('pages/Timetable/Admin/TimetableEditor
 const DisciplineEditor = lazy(() => import('pages/Timetable/Admin/DisciplineEditor'));
 
 const Router = () => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<LoadingPage />}>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/duty/:id" element={<DutyEditor />} />

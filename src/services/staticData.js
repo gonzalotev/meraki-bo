@@ -1,7 +1,11 @@
-import axios from 'axios';
+import Http from './http';
 
-const Service = {
-  fetchStaticData: () => axios.get('/public-api/staticData'),
-};
+class StaticDataService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
 
-export default Service;
+  fetchStaticData = () => this.http.get('public/staticData');
+}
+
+export default StaticDataService;

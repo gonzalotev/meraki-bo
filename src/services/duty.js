@@ -1,15 +1,22 @@
-import axios from 'axios';
+import Http from './http';
 
-const DutyService = {
-  fetchDuties: () => axios.get('/public-api/duty'),
-  findDuty: (id) => axios.get(`/api/duty/${id}`),
-  saveDuty: ({ idDuty, ...values }) => {
+class DutyService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
+
+  fetchDuties = () => this.http.get('public/duty');
+
+  findDuty = (id) => this.http.get(`duty/${id}`);
+
+  saveDuty = ({ idDuty, ...values }) => {
     if (idDuty) {
-      return axios.put(`/api/duty/${idDuty}`, { ...values });
+      return this.http.put(`duty/${idDuty}`, { ...values });
     }
-    return axios.post('/api/duty', { ...values });
-  },
-  remove: (id) => axios.delete(`/api/duty/${id}`),
-};
+    return this.http.post('duty', { ...values });
+  };
+
+  remove = (id) => this.http.delete(`duty/${id}`);
+}
 
 export default DutyService;

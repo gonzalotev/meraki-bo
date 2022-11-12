@@ -17,6 +17,9 @@ const styles = {
       maxHeight: '400px',
       width: '100%',
     },
+    form: {
+      height: '100%',
+    },
     '@media print': {
       '#footer, #header': {
         display: 'none',

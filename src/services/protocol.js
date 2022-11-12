@@ -1,8 +1,13 @@
-import axios from 'axios';
+import Http from './http';
 
-const ProtocolService = {
-  fetchProtocol: () => axios.get('/public-api/protocol'),
-  saveProtocol: (protocol) => axios.put('/api/protocol', protocol),
-};
+class ProtocolService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
+
+  fetchProtocol = () => this.http.get('public/protocol');
+
+  saveProtocol = (protocol) => this.http.put('protocol', protocol);
+}
 
 export default ProtocolService;

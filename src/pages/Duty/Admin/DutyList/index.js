@@ -51,7 +51,7 @@ const AdminDutyTable = ({ duties, onRemove }) => {
         leftIcon={<AddIcon />}
         float="right"
       >
-        Modificar Matricula
+        Modificar Matrícula
       </Button>
       <Table
         data={rows}

@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
-import { Container, Text, VStack } from '@chakra-ui/react';
+import { Container, Text } from '@chakra-ui/react';
 import { saveDisciplineRequest } from 'store/discipline/reducer';
 import { defaultValues } from 'constant';
+import Title from 'components/Title';
+import disciplineSchema from 'schemas/disciplineSchema';
 import DisciplineForm from './DisciplineForm';
 
-const TimetableEditor = ({ onSubmit }) => (
-  <Container>
-    <VStack mt={5}>
-      <Text fontWeight="bold">Disciplina</Text>
-      <Text>Campos Obligatorios (*)</Text>
-    </VStack>
+const DisciplineEditor = ({ onSubmit }) => (
+  <Container maxW="max-content">
+    <Title title="Disciplina" />
+    <Text>Campos Obligatorios (*)</Text>
     <Formik
       component={DisciplineForm}
-      initialValues={{ ...defaultValues.discipline }}
+      initialValues={defaultValues.discipline}
+      validationSchema={disciplineSchema}
       onSubmit={onSubmit}
       enableReinitialize
     />
@@ -23,4 +24,4 @@ const TimetableEditor = ({ onSubmit }) => (
 export default connect(
   null,
   { onSubmit: saveDisciplineRequest },
-)(TimetableEditor);
+)(DisciplineEditor);

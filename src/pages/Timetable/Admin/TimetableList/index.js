@@ -37,7 +37,7 @@ const AdminTimetableTable = ({ timetables, onRemove }) => {
     ],
   }));
   return (
-    <Container pb={5}>
+    <Container>
       <Button
         aria-label="add"
         onClick={() => navigate('/timetable/create')}

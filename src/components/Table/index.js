@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
   Flex,
   TableCaption,
@@ -13,15 +12,15 @@ import {
 } from '@chakra-ui/react';
 
 import { buildRows } from 'utils';
-import LoadingPage from '../LoadingPage';
+import LoadingPage from 'components/LoadingPage';
 
 const Table = ({
   caption,
   columns,
-  data,
-  emptyMessage,
-  isLoading,
-  name,
+  data = [],
+  emptyMessage = 'No hay resultados',
+  isLoading = false,
+  name = 'table',
   styles,
   ...props
 }) => {
@@ -31,7 +30,7 @@ const Table = ({
   return (
     <VStack w="100%">
       <Flex w="100%" overflowX="auto" overflowY="hidden">
-        <ChakraTable border="1px" borderColor="brand.neutral100" styles={styles} {...props}>
+        <ChakraTable border="1px" borderColor="brand.neutral100" name={name} styles={styles} {...props}>
           {caption && (
             <TableCaption data-testid="caption" placement="top">
               {caption}
@@ -77,23 +76,6 @@ const Table = ({
       </Flex>
     </VStack>
   );
-};
-
-Table.propTypes = {
-  caption: PropTypes.string,
-  columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})),
-  emptyMessage: PropTypes.string,
-  isLoading: PropTypes.bool,
-  name: PropTypes.string,
-};
-
-Table.defaultProps = {
-  caption: null,
-  data: [],
-  emptyMessage: 'No hay resultados',
-  isLoading: false,
-  name: 'table',
 };
 
 export default Table;

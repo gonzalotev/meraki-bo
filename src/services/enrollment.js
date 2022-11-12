@@ -1,8 +1,13 @@
-import axios from 'axios';
+import Http from './http';
 
-const EnrollmentService = {
-  fetchEnrollment: () => axios.get('/public-api/enrollment'),
-  saveEnrollment: ({ id, ...values }) => axios.put(`/api/enrollment/${id}`, { ...values }),
-};
+class EnrollmentService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
+
+  fetchEnrollment = () => this.http.get('public/enrollment');
+
+  saveEnrollment = ({ id, ...values }) => this.http.put(`enrollment/${id}`, { ...values });
+}
 
 export default EnrollmentService;

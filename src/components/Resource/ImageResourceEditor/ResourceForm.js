@@ -1,5 +1,5 @@
-import { TextField } from 'components/index';
-import { Button, Box } from '@chakra-ui/react';
+import { FormButtons, TextField } from 'components/index';
+import { Box } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/resource/selector';
@@ -35,18 +35,11 @@ const ResourceForm = ({
           isRequired
         />
       </Box>
-      <Button my={5} onClick={onCancel}>
-        Cancelar
-      </Button>
-      <Button
-        type="submit"
-        isDisabled={!!isSubmitting}
+      <FormButtons
+        onCancel={onCancel}
+        isDisabled={isSubmitting}
         isLoading={status.isFetching}
-        bg="pink.300"
-        my={5}
-      >
-        Guardar
-      </Button>
+      />
     </Form>
   );
 };

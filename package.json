@@ -1,40 +1,35 @@
 {
   "name": "meraki-bo",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.9",
-    "@chakra-ui/react": "^2.3.2",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@chakra-ui/icons": "^2.0.11",
+    "@chakra-ui/react": "^2.3.7",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@redux-devtools/extension": "^3.2.3",
-    "@reduxjs/toolkit": "^1.8.5",
-    "axios": "^0.27.2",
-    "chakra-react-select": "^4.2.2",
+    "@reduxjs/toolkit": "^1.9.0",
+    "chakra-react-select": "^4.4.0",
     "file-saver": "^2.0.5",
     "formik": "^2.2.9",
-    "framer-motion": "^7.3.5",
+    "framer-motion": "^7.6.4",
     "history": "^5.3.0",
-    "lodash": "^4.17.21",
-    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-export-table-to-excel": "^1.0.6",
-    "react-redux": "^8.0.2",
+    "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
-    "react-router": "^6.4.0",
-    "react-router-dom": "^6.4.0",
+    "react-router": "^6.4.3",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
-    "react-select": "^5.4.0",
-    "react-toastify": "^9.0.8",
+    "react-select": "^5.6.0",
     "redux": "^4.2.0",
     "redux-first-history": "^5.1.1",
     "redux-saga": "^1.2.1",
-    "styled-components": "^5.3.5",
-    "web-vitals": "^3.0.2",
+    "web-vitals": "^3.0.4",
     "yup": "^0.32.11"
   },
   "scripts": {
+    "analyze": "react-scripts build && source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -60,12 +55,26 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "eslint": "^8.23.1",
+    "@commitlint/cli": "^17.2.0",
+    "eslint": "^8.26.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-react": "^7.31.8"
-  }
+    "eslint-plugin-react": "^7.31.10",
+    "source-map-explorer": "^2.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gonzalotev/meraki-bo"
+  },
+  "bugs": {
+    "url": "https://academiait.atlassian.net/jira/projects"
+  },
+  "homepage": "https://meraki-espacio-artistico.netlify.app",
+  "engines": {
+    "node": ">=18.9.0"
+  },
+  "author": "Gonzalo Tevez (https://github.com/gonzalotev)",
+  "license": "MIT"
 }

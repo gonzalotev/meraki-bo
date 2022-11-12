@@ -1,9 +1,15 @@
-import axios from 'axios';
+import Http from './http';
 
-const InscriptionService = {
-  fetchInscription: () => axios.get('/api/inscription'),
-  saveInscription: ({ ...values }) => axios.post('/public-api/inscription', { ...values }),
-  removeInscription: (id) => axios.delete(`/api/inscription/${id}`),
-};
+class InscriptionService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
+
+  fetchInscription = () => this.http.get('inscription');
+
+  saveInscription = ({ ...values }) => this.http.post('public/inscription', { ...values });
+
+  removeInscription = (id) => this.http.delete(`inscription/${id}`);
+}
 
 export default InscriptionService;

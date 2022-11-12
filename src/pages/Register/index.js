@@ -1,16 +1,17 @@
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { registerRequest } from 'store/session/reducer';
-import { Container, Heading, Stack } from '@chakra-ui/react';
+import { Container, Stack } from '@chakra-ui/react';
+import registerSchema from 'schemas/registerSchema';
+import { Title } from 'components';
 import RegisterForm from './RegisterForm';
-import registerSchema from '../../schemas/registerSchema';
 
 const Register = ({ onSubmit }) => {
   const initialValues = { email: '', password: '', role: '' };
   return (
-    <Container maxW="full" centerContent h="100%" justifyContent="center">
+    <Container>
       <Stack bg="base" m={10} minW="400px" minH="500px" justifyContent="center">
-        <Heading color="pink.300" textAlign="center" m={5}>Registro</Heading>
+        <Title title="Registro" />
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
