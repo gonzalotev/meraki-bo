@@ -5,7 +5,7 @@ const DutyCard = ({ duty = {} }) => (
     <Text fontSize={22} fontWeight="bold">{duty.title}</Text>
     {duty.subtitle && <Text fontSize={18}>{duty.subtitle}</Text>}
     <Box bg="pink.300" maxW={150} mx="auto" mt={5}>
-      <Text color="white">
+      <Text color="white" fontWeight="bold">
         {`$ ${duty.price}`}
       </Text>
     </Box>

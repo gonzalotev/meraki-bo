@@ -21,8 +21,8 @@ export const reducer = createSlice({
       state.topics = payload.topics;
       state.roles = payload.roles;
     },
-    fetchStaticDataError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchStaticDataError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });

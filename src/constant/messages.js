@@ -12,4 +12,5 @@ export default Object.freeze({
   EMPTY_DUTIES: 'No hay aranceles disponibles.',
   REGISTER_SUCCESS: 'Se guardó el registro correctamente.',
   REMOVE_SUCCESS: 'Se eliminó el registro correctamente.',
+  UNKNOWN_ERROR_MESSAGE: 'Se ha producido un error, inténtelo más tarde.',
 });

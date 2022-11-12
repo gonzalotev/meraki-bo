@@ -1,8 +1,8 @@
 import {
-  TextField, NumberField, CheckboxListField, RadioListField,
+  TextField, NumberField, CheckboxListField, RadioListField, SubmitButton,
 } from 'components';
 import { connect } from 'react-redux';
-import { Box, Button, Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { selectStatus } from 'store/inscription/selector';
 import { useEffect } from 'react';
@@ -38,7 +38,7 @@ const RegisterForm = ({
     setFieldValue('personsAuthorized', '');
   }, [values.allowGoAlone]);
   return (
-    <Form style={style} noValidate>
+    <Form noValidate style={style}>
       <Stack bg="white" justifyContent="center" mb={5}>
         <Box style={styleContainer} shadow="base">
           <Field
@@ -176,14 +176,13 @@ const RegisterForm = ({
             isDisabled={status.isFetching}
           />
         </Box>
-        <Button
-          type="submit"
-          disabled={!!isSubmitting}
+        <SubmitButton
+          submitText="Enviar"
+          isDisabled={!!isSubmitting}
           isLoading={status.isFetching}
-          bg="pink.300"
-        >
-          Enviar
-        </Button>
+          hiddenIcon
+          style={styleContainer}
+        />
       </Stack>
     </Form>
   );

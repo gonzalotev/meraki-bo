@@ -1,84 +1,73 @@
-import {
-  call, put, takeLatest,
-} from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { toastNotify } from 'utils';
-import Service from 'services';
+import { DutyService, EnrollmentService } from 'services';
 import { push } from 'redux-first-history';
 import { messages } from 'constant';
-import {
-  fetchDutiesError,
-  fetchDutiesSuccess,
-  fetchDutiesRequest,
-  fetchDutyRequest,
-  fetchDutySuccess,
-  fetchDutyError,
-  saveDutyRequest,
-  saveDutySuccess,
-  saveDutyError,
-  saveEnrollmentRequest,
-  saveEnrollmentSuccess,
-  saveEnrollmentError,
-  removeDutyRequest,
-  removeDutySuccess,
-  removeDutyError,
-} from './reducer';
-import { handlerError } from '../app/saga';
+import { handlerError } from 'store/helper/handlers';
+import createService from 'store/helper/createService';
+import * as actions from './reducer';
 
 export function* fetch() {
   try {
-    const { data } = yield call(Service.fetchDuties);
-    const { data: enrollment } = yield call(Service.fetchEnrollment);
-    yield put(fetchDutiesSuccess({ duties: data.duties, enrollment }));
+    const dutyService = yield call(createService, DutyService);
+    const { duties } = yield call(dutyService.fetchDuties);
+    const enrollmentService = yield call(createService, EnrollmentService);
+    const { enrollment } = yield call(enrollmentService.fetchEnrollment);
+    yield put(actions.fetchDutiesSuccess({ duties, enrollment }));
   } catch (error) {
-    yield call(handlerError, error, fetchDutiesError);
+    yield call(handlerError, error, actions.fetchDutiesError);
   }
 }
 
 export function* find({ payload }) {
   try {
-    const { data } = yield call(Service.findDuty, payload.id);
-    yield put(fetchDutySuccess({ duty: data.duty }));
+    const dutyService = yield call(createService, DutyService);
+    const { duty } = yield call(dutyService.findDuty, payload.id);
+    yield put(actions.fetchDutySuccess({ duty }));
   } catch (error) {
-    yield call(handlerError, error, fetchDutyError);
+    yield call(handlerError, error, actions.fetchDutyError);
   }
 }
 
 export function* save({ payload }) {
   try {
-    yield call(Service.saveDuty, payload);
-    yield put(saveDutySuccess());
+    const dutyService = yield call(createService, DutyService);
+    yield call(dutyService.saveDuty, payload);
+    yield put(actions.saveDutySuccess());
     yield put(push('/duty'));
     toastNotify(messages.REGISTER_SUCCESS, 'success');
   } catch (error) {
-    yield call(handlerError, error, saveEnrollmentError);
+    yield call(handlerError, error, actions.saveEnrollmentError);
   }
 }
 
 export function* saveEnrollment({ payload }) {
   try {
-    yield call(Service.saveEnrollment, payload);
-    yield put(saveEnrollmentSuccess());
+    const enrollmentService = yield call(createService, EnrollmentService);
+    yield call(enrollmentService.saveEnrollment, payload);
+    yield put(actions.saveEnrollmentSuccess());
     yield put(push('/duty'));
     toastNotify(messages.REGISTER_SUCCESS, 'success');
   } catch (error) {
-    yield call(handlerError, error, saveDutyError);
+    yield call(handlerError, error, actions.saveDutyError);
   }
 }
 
 export function* remove({ payload }) {
   try {
-    yield call(Service.remove, payload);
-    yield put(removeDutySuccess(payload));
+    const dutyService = yield call(createService, DutyService);
+    yield call(dutyService.remove, payload);
+    yield put(actions.removeDutySuccess(payload));
     toastNotify(messages.REMOVE_SUCCESS, 'success');
   } catch (error) {
-    yield call(handlerError, error, removeDutyError);
+    yield call(handlerError, error, actions.removeDutyError);
   }
 }
 
 export default function* saga() {
-  yield takeLatest(fetchDutiesRequest, fetch);
-  yield takeLatest(fetchDutyRequest, find);
-  yield takeLatest(saveDutyRequest, save);
-  yield takeLatest(saveEnrollmentRequest, saveEnrollment);
-  yield takeLatest(removeDutyRequest, remove);
+  yield takeLatest(actions.fetchDutiesRequest, fetch);
+  yield takeLatest(actions.fetchDutyRequest, find);
+  yield takeLatest(actions.saveDutyRequest, save);
+  yield takeLatest(actions.saveEnrollmentRequest, saveEnrollment);
+  yield takeLatest(actions.removeDutyRequest, remove);
 }

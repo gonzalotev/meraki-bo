@@ -1,11 +1,19 @@
-import axios from 'axios';
+import Http from './http';
 
-const loginService = {
-  login: (credential) => axios.post('/public-api/auth/login', credential),
-  register: (values) => axios.post('/public-api/auth/register', values),
-  recoveryPassword: (email, answers) => axios.post('/public-api/auth/recoveryPassword', { email, answers }),
-  resetPassword: ({ password, token }) => axios.post('/public-api/auth/resetPassword', { password, token }),
-  getSessionUser: () => axios.post('/api/session'),
-};
+class SessionService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
 
-export default loginService;
+  login = (credential) => this.http.post('public/auth/login', credential);
+
+  register = (values) => this.http.post('public/auth/register', values);
+
+  recoveryPassword = (email, answers) => this.http.post('public/auth/recoveryPassword', { email, answers });
+
+  resetPassword = ({ password, token }) => this.http.post('public/auth/resetPassword', { password, token });
+
+  getSessionUser = () => this.http.post('session');
+}
+
+export default SessionService;

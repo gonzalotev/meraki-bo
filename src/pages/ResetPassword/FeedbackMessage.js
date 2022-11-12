@@ -1,13 +1,11 @@
-import {
-  Button, Heading, VStack,
-} from '@chakra-ui/react';
+import { Button, VStack } from '@chakra-ui/react';
 import { connect } from 'react-redux';
 import { push } from 'redux-first-history';
+import { Title } from 'components';
 
 const FeedbackMessage = ({ goToLogin }) => (
   <VStack>
-    <Heading color="pink.300" pb={5} mx={3}>Su Contraseña </Heading>
-    <Heading color="pink.300" pb={5} mx={3}>se cambió con éxito </Heading>
+    <Title title="Contraseña actualizada!" />
     <Button onClick={goToLogin}>INGRESAR</Button>
   </VStack>
 );

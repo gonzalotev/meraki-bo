@@ -1,5 +1,5 @@
-import { TextField, SelectField } from 'components';
-import { Box, Button, HStack } from '@chakra-ui/react';
+import { TextField, SelectField, FormButtons } from 'components';
+import { Box } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/timetable/selector';
@@ -10,15 +10,15 @@ import { push } from 'redux-first-history';
 const TimetableForm = ({
   status, isSubmitting, topics, goTo,
 }) => (
-  <Form style={{ height: '100%' }}>
+  <Form noValidate>
     <Box shadow="base">
       <Field
+        name="discipline"
         component={SelectField}
         getOptionLabel={option => option.name}
         getOptionValue={option => option?.id}
         options={topics}
         isRequired
-        name="discipline"
         label="Disciplina"
       />
     </Box>
@@ -29,7 +29,6 @@ const TimetableForm = ({
         component={TextField}
         label="Horario"
         isRequired
-        isDisabled={status.isFetching}
       />
     </Box>
     <Box shadow="base">
@@ -39,23 +38,13 @@ const TimetableForm = ({
         options={daysOptions}
         label="Día"
         isRequired
-        isDisabled={status.isFetching}
       />
     </Box>
-    <HStack pb={2} justifyContent="center" my={5}>
-      <Button onClick={goTo}>
-        Cancelar
-      </Button>
-      <Button
-        type="submit"
-        isDisabled={!!isSubmitting}
-        isLoading={status.isFetching}
-        bg="pink.300"
-        my={5}
-      >
-        Guardar
-      </Button>
-    </HStack>
+    <FormButtons
+      isDisabled={isSubmitting}
+      isLoading={status.isFetching}
+      onCancel={goTo}
+    />
   </Form>
 );
 

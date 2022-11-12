@@ -1,5 +1,5 @@
-import { NumberField, SelectField } from 'components';
-import { Button, Box, HStack } from '@chakra-ui/react';
+import { FormButtons, NumberField, SelectField } from 'components';
+import { Box } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/duty/selector';
@@ -9,7 +9,7 @@ import { push } from 'redux-first-history';
 const DutyForm = ({
   status, isSubmitting, topics, goTo,
 }) => (
-  <Form style={{ height: '100%' }}>
+  <Form noValidate>
     <Box shadow="base">
       <Field
         component={SelectField}
@@ -17,7 +17,8 @@ const DutyForm = ({
         getOptionValue={option => option?.id}
         options={topics}
         name="idDiscipline"
-        label="disciplina"
+        label="Disciplina"
+        isRequired
       />
     </Box>
     <Box shadow="base">
@@ -26,22 +27,14 @@ const DutyForm = ({
         component={NumberField}
         label="Arancel"
         isDisabled={status.isFetching}
+        isRequired
       />
     </Box>
-    <HStack pb={2} justifyContent="center" my={5}>
-      <Button onClick={goTo}>
-        Cancelar
-      </Button>
-      <Button
-        type="submit"
-        isDisabled={!!isSubmitting}
-        isLoading={status.isFetching}
-        bg="pink.300"
-        my={5}
-      >
-        Guardar
-      </Button>
-    </HStack>
+    <FormButtons
+      onCancel={goTo}
+      isDisabled={isSubmitting}
+      isLoading={status.isFetching}
+    />
   </Form>
 );
 

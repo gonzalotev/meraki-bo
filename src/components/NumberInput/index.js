@@ -27,7 +27,9 @@ const NumberInput = ({
       p={4}
       minWidth={breakpoints.sm}
       maxWidth={breakpoints.md}
+      width={breakpoints.md}
       isInvalid={!!errorMessage}
+      autoComplete="off"
       isRequired={props.isRequired}
     >
       <FormLabel>{label}</FormLabel>

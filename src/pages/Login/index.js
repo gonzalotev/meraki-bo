@@ -1,10 +1,9 @@
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { loginRequest } from 'store/session/reducer';
-import {
-  Container, Heading, Link, Stack,
-} from '@chakra-ui/react';
+import { Container, Link, Stack } from '@chakra-ui/react';
 import loginSchema from 'schemas/loginSchema';
+import { Title } from 'components';
 import LoginForm from './LoginForm';
 
 const Login = ({ onSubmit }) => {
@@ -14,9 +13,9 @@ const Login = ({ onSubmit }) => {
     actions.resetForm({ values });
   };
   return (
-    <Container maxW="full" centerContent h="100%" justifyContent="center">
-      <Stack bg="base" m={10} minW="400px" minH="500px" justifyContent="center">
-        <Heading color="pink.300" textAlign="center" mb={5}>Bienvenido</Heading>
+    <Container centerContent>
+      <Stack bg="base" m={10} minW="400px" minH="500px" justifyContent="center" p={5}>
+        <Title title="Bienvenido" />
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}

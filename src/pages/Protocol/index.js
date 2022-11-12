@@ -13,7 +13,7 @@ const Protocol = ({ sessionUser, protocol }) => {
     dispatch(protocolFetchRequest());
   }, []);
   return (
-    <Container minW="full" align="center">
+    <Container>
       {sessionUser.role === 'admin' && <Admin protocol={protocol} />}
       {!Object.keys(sessionUser).length && <User protocol={protocol} />}
     </Container>

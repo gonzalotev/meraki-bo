@@ -1,13 +1,14 @@
-import { TextField, PasswordField, SelectField } from 'components';
+import {
+  TextField, PasswordField, SelectField, FormButtons,
+} from 'components';
 import { connect } from 'react-redux';
-import { Button } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { selectStatus } from 'store/session/selector';
 import { selectRoles } from 'store/staticData/selector';
 import { styles } from 'constant';
 
 const RegisterForm = ({ status, isSubmitting, roles }) => (
-  <Form style={styles.form}>
+  <Form noValidate style={styles.form}>
     <Field
       component={TextField}
       name="email"
@@ -26,14 +27,10 @@ const RegisterForm = ({ status, isSubmitting, roles }) => (
       name="role"
       label="Rol"
     />
-    <Button
-      type="submit"
+    <FormButtons
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
-      bg="pink.300"
-    >
-      Guardar
-    </Button>
+    />
   </Form>
 );
 

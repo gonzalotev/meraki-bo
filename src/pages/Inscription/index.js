@@ -12,7 +12,7 @@ const InscriptionUser = ({ sessionUser, onMount }) => {
     onMount();
   }, []);
   return (
-    <Container minW="full" alignItems="center" h="100%" justifyContent="center">
+    <Container>
       <GradiantTitle title="INSCRIPCIONES" caption="MERAKI - ESPACIO ARTISTICO" />
       {sessionUser.role === 'admin' && <Admin /> }
       {!sessionUser.role && <User />}

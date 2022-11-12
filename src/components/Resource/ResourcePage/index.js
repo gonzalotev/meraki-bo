@@ -9,7 +9,7 @@ import {
 const ResourcePage = ({ resource }) => {
   const status = useSelector(selectStatus);
   return (
-    <Container maxW="full">
+    <Container>
       <HStack justifyContent="center" wrap="wrap" mt={5}>
         {status.isFetching && <LoadingPage />}
         <Carousel images={resource.images} pr={5} />

@@ -1,20 +1,19 @@
-import { NumberField, TextField } from 'components';
-import { Button, Box, HStack } from '@chakra-ui/react';
+import { NumberField, TextField, FormButtons } from 'components';
+import { Box } from '@chakra-ui/react';
 import { Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { selectStatus } from 'store/duty/selector';
 import { push } from 'redux-first-history';
 
-const EnrollmentForm = ({
-  status, isSubmitting, goTo,
-}) => (
-  <Form style={{ height: '100%' }}>
+const EnrollmentForm = ({ status, isSubmitting, goTo }) => (
+  <Form noValidate>
     <Box shadow="base">
       <Field
         name="name"
         component={TextField}
         label="Titulo"
         isDisabled={status.isFetching}
+        isRequired
       />
     </Box>
     <Box shadow="base">
@@ -23,22 +22,14 @@ const EnrollmentForm = ({
         component={NumberField}
         label="Arancel"
         isDisabled={status.isFetching}
+        isRequired
       />
     </Box>
-    <HStack pb={2} justifyContent="center" my={5}>
-      <Button onClick={goTo}>
-        Cancelar
-      </Button>
-      <Button
-        type="submit"
-        isDisabled={!!isSubmitting}
-        isLoading={status.isFetching}
-        bg="pink.300"
-        my={5}
-      >
-        Guardar
-      </Button>
-    </HStack>
+    <FormButtons
+      onCancel={goTo}
+      isDisabled={isSubmitting}
+      isLoading={status.isFetching}
+    />
   </Form>
 );
 

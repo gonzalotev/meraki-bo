@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { selectInscriptions } from 'store/inscription/selector';
 import { Table, Modal, DownloadButton } from 'components';
 import {
+  Container,
   HStack, IconButton, Text, useBreakpointValue,
 } from '@chakra-ui/react';
 import { DeleteIcon, HamburgerIcon } from '@chakra-ui/icons';
@@ -68,8 +69,8 @@ const Admin = ({
     onMount();
   }, []);
   return (
-    <>
-      <DownloadButton onClick={() => download({ endpoint: '/api/inscription', fileName: 'Inscripciones' })} />
+    <Container>
+      <DownloadButton onClick={() => download({ endpoint: 'inscription', fileName: 'Inscripciones' })} />
       {!!details && (
         <Modal title="Detalles" visible onClose={() => setDetails(undefined)}>
           {getModalKeys(isMobile).map(({ key, label }, index) => details[key] && (
@@ -85,9 +86,9 @@ const Admin = ({
         name="inscriptions"
         columns={columns}
         size="sm"
-        mt={5}
+        mt={3}
       />
-    </>
+    </Container>
   );
 };
 

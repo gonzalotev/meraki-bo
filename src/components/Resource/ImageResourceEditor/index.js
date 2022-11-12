@@ -9,22 +9,23 @@ import { useQuery } from 'hooks';
 import { selectResources } from 'store/resource/selector';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Title from 'components/Title';
 import ResourceForm from './ResourceForm';
 import validationSchema from './validationSchema';
 
 const ResourceEditor = ({ onSubmit }) => {
-  const url = useQuery().get('url');
+  const url = useQuery().get('url') || '';
   const navigate = useNavigate();
   const [image, setImage] = useState(url);
   const type = useQuery().get('type');
   const origin = useQuery().get('origin');
-  const name = useQuery().get('name');
-  const id = useQuery().get('id');
+  const name = useQuery().get('name') || '';
+  const id = useQuery().get('id') || undefined;
   return (
-    <Container minW="100%" alignItems="center" display="flex" h="100%" p={5} flexDirection="column">
-      <Text>Imágenes</Text>
-      <Text>Campos Obligatorios (*)</Text>
-      <HStack pt={5}>
+    <Container>
+      <Title title="Imágenes" />
+      <Text textAlign="center">Campos Obligatorios (*)</Text>
+      <HStack pt={5} w="100%" justifyContent="center">
         <Image
           src={image}
           hidden={!image}

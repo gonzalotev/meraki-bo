@@ -22,7 +22,7 @@ const ResetPassword = ({ onSubmit, status }) => {
   }, [status]);
 
   return (
-    <Container maxW="full" centerContent h="100%" justifyContent="center">
+    <Container>
       <Stack bg="base" m={10} minW="400px" minH="500px" justifyContent="center" overflow="auto">
         {step === 0 && (
           <Formik
