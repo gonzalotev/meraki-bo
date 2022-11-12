@@ -20,8 +20,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state[payload.data.name] = payload.data;
     },
-    fetchResourceError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchResourceError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     saveImageResourceRequest: (state) => {
       state.status = getStartStatus();
@@ -29,8 +29,8 @@ export const reducer = createSlice({
     saveImageResourceSuccess: (state) => {
       state.status = getSuccessStatus();
     },
-    saveImageResourceError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    saveImageResourceError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     removeImageResourceRequest: (state) => {
       state.status = getStartStatus();
@@ -42,8 +42,8 @@ export const reducer = createSlice({
         images: state[payload.type].images.filter(image => image.id !== payload.imageId),
       };
     },
-    removeImageResourceError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    removeImageResourceError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });

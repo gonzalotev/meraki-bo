@@ -28,8 +28,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.inscriptions = payload.inscriptions;
     },
-    fetchInscriptionsError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchInscriptionsError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     cleanInscription: (state) => {
       state.inscription = initialState.inscription;
@@ -50,8 +50,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.inscriptions = state.inscriptions.filter(inscription => inscription.idInsciption !== payload);
     },
-    removeInscriptionError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    removeInscriptionError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });

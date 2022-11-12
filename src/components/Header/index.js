@@ -8,10 +8,10 @@ import Desktop from './Desktop';
 import Mobile from './Mobile';
 
 const Header = ({ logout, goToLogin, withSession }) => {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
+  const isMobile = useBreakpointValue({ base: true, '4xl': false });
   return (
-    <HStack id="header" w="100%">
-      <Image src={logo} alt="logo" width={150} height={100} />
+    <HStack id="header" w="100%" p="5px 10px">
+      <Image src={logo} alt="logo" width={124} height={93} p={2} objectFit="cover" />
       {!isMobile && <Desktop {...{ goToLogin, logout, withSession }} />}
       {isMobile && <Mobile {...{ goToLogin, logout, withSession }} />}
     </HStack>

@@ -1,25 +1,11 @@
-import storage from 'services/storage';
-import axios from 'axios';
+import Http from './http';
 
-export const http = () => {
-  const token = storage.getToken();
-  return axios.create({
-    baseURL: process.env.REACT_APP_ENDPOINT,
-    timeout: 50000,
-    headers: {
-      'Content-Type': 'application/pdf',
-      Authorization: `Bearer ${token}`,
-    },
-    responseType: 'blob',
-  });
-};
+class AppService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
 
-const Service = {
-  downloadExcel: ({ endpoint }) => http().get(`${endpoint}/download`)
-    .catch(async error => {
-      const errorMessage = await error.response.data.text();
-      throw await JSON.parse(errorMessage);
-    }),
-};
+  downloadExcel = ({ endpoint }) => this.http.getFile(`${endpoint}/download`);
+}
 
-export default Service;
+export default AppService;

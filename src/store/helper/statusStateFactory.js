@@ -1,16 +1,19 @@
-const UNKNOWN_ERROR_MESSAGE = 'An unknown error occurred.';
+import { messages } from 'constant';
 
 export const parseErrorResponse = error => {
   if (!error) {
-    return UNKNOWN_ERROR_MESSAGE;
+    return messages.UNKNOWN_ERROR_MESSAGE;
   }
   if (!error.response) {
-    return error.message || UNKNOWN_ERROR_MESSAGE;
+    if (error?.message === 'Failed to fetch') {
+      return messages.UNKNOWN_ERROR_MESSAGE;
+    }
+    return error.message || messages.UNKNOWN_ERROR_MESSAGE;
   }
   if (typeof error.response === 'string') {
     return error.response;
   }
-  const errorResponse = error.response.data;
+  const errorResponse = error.response.message || error.message;
   const err = errorResponse.errors;
   if (err && typeof err === 'object') {
     // eslint-disable-next-line no-restricted-syntax
@@ -21,10 +24,10 @@ export const parseErrorResponse = error => {
       }
     }
   }
-  if (errorResponse.message) {
-    return errorResponse.message;
+  if (errorResponse && typeof errorResponse === 'string' && errorResponse !== 'Too many connections') {
+    return errorResponse;
   }
-  return UNKNOWN_ERROR_MESSAGE;
+  return messages.UNKNOWN_ERROR_MESSAGE;
 };
 
 export const getDefaultStatus = () => Object.freeze({
@@ -53,11 +56,10 @@ export const getSuccessStatus = metaData => Object.freeze({
   metaData,
 });
 
-export const getErrorStatus = error => Object.freeze({
+export const getErrorStatus = errorMessage => Object.freeze({
   timestamp: new Date().toISOString(),
   isFetched: false,
   isFetching: false,
   isError: true,
-  errorMessage: parseErrorResponse(error),
-  error,
+  errorMessage,
 });

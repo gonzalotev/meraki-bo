@@ -1,8 +1,9 @@
-import { Heading, Text, VStack } from '@chakra-ui/react';
+import { Text, VStack } from '@chakra-ui/react';
+import { Title } from 'components';
 
 const FeedbackMessage = () => (
   <VStack>
-    <Heading color="pink.300" pb={5}>Email Enviado</Heading>
+    <Title title="Email Enviado" />
     <Text>Se envió un mail de recuperación</Text>
     <Text>por favor revise su correo en recibidos o spam.</Text>
   </VStack>

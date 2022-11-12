@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import { Flex, Spinner } from '@chakra-ui/react';
 
-const LoadingPage = ({ noStatic, ...props }) => (
+const LoadingPage = ({ noStatic = false, ...props }) => (
   <Flex
     flex={1}
     justify="center"
@@ -22,13 +21,5 @@ const LoadingPage = ({ noStatic, ...props }) => (
     />
   </Flex>
 );
-
-LoadingPage.propTypes = {
-  noStatic: PropTypes.bool,
-};
-
-LoadingPage.defaultProps = {
-  noStatic: false,
-};
 
 export default LoadingPage;

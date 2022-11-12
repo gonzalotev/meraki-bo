@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { selectEnrollment } from 'store/duty/selector';
-import {
-  Container, Text, VStack,
-} from '@chakra-ui/react';
+import { Container, Text } from '@chakra-ui/react';
 import { cleanDuty, fetchDutyRequest, saveEnrollmentRequest } from 'store/duty/reducer';
 import { useParams } from 'react-router';
 import { defaultValues } from 'constant';
 import enrollmentSchema from 'schemas/enrollmentSchema';
+import Title from 'components/Title';
 import EnrollmentForm from './EnrollmentForm';
 
 const EnrollmentEditor = ({
@@ -22,11 +21,9 @@ const EnrollmentEditor = ({
     return onRemove;
   }, [id]);
   return (
-    <Container>
-      <VStack mt={5}>
-        <Text fontWeight="bold">Aranceles</Text>
-        <Text>Campos Obligatorios (*)</Text>
-      </VStack>
+    <Container maxW="max-content">
+      <Title title="Matrícula" />
+      <Text>Campos Obligatorios (*)</Text>
       <Formik
         component={EnrollmentForm}
         validationSchema={enrollmentSchema}

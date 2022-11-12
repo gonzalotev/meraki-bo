@@ -1,7 +1,11 @@
-import axios from 'axios';
+import Http from './http';
 
-const Service = {
-  saveStaticData: ({ ...values }) => axios.post('/api/discipline', { ...values }),
-};
+class DisciplineService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
 
-export default Service;
+  saveStaticData = ({ ...values }) => this.http.post('discipline', { ...values });
+}
+
+export default DisciplineService;

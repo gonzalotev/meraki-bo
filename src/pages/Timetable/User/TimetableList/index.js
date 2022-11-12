@@ -1,5 +1,4 @@
 import { Table } from 'components';
-import { Container } from '@chakra-ui/react';
 import { connect } from 'react-redux';
 import { removeTimetableRequest } from 'store/timetable/reducer';
 import { daysOptions } from 'constant';
@@ -14,16 +13,14 @@ const TimetableTable = ({ timetables }) => {
     values: [timetable[0], ...daysOptions.map(day => timetable[1].find(t => t.day === day.value)?.discipline)],
   }));
   return (
-    <Container minW="full">
-      <Table
-        data={rows}
-        name="timetables"
-        columns={columns}
-        size="md"
-        fontSize={20}
-        mt={2}
-      />
-    </Container>
+    <Table
+      data={rows}
+      name="timetables"
+      columns={columns}
+      size="md"
+      fontSize={20}
+      my={2}
+    />
   );
 };
 

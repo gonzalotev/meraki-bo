@@ -17,8 +17,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.protocol = payload.protocol;
     },
-    protocolFetchError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    protocolFetchError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     protocolSaveRequest: (state) => {
       state.status = getStartStatus();
@@ -26,8 +26,8 @@ export const reducer = createSlice({
     protocolSaveSuccess: (state) => {
       state.status = getSuccessStatus();
     },
-    protocolSaveError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    protocolSaveError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });

@@ -1,31 +1,11 @@
-import AppService from './app';
-import DisciplineService from './discipline';
-import DutyService from './duty';
-import EnrollmentService from './enrollment';
-import InscriptionService from './inscription';
-import protocolService from './protocol';
-import ResourceService from './resource';
-import sessionService from './session';
-import StaticDataService from './staticData';
-import storageService from './storage';
-import TimetableService from './timetable';
-import { setupApi } from './http';
-
-setupApi();
-
-const api = {
-  ...AppService,
-  ...DisciplineService,
-  ...DutyService,
-  ...EnrollmentService,
-  ...InscriptionService,
-  ...protocolService,
-  ...ResourceService,
-  ...sessionService,
-  ...StaticDataService,
-  ...TimetableService,
-};
-
-export { storageService };
-
-export default api;
+export { default as AppService } from './app';
+export { default as DisciplineService } from './discipline';
+export { default as DutyService } from './duty';
+export { default as EnrollmentService } from './enrollment';
+export { default as InscriptionService } from './inscription';
+export { default as ProtocolService } from './protocol';
+export { default as ResourceService } from './resource';
+export { default as SessionService } from './session';
+export { default as StaticDataService } from './staticData';
+export { default as StorageService } from './storage';
+export { default as TimetableService } from './timetable';

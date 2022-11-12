@@ -1,4 +1,5 @@
-import { all } from 'redux-saga/effects';
+import { all, take, race } from 'redux-saga/effects';
+import { cancel } from 'store/app/reducer';
 import { reducer as appReducers, saga as appSaga } from './app';
 import { reducer as disciplineReducers, saga as disciplineSaga } from './discipline';
 import { reducer as dutyReducers, saga as dutySaga } from './duty';
@@ -10,16 +11,19 @@ import { reducer as staticDataReducers, saga as staticDataSaga } from './staticD
 import { reducer as timetableReducers, saga as timetableSaga } from './timetable';
 
 export function* rootSaga() {
-  yield all([
-    appSaga(),
-    disciplineSaga(),
-    dutySaga(),
-    inscriptionSaga(),
-    protocolSaga(),
-    resourceSaga(),
-    sessionSaga(),
-    staticDataSaga(),
-    timetableSaga(),
+  yield race([
+    take(cancel),
+    all([
+      appSaga(),
+      disciplineSaga(),
+      dutySaga(),
+      inscriptionSaga(),
+      protocolSaga(),
+      resourceSaga(),
+      sessionSaga(),
+      staticDataSaga(),
+      timetableSaga(),
+    ]),
   ]);
 }
 

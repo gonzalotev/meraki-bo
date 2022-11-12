@@ -1,53 +1,47 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { toastNotify } from 'utils';
-import Service from 'services';
+import { ResourceService } from 'services';
 import { push } from 'redux-first-history';
 import { messages } from 'constant';
-import {
-  fetchResourceRequest,
-  fetchResourceSuccess,
-  fetchResourceError,
-  saveImageResourceRequest,
-  saveImageResourceSuccess,
-  saveImageResourceError,
-  removeImageResourceRequest,
-  removeImageResourceSuccess,
-  removeImageResourceError,
-} from './reducer';
-import { handlerError } from '../app/saga';
+import { handlerError } from 'store/helper/handlers';
+import createService from 'store/helper/createService';
+import * as actions from './reducer';
 
 export function* fetchResource({ payload }) {
   try {
-    const { data } = yield call(Service.fetchResource, payload);
-    yield put(fetchResourceSuccess({ data }));
+    const resourceService = yield call(createService, ResourceService);
+    const response = yield call(resourceService.fetchResource, payload);
+    yield put(actions.fetchResourceSuccess({ data: response }));
   } catch (error) {
-    yield call(handlerError, error, fetchResourceError);
+    yield call(handlerError, error, actions.fetchResourceError);
   }
 }
 
 export function* saveImageResource({ payload }) {
   try {
-    yield call(Service.saveImageResource, payload);
-    yield put(saveImageResourceSuccess());
+    const resourceService = yield call(createService, ResourceService);
+    yield call(resourceService.saveImageResource, payload);
+    yield put(actions.saveImageResourceSuccess());
     yield put(push(payload.origin || '/'));
     toastNotify(messages.REGISTER_SUCCESS, 'success');
   } catch (error) {
-    yield call(handlerError, error, saveImageResourceError);
+    yield call(handlerError, error, actions.saveImageResourceError);
   }
 }
 
 export function* removeImageResource({ payload }) {
   try {
-    yield call(Service.removeResource, payload);
-    yield put(removeImageResourceSuccess(payload));
+    const resourceService = yield call(createService, ResourceService);
+    yield call(resourceService.removeResource, payload);
+    yield put(actions.removeImageResourceSuccess(payload));
     toastNotify(messages.REMOVE_SUCCESS, 'success');
   } catch (error) {
-    yield call(handlerError, error, removeImageResourceError);
+    yield call(handlerError, error, actions.removeImageResourceError);
   }
 }
 
 export default function* saga() {
-  yield takeLatest(fetchResourceRequest, fetchResource);
-  yield takeLatest(saveImageResourceRequest, saveImageResource);
-  yield takeLatest(removeImageResourceRequest, removeImageResource);
+  yield takeLatest(actions.fetchResourceRequest, fetchResource);
+  yield takeLatest(actions.saveImageResourceRequest, saveImageResource);
+  yield takeLatest(actions.removeImageResourceRequest, removeImageResource);
 }

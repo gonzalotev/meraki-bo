@@ -43,7 +43,7 @@ const ResourceList = ({ resource, onRemove, type }) => {
   }));
 
   return (
-    <Container minW="100%" alignItems="center" display="flex" h="100%" p={5} flexDirection="column">
+    <Container>
       <Button
         aria-label="add"
         onClick={() => navigate({

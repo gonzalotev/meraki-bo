@@ -1,14 +1,16 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { toastNotify } from 'utils';
-import Service from 'services';
+import { ProtocolService } from 'services';
 import { messages } from 'constant';
+import { handlerError } from 'store/helper/handlers';
+import createService from 'store/helper/createService';
 import * as actions from './reducer';
-import { handlerError } from '../app/saga';
 
 export function* fetch() {
   try {
-    const { data } = yield call(Service.fetchProtocol);
-    yield put(actions.protocolFetchSuccess({ protocol: data }));
+    const protocolService = yield call(createService, ProtocolService);
+    const { protocol } = yield call(protocolService.fetchProtocol);
+    yield put(actions.protocolFetchSuccess({ protocol }));
   } catch (error) {
     yield call(handlerError, error, actions.protocolFetchError);
   }
@@ -16,7 +18,8 @@ export function* fetch() {
 
 export function* save({ payload }) {
   try {
-    const { data } = yield call(Service.saveProtocol, payload);
+    const protocolService = yield call(createService, ProtocolService);
+    const { data } = yield call(protocolService.saveProtocol, payload);
     yield put(actions.protocolSaveSuccess({ protocol: data }));
     toastNotify(messages.REGISTER_SUCCESS, 'success');
   } catch (error) {

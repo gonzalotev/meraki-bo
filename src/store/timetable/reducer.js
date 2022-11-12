@@ -25,8 +25,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.timetables = payload.timetables;
     },
-    fetchTimetablesError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchTimetablesError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     fetchTimetableRequest: (state) => {
       state.status = getStartStatus();
@@ -35,8 +35,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.timetable = payload.timetable;
     },
-    fetchTimetableError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchTimetableError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     cleanValues: (state) => ({
       ...initialState,
@@ -53,8 +53,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.isSaving = false;
     },
-    saveTimetableError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    saveTimetableError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
       state.isSaving = initialState.isSaving;
     },
     removeTimetableRequest: (state) => {

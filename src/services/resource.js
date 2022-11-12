@@ -1,14 +1,20 @@
-import axios from 'axios';
+import Http from './http';
 
-const ResourceService = {
-  fetchResource: (typeId) => axios.get(`/public-api/resource/${typeId}`),
-  saveImageResource: ({ type, values }) => {
+class ResourceService {
+  constructor(token) {
+    this.http = new Http(token, 'api');
+  }
+
+  fetchResource = (typeId) => this.http.get(`public/resource/${typeId}`);
+
+  saveImageResource = ({ type, values }) => {
     if (values.id) {
-      return axios.put(`/api/resource/image/${values.id}`, { type, values });
+      return this.http.put(`resource/image/${values.id}`, { type, values });
     }
-    return axios.post('/api/resource/image', { type, values });
-  },
-  removeResource: ({ imageId }) => axios.delete(`/api/resource/image/${imageId}`),
-};
+    return this.http.post('resource/image', { type, values });
+  };
+
+  removeResource = ({ imageId }) => this.http.delete(`resource/image/${imageId}`);
+}
 
 export default ResourceService;

@@ -31,8 +31,8 @@ export const slice = createSlice({
     registerSuccess: (state) => {
       state.status = getSuccessStatus();
     },
-    registerError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    registerError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     logoutRequest: () => {},
     recoveryPasswordRequest: (state) => {
@@ -41,8 +41,8 @@ export const slice = createSlice({
     recoveryPasswordSuccess: (state) => {
       state.recoveryStatus = getSuccessStatus();
     },
-    recoveryPasswordError: (state, { error }) => {
-      state.recoveryStatus = getErrorStatus(error);
+    recoveryPasswordError: (state, { payload }) => {
+      state.recoveryStatus = getErrorStatus(payload);
     },
     resetPasswordRequest: (state) => {
       state.resetStatus = getStartStatus();
@@ -50,8 +50,8 @@ export const slice = createSlice({
     resetPasswordSuccess: (state) => {
       state.resetStatus = getSuccessStatus();
     },
-    resetPasswordError: (state, { error }) => {
-      state.resetStatus = getErrorStatus(error);
+    resetPasswordError: (state, { payload }) => {
+      state.resetStatus = getErrorStatus(payload);
     },
     getSessionRequest: (state) => {
       state.status = getStartStatus();
@@ -61,8 +61,8 @@ export const slice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
     },
-    getSessionError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    getSessionError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });

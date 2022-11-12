@@ -28,8 +28,8 @@ export const reducer = createSlice({
       state.duties = payload.duties;
       state.enrollment = payload.enrollment;
     },
-    fetchDutiesError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchDutiesError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     fetchDutyRequest: (state) => {
       state.status = getStartStatus();
@@ -38,8 +38,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.duty = payload.duty;
     },
-    fetchDutyError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    fetchDutyError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
     cleanValues: (state) => ({
       ...initialState,
@@ -56,8 +56,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.isSaving = false;
     },
-    saveDutyError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    saveDutyError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
       state.isSaving = initialState.isSaving;
     },
     saveEnrollmentRequest: (state) => {
@@ -68,8 +68,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.isSaving = false;
     },
-    saveEnrollmentError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    saveEnrollmentError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
       state.isSaving = initialState.isSaving;
     },
     removeDutyRequest: (state) => {
@@ -79,8 +79,8 @@ export const reducer = createSlice({
       state.status = getSuccessStatus();
       state.duties = state.duties.filter(duty => duty.idDuty !== payload);
     },
-    removeDutyError: (state, { error }) => {
-      state.status = getErrorStatus(error);
+    removeDutyError: (state, { payload }) => {
+      state.status = getErrorStatus(payload);
     },
   },
 });
