@@ -34,6 +34,7 @@ const DutyForm = ({
       onCancel={goTo}
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
+      submitText="Guardar"
     />
   </Form>
 );

@@ -16,6 +16,7 @@ const RecoveryPasswordForm = ({ isSubmitting, goToLogin, status }) => (
       onCancel={goToLogin}
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
+      submitText="Enviar"
     />
   </Form>
 );

@@ -19,6 +19,7 @@ const ResetPasswordForm = ({ isSubmitting }) => (
     />
     <FormButtons
       isDisabled={isSubmitting}
+      submitText="Enviar"
     />
   </Form>
 );
