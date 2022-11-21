@@ -44,6 +44,7 @@ const TimetableForm = ({
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
       onCancel={goTo}
+      submitText="Guardar"
     />
   </Form>
 );

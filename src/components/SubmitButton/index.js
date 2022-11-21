@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import { PlusSquareIcon } from '@chakra-ui/icons';
 
-const SubmitButton = ({ submitText = 'Guardar', hiddenIcon, ...props }) => (
+const SubmitButton = ({ submitText, hiddenIcon, ...props }) => (
   <Button
     type="submit"
     bg="pink.300"

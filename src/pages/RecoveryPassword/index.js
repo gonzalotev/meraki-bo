@@ -19,7 +19,7 @@ const RecoveryPassword = ({ onSubmit, status }) => {
   }, [status]);
   return (
     <Container>
-      <Stack bg="base" m={10} minW="400px" minH="500px" justifyContent="center" overflow="auto">
+      <Stack bg="base" mx="auto" mt={20} maxW="400px" minH="500px" justifyContent="center" overflow="auto">
         {step === 0 && (
           <Formik
             initialValues={initialValues}

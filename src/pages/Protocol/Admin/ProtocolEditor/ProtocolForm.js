@@ -30,6 +30,7 @@ const ProtocolForm = ({ status, isSubmitting }) => (
     <FormButtons
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
+      submitText="Guardar"
     />
   </Form>
 );

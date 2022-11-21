@@ -39,6 +39,7 @@ const ResourceForm = ({
         onCancel={onCancel}
         isDisabled={isSubmitting}
         isLoading={status.isFetching}
+        submitText="Guardar"
       />
     </Form>
   );

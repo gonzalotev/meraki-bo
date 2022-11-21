@@ -20,6 +20,7 @@ const DisciplineForm = ({ status, isSubmitting, goTo }) => (
       onCancel={goTo}
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
+      submitText="Guardar"
     />
   </Form>
 );

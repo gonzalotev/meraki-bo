@@ -30,6 +30,7 @@ const RegisterForm = ({ status, isSubmitting, roles }) => (
     <FormButtons
       isDisabled={isSubmitting}
       isLoading={status.isFetching}
+      submitText="Guardar"
     />
   </Form>
 );
